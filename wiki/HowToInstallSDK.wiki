@@ -1,0 +1,19 @@
+#summary Installation document for the SMART Table SDK
+#labels Phase-Deploy
+
+== Introduction ==
+
+This is the installation document for getting the SMART Table SDK to work in a Windows environment. Note, this document is a work in progress.
+
+== Details ==
+
+Installation instructions:
+  # Download Microsoft Visual Studio 2008 from MSDN.
+    * If you don't want to burn the downloaded ISO to a DVD, you may download [http://sourceforge.net/projects/wincdemu/ WinCDEmu] to mount them as a virtual CD/DVD drive.
+    * The installer will put Windows into testsigning or "Test Mode", which you can disable after install with the command: bcdedit.exe -set TESTSIGNING OFF
+  # Install Microsoft Visual Studio 2008.
+    * Make sure to include the "Visual Web Developer" feature, since it is a requirement for the SMART Table SDK.
+  # Update Microsoft Visual Studio 2008 with [http://www.microsoft.com/downloads/en/confirmation.aspx?familyId=fbee1648-7106-44a7-9649-6d9f6d58056e&displayLang=en SP1].
+  # Download and install other required software.
+    # [http://www.microsoft.com/downloads/details.aspx?FamilyID=F1AE9A30-4928-411D-970B-E682AB179E17&displaylang=en Microsoft Expression Blend 3 SDK]
+    # [http://msdn.microsoft.com/en-us/library/cc838244%28VS.95%29.aspx Silverlight Tools and SDK] for Microsoft Visual Studio 2008.
