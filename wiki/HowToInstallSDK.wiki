@@ -1,5 +1,5 @@
 #summary Installation document for the SMART Table SDK
-#labels Phase-Deploy
+#labels Phase-Deploy,Featured
 
 == Introduction ==
 
