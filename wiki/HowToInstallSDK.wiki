@@ -16,7 +16,7 @@ Installation instructions:
   # Update Microsoft Visual Studio 2008 with [http://www.microsoft.com/downloads/en/confirmation.aspx?familyId=fbee1648-7106-44a7-9649-6d9f6d58056e&displayLang=en SP1].
   # Download and install other required software.
     * [http://www.microsoft.com/downloads/details.aspx?FamilyID=F1AE9A30-4928-411D-970B-E682AB179E17&displaylang=en Microsoft Expression Blend 3 SDK]
-    * [http://msdn.microsoft.com/en-us/library/cc838244%28VS.95%29.aspx Silverlight Tools and SDK] for Microsoft Visual Studio 2008.
+    * [http://www.microsoft.com/downloads/details.aspx?familyid=9442b0f2-7465-417a-88f3-5e7b5409e9dd&displaylang=en Silverlight Tools and SDK] for Microsoft Visual Studio 2008.
   # Download the three development components from the [http://sdn.smarttech.com/membership/sdndl.aspx SMART Developer Network].
     * [http://downloads.smarttech.com/media/products/sdk/smart-board-sdk-10.1.10.1-win.exe SMART Board SDK]
     * [http://downloads.smarttech.com/media/products/sdk/smart-table-sdk-1.3.53.0.exe SMART Table SDK]
