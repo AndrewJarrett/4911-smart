@@ -10,7 +10,7 @@ This is the installation document for getting the SMART Table SDK to work in a W
 Installation instructions:
   # Download Microsoft Visual Studio 2008 from MSDN.
     * If you don't want to burn the downloaded ISO to a DVD, you may download [http://sourceforge.net/projects/wincdemu/ WinCDEmu] to mount them as a virtual CD/DVD drive.
-    * The installer will put Windows into [http://msdn.microsoft.com/en-us/library/dd419910.aspx "Test Mode"], which you can disable after install with the command: bcdedit.exe -set TESTSIGNING OFF
+    * The WinCDEmu installer will put Windows into [http://msdn.microsoft.com/en-us/library/dd419910.aspx "Test Mode"], which you can disable after install with the command: bcdedit.exe -set TESTSIGNING OFF
   # Install Microsoft Visual Studio 2008.
     * Make sure to include the "Visual Web Developer" feature, since it is a requirement for the SMART Table SDK.
   # Update Microsoft Visual Studio 2008 with [http://www.microsoft.com/downloads/en/confirmation.aspx?familyId=fbee1648-7106-44a7-9649-6d9f6d58056e&displayLang=en SP1].
@@ -23,3 +23,4 @@ Installation instructions:
     * [http://downloads.smarttech.com/media/products/sdk/smart-table-toolkit-1.3-win.exe SMART Table Toolkit]
   # Install the SMART Board SDK.
   # Install the SMART Table SDK.
+  # Install the SMART Table Toolkit.
