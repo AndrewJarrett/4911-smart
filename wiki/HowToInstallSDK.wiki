@@ -13,6 +13,7 @@ Installation instructions:
     * The WinCDEmu installer will put Windows into [http://msdn.microsoft.com/en-us/library/dd419910.aspx "Test Mode"], which you can disable after install with the command: bcdedit.exe -set TESTSIGNING OFF
   # Install Microsoft Visual Studio 2008.
     * Make sure to include the "Visual Web Developer" feature, since it is a requirement for the SMART Table SDK.
+  # Optionally, install the documentation for Visual Studio 2008 for offline reference.
   # Update Microsoft Visual Studio 2008 with [http://www.microsoft.com/downloads/en/confirmation.aspx?familyId=fbee1648-7106-44a7-9649-6d9f6d58056e&displayLang=en SP1].
   # Download and install other required software.
     * [http://www.microsoft.com/downloads/details.aspx?FamilyID=F1AE9A30-4928-411D-970B-E682AB179E17&displaylang=en Microsoft Expression Blend 3 SDK]
