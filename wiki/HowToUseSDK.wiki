@@ -7,7 +7,7 @@ This is quick tutorial to get you started using the SMART Table SDK in Microsoft
 
 If you do not have any of the software installed yet, follow the [HowToInstallSDK] guide.
 
-Instructions:
+Creating a new SMART Table Project:
   * Start up Microsoft Visual Studio 2008.
   * Create a new project: `File->New->Project...`
   * Select the Table Application template: `Visual #C->SMART Table->Table Application`
