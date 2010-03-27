@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace LabBench.DataStructures {
+namespace LabBench.language.graph {
     
     public class Node<T> {
         // Private member-variables

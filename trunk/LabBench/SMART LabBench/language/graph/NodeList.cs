@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Collections.ObjectModel;
 
-namespace LabBench.DataStructures                   
+namespace LabBench.language.graph                 
 {
     public class NodeList<T> : Collection<Node<T>>
     {

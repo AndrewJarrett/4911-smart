@@ -93,12 +93,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Algorithms\Dijkstra.cs" />
-    <Compile Include="DataStructures\Graph.cs" />
-    <Compile Include="DataStructures\GraphNode.cs" />
-    <Compile Include="DataStructures\ID.cs" />
-    <Compile Include="DataStructures\NodeList.cs" />
-    <Compile Include="DataStructures\Node.cs" />
+    <Compile Include="algorithm\Dijkstra.cs" />
+    <Compile Include="language\graph\Graph.cs" />
+    <Compile Include="language\graph\GraphNode.cs" />
+    <Compile Include="language\graph\NodeList.cs" />
+    <Compile Include="language\graph\Node.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

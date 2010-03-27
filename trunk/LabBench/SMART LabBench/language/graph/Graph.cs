@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace LabBench.DataStructures
+namespace LabBench.language.graph
 {
     public class Graph<T> : IEnumerable<T>
     {
@@ -48,6 +48,14 @@ namespace LabBench.DataStructures
         public bool Contains(T value)
         {
             return nodeSet.FindByValue(value) != null;
+        }
+
+        public Node<T> Get(T value)
+        {
+            if (Contains(value))
+                return nodeSet.FindByValue(value);
+            else
+                return null;
         }
 
         public bool Remove(T value)
