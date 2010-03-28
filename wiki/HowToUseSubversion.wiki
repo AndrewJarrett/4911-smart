@@ -1,0 +1,18 @@
+#summary A quick tutorial on how to use Subversion.
+
+= Introduction =
+
+This is a quick tutorial on how to install AnkhSVN, a subversion plug-in for VS2008, and use it to check out the project code. 
+
+= Prerequisites == 
+
+[http://ankhsvn.open.collab.net/servlets/ProjectProcess?pageID=3794 AnkhSVN] (2.1.7819) needs to be downloaded and installed.
+
+= Details =
+
+Check out the "SMART LabBench" Solution:
+    * Select `File->Open->Subversion Project`
+    * Type in `https://4911-smart.googlecode.com/svn/trunk`
+    * Browse and select `LabBench/SMART LabBench.sln`. 
+    * Click `Open`.
+    * Click `OK` and the solution will open automatically
