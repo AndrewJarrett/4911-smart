@@ -50,10 +50,10 @@ namespace LabBench.language.graph
             return nodeSet.FindByValue(value) != null;
         }
 
-        public Node<T> Get(T value)
+        public GraphNode<T> Get(T value)
         {
             if (Contains(value))
-                return nodeSet.FindByValue(value);
+                return (GraphNode<T>) nodeSet.FindByValue(value);
             else
                 return null;
         }
