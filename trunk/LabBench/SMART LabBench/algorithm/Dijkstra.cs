@@ -28,11 +28,11 @@ namespace LabBench.algorithm
         public void build() {
 
             foreach(GraphNode<T> v in graph.Nodes) {
-                distance.Add(v, int.MaxValue);
+                distance.Add(v, int.MaxValue); // infinity
                 previous.Add(v, null);
             }
 
-            distance[(GraphNode<T>) graph.Get(source)] = 0;
+            distance[graph.Get(source)] = 0;
 
             NodeList<T> Q = graph.Nodes;
 

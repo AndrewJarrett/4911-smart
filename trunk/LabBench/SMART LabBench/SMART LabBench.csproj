@@ -94,6 +94,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="algorithm\Dijkstra.cs" />
+    <Compile Include="language\Circuit.cs" />
+    <Compile Include="language\Component.cs" />
     <Compile Include="language\graph\Graph.cs" />
     <Compile Include="language\graph\GraphNode.cs" />
     <Compile Include="language\graph\NodeList.cs" />
