@@ -51,8 +51,9 @@ namespace SMART_LabBench
             mTouchCloner.RenderTransform = mTranslateTransform;
 
             canvas.Children.Add(mTouchCloner);
-            
 
+            // Draw Toolbox
+            Toolbox t = new Toolbox(canvas, 100, 100);
         }
 
     }
