@@ -93,7 +93,7 @@ namespace WindowsFormsApplication1
             }
             else
             {
-                if (objectBrowser.SelectedNode.Parent.Text == "Categories")
+                if (objectBrowser.SelectedNode.Parent == null || objectBrowser.SelectedNode.Parent.Text == "Categories")
                     currentCategory = objectBrowser.SelectedNode.Text;
                 objectModifier.Visible = false;
             }
