@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 using LabBench.language.graph;
-using LabBench.language.circuit;
+using LabBench.language;
 
 namespace LabBench.algorithm
 {
