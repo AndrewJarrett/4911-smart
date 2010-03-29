@@ -86,15 +86,32 @@ namespace LabBench.language.graph
 
         public NodeList<T> Nodes
         {
-            get
-            {
-                return nodeSet;
-            }
+            get { return nodeSet; }
         }
 
         public int Count
         {
             get { return nodeSet.Count; }
         }
+
+
+
+        #region IEnumerable<T> Members
+
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
+        #region IEnumerable Members
+
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }

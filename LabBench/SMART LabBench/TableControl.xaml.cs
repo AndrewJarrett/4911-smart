@@ -11,6 +11,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using libSMARTMultiTouch.Controls;
+using libSMARTMultiTouch.Input;
+using LabBench.language.ui;
 
 namespace SMART_LabBench
 {
@@ -31,9 +33,27 @@ namespace SMART_LabBench
         {
             TableLayoutRoot.Children.Add(canvas);
 
-            DraggableImage mDraggableImage = new DraggableImage(20,20,0,new BitmapImage(new Uri("C:\\Users\\Jean-Pierre\\Downloads\\lemon.bmp")),true,1,2);
-            mDraggableImage.Height = 200; mDraggableImage.Width = 200;
-            canvas.Children.Add(mDraggableImage);
+            InteractiveBorder mInteractiveBorder = new InteractiveBorder();
+            mInteractiveBorder.Width = 75; mInteractiveBorder.Height = 75;
+            mInteractiveBorder.Background = new SolidColorBrush(Colors.Red);
+
+            Rectangle mRectangle = new Rectangle();
+            mRectangle.Height = mInteractiveBorder.Height;
+            mRectangle.Width = mInteractiveBorder.Width;
+            mRectangle.Fill = new SolidColorBrush(Colors.Red);
+
+            TouchCloner mTouchCloner = new TouchCloner(mRectangle);
+            mTouchCloner.Source = new ClonableRectangle(mInteractiveBorder);
+
+            TranslateTransform mTranslateTransform = new TranslateTransform();
+            mTranslateTransform.X = 400;
+            mTranslateTransform.Y = 400;
+            mTouchCloner.RenderTransform = mTranslateTransform;
+
+            canvas.Children.Add(mTouchCloner);
+            
+
         }
+
     }
 }
