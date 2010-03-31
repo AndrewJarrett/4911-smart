@@ -10,10 +10,10 @@ namespace LabBench.language.ui
 {
     class IconFactory
     {
-        public IconFactory(Canvas mCanvas, Icon mIcon, double x, double y)
+        public IconFactory(Canvas mCanvas, Icon mBase, Icon mClone, double x, double y)
         {
-            TouchCloner mTouchCloner = new TouchCloner(mIcon);
-            mTouchCloner.Source = new CloneableIcon(mIcon);
+            TouchCloner mTouchCloner = new TouchCloner(mBase);
+            mTouchCloner.Source = new CloneableIcon(mClone);
 
             TranslateTransform mTranslateTransform = new TranslateTransform();
             mTranslateTransform.X = x;
@@ -22,5 +22,9 @@ namespace LabBench.language.ui
 
             mCanvas.Children.Add(mTouchCloner);
         }
+
+        public IconFactory(Canvas mCanvas, Icon mIcon, double x, double y)
+            : this(mCanvas, mIcon, mIcon, x, y)
+        { ; }
     }
 }
