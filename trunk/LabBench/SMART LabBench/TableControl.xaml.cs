@@ -22,6 +22,7 @@ namespace SMART_LabBench
     public partial class TableControl : TableApplicationControl
     {
         private Canvas canvas = new Canvas();
+        private IconFactory mIconFactory;
 
         public TableControl()
         {
@@ -33,24 +34,20 @@ namespace SMART_LabBench
         {
             TableLayoutRoot.Children.Add(canvas);
 
-            InteractiveBorder mInteractiveBorder = new InteractiveBorder();
-            mInteractiveBorder.Width = 75; mInteractiveBorder.Height = 75;
-            mInteractiveBorder.Background = new SolidColorBrush(Colors.Red);
+            //InteractiveBorder mInteractiveBorder = new InteractiveBorder();
+            //mInteractiveBorder.Width = 75; mInteractiveBorder.Height = 75;
+            //mInteractiveBorder.Background = new SolidColorBrush(Colors.Red);
 
-            Rectangle mRectangle = new Rectangle();
-            mRectangle.Height = mInteractiveBorder.Height;
-            mRectangle.Width = mInteractiveBorder.Width;
-            mRectangle.Fill = new SolidColorBrush(Colors.Red);
+            //Rectangle mRectangle = new Rectangle();
+            //mRectangle.Height = mInteractiveBorder.Height;
+            //mRectangle.Width = mInteractiveBorder.Width;
+            //mRectangle.Fill = new SolidColorBrush(Colors.Red);
 
-            TouchCloner mTouchCloner = new TouchCloner(mRectangle);
-            mTouchCloner.Source = new ClonableRectangle(mInteractiveBorder);
+            Icon mIcon = new Icon(new ImagePNG("lemon.png"));
+            mIconFactory = new IconFactory(canvas, mIcon, 400, 400);
+            
 
-            TranslateTransform mTranslateTransform = new TranslateTransform();
-            mTranslateTransform.X = 400;
-            mTranslateTransform.Y = 400;
-            mTouchCloner.RenderTransform = mTranslateTransform;
 
-            canvas.Children.Add(mTouchCloner);
 
             // Draw Toolbox
             Toolbox t = new Toolbox(canvas, 100, 100);
