@@ -7,7 +7,7 @@ using libSMARTMultiTouch.Controls;
 
 namespace LabBench.language.ui
 {
-    class Icon : DraggableImage
+    public class Icon : DraggableImage
     {
         private BitmapImage mBitmapImage;
 
