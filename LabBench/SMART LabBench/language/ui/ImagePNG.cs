@@ -6,7 +6,7 @@ using System.Windows.Media.Imaging;
 
 namespace LabBench.language.ui
 {
-    class ImagePNG
+    public class ImagePNG
     {
         private BitmapImage mBitmapImage;
 

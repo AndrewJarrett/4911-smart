@@ -22,7 +22,7 @@ namespace SMART_LabBench
     public partial class TableControl : TableApplicationControl
     {
         private Canvas canvas = new Canvas();
-        private IconFactory mIconFactory;
+        private List<IconFactory> mIconFactories;
 
         public TableControl()
         {
@@ -34,6 +34,22 @@ namespace SMART_LabBench
         {
             TableLayoutRoot.Children.Add(canvas);
 
+            canvas.Background = new SolidColorBrush(Colors.DarkGray);
+
+            Rectangle mCanvas = new Rectangle();
+            mCanvas.Height = 960;
+            mCanvas.Width = 1280;
+
+            TranslateTransform mTranslateTransform = new TranslateTransform();
+            mTranslateTransform.X = 60;
+            mTranslateTransform.Y = 45;
+
+            mCanvas.RenderTransform = mTranslateTransform;
+
+            mCanvas.Fill = new SolidColorBrush(Colors.White);
+
+            canvas.Children.Add(mCanvas);
+
             //InteractiveBorder mInteractiveBorder = new InteractiveBorder();
             //mInteractiveBorder.Width = 75; mInteractiveBorder.Height = 75;
             //mInteractiveBorder.Background = new SolidColorBrush(Colors.Red);
@@ -43,14 +59,25 @@ namespace SMART_LabBench
             //mRectangle.Width = mInteractiveBorder.Width;
             //mRectangle.Fill = new SolidColorBrush(Colors.Red);
 
-            Icon mIcon = new Icon(new ImagePNG("lemon.png"));
-            mIconFactory = new IconFactory(canvas, mIcon, 400, 400);
-            
+            //mIconFactories = new List<IconFactory>();
+
+            //Icon mIcon = new Icon(new ImagePNG("lemon.png"));
+            //IconFactory mIconFactory = new IconFactory(canvas, mIcon, 0, 0);
+            //mIconFactories.Add(mIconFactory);
+
+            //mIcon = new Icon(new ImagePNG("barmagnet.png"));
+            //mIconFactory = new IconFactory(canvas, mIcon, 200, 20);
+            //mIconFactories.Add(mIconFactory);
+
+
+            List<String> mIcons = new List<String>();
+            mIcons.Add("lemon.png");
+            mIcons.Add("barmagnet.png");
 
 
 
             // Draw Toolbox
-            Toolbox t = new Toolbox(canvas, 100, 100);
+            Toolbox t = new Toolbox(canvas, mIcons, 600, 0);
         }
 
     }
