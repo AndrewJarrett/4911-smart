@@ -1,0 +1,13 @@
+﻿<Window x:Class="SMART_LabBench.Player"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Player" Height="768" Width="1024">
+    <Grid x:Name="LayoutRoot" Margin="20">
+        <Grid.Background>
+            <ImageBrush ImageSource="resources/images/design/background.png"></ImageBrush>
+        </Grid.Background>
+        <Button x:Name="Exit" VerticalAlignment="Bottom" HorizontalAlignment="Left" Click="Exit_Click" Width="70" Height="70">
+            <Image Source="resources/images/design/back_arrow.png"></Image>
+        </Button>
+    </Grid>
+</Window>

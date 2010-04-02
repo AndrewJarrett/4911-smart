@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="SMART_LabBench.TitleScreenControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Width="300" Background="Transparent">
+    <UserControl.Resources>
+        <SolidColorBrush Color="Red" Opacity=".6" x:Key="RedTransparentBrush"></SolidColorBrush>
+    </UserControl.Resources>
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
+        <Border x:Name="lessonManagerOutsideBorder" Background="{StaticResource RedTransparentBrush}" BorderThickness="0,0,2,2" CornerRadius="18" Margin="10">
+            <Border x:Name="lessonManagerInsideBorder" Background="DarkGray" BorderThickness="5" CornerRadius="18" Opacity=".6" Padding="10">
+                <Button x:Name="lessonManager" FontSize="22" Foreground="Black" Content="Create a Lesson!" Background="Azure" Click="lessonManager_Click" />
+            </Border>
+        </Border>
+        <Border x:Name="lessonPickerOutsideBorder" Background="{StaticResource RedTransparentBrush}" BorderThickness="0,0,2,2" CornerRadius="18" Margin="10">
+            <Border x:Name="lessonPickerInsideBorder" Background="DarkGray" BorderThickness="5" CornerRadius="18" Opacity=".6" Padding="10">
+                <Button x:Name="lessonPicker" FontSize="22" Foreground="Black" Content="Play a Lesson!" Background="Azure" Click="lessonPicker_Click" />
+            </Border>
+        </Border>
+    </StackPanel>
+</UserControl>

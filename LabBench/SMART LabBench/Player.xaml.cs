@@ -9,23 +9,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using libSMARTMultiTouch.Table;
 
 namespace SMART_LabBench
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for Player.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class Player : Window
     {
-        public Window1()
+        public Player()
         {
             InitializeComponent();
-            TableManager.Initialize(this, LayoutRoot);
-            LayoutRoot.Children.Add(new TableControl());
-            TableManager.IsFullScreen = true;
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
