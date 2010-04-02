@@ -13,7 +13,7 @@ namespace LabBench.language.ui
     class ToolboxCategory : Border
     {
         private Canvas parent;
-        private List<Component> objects;
+        //private List<Component> objects;
         private int locX, locY;
         private bool open;
         //private List<TouchCloner> visibleToolboxItems;

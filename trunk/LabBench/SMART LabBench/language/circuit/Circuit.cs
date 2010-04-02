@@ -8,7 +8,7 @@ namespace LabBench.language
 {
     public class Circuit : Graph<Component>
     {
-        private Component source, sink;
+        private Component source = null, sink = null;
 
         public Circuit() : base()
         {

@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using libSMARTMultiTouch.Controls;
 using libSMARTMultiTouch.Input;
+using libSMARTMultiTouch.Table;
 using LabBench.language.ui;
 
 namespace SMART_LabBench
@@ -22,7 +23,7 @@ namespace SMART_LabBench
     public partial class TableControl : TableApplicationControl
     {
         private Canvas canvas = new Canvas();
-        private List<IconFactory> mIconFactories;
+        // private List<IconFactory> mIconFactories;
 
         public TableControl()
         {
@@ -32,6 +33,11 @@ namespace SMART_LabBench
 
         private void TableApplicationControl_Loaded(object sender, RoutedEventArgs e)
         {
+            /*
+             * This code should go into the lesson creator state as soon as it is
+             * created. I need to have the other code here so we can see the
+             * different game screens
+             * 
             TableLayoutRoot.Children.Add(canvas);
 
             canvas.Background = new SolidColorBrush(Colors.DarkGray);
@@ -74,10 +80,19 @@ namespace SMART_LabBench
             mIcons.Add("lemon.png");
             mIcons.Add("barmagnet.png");
 
-
-
             // Draw Toolbox
             Toolbox t = new Toolbox(canvas, mIcons, 600, 0);
+             * 
+             * End new code.
+             * 
+            */
+
+            // Setup the Title Screen Controls
+            TitleScreenControl mTitleScreenControl = new TitleScreenControl();
+
+            // Add the objects to the root layout
+            base.TableLayoutRoot.Children.Add(canvas);
+            base.TableLayoutRoot.Children.Add(mTitleScreenControl);
         }
 
     }
