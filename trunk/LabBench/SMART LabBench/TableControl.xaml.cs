@@ -33,11 +33,28 @@ namespace SMART_LabBench
 
         private void TableApplicationControl_Loaded(object sender, RoutedEventArgs e)
         {
-            /*
-             * This code should go into the lesson creator state as soon as it is
-             * created. I need to have the other code here so we can see the
-             * different game screens
-             * 
+            bool displayMenu = false;
+            bool displayEditor = true;
+
+            if (displayMenu)
+                showMenu();
+            if (displayEditor)
+                showLessonEditor();
+
+        }
+
+        private void showMenu()
+        {
+            // Setup the Title Screen Controls
+            TitleScreenControl mTitleScreenControl = new TitleScreenControl();
+
+            // Add the objects to the root layout
+            base.TableLayoutRoot.Children.Add(canvas);
+            base.TableLayoutRoot.Children.Add(mTitleScreenControl);
+        }
+
+        private void showLessonEditor()
+        {
             TableLayoutRoot.Children.Add(canvas);
 
             canvas.Background = new SolidColorBrush(Colors.DarkGray);
@@ -82,17 +99,6 @@ namespace SMART_LabBench
 
             // Draw Toolbox
             Toolbox t = new Toolbox(canvas, mIcons, 600, 0);
-             * 
-             * End new code.
-             * 
-            */
-
-            // Setup the Title Screen Controls
-            TitleScreenControl mTitleScreenControl = new TitleScreenControl();
-
-            // Add the objects to the root layout
-            base.TableLayoutRoot.Children.Add(canvas);
-            base.TableLayoutRoot.Children.Add(mTitleScreenControl);
         }
 
     }
