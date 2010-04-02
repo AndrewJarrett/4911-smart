@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using libSMARTMultiTouch.Controls;
+using System.Windows;
+using libSMARTMultiTouch.Input;
+using System.Windows.Controls;
+using LabBench.language.ui.control;
+using libSMARTMultiTouch.Behaviors;
 
 namespace LabBench.language.ui
 {
@@ -18,12 +23,12 @@ namespace LabBench.language.ui
         public Object Clone()
         {
             DraggableBorder r = new DraggableBorder();
-            //RotateColorBehavior rc = new RotateColorBehavior();
-            //r.Attach(rc);
+            DebugBehavior rc = new DebugBehavior();
+            
+            r.Attach(rc);
             r.Width = mInteractiveBorder.Width;
             r.Height = mInteractiveBorder.Height;
             r.Background = mInteractiveBorder.Background;
-
             return r;
         }
     }
