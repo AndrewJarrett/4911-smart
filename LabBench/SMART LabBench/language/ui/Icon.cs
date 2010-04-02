@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Media.Imaging;
 using libSMARTMultiTouch.Controls;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace LabBench.language.ui
 {
@@ -29,7 +31,7 @@ namespace LabBench.language.ui
             minScale = 0.5; maxScale = 2;
             setPose(x, y, angle);
             setScale(minScale, maxScale);
-            setSource(mPNG.Source);
+            setSource(mPNG.Source);   
         }
 
         private void setScale(double minScale, double maxScale) {

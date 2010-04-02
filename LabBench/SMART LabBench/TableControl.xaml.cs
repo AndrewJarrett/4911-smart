@@ -14,6 +14,7 @@ using libSMARTMultiTouch.Controls;
 using libSMARTMultiTouch.Input;
 using libSMARTMultiTouch.Table;
 using LabBench.language.ui;
+using LabBench.demo;
 
 namespace SMART_LabBench
 {
@@ -91,7 +92,8 @@ namespace SMART_LabBench
             //mIcon = new Icon(new ImagePNG("barmagnet.png"));
             //mIconFactory = new IconFactory(canvas, mIcon, 200, 20);
             //mIconFactories.Add(mIconFactory);
-
+            Sandbox mSandbox = new Sandbox(canvas);
+            mSandbox.activate();
 
             List<String> mIcons = new List<String>();
             mIcons.Add("lemon.png");
