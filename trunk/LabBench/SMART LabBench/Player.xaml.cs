@@ -11,7 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace SMART_LabBench
+namespace LabBench
 {
     /// <summary>
     /// Interaction logic for Player.xaml

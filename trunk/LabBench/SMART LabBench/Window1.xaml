@@ -1,4 +1,4 @@
-﻿<Window x:Class="SMART_LabBench.Window1"
+﻿<Window x:Class="LabBench.Window1"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Title="SMART LabBench" Width="1024" Height="768">

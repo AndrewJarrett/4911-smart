@@ -13,7 +13,7 @@ using System.Windows.Shapes;
 using libSMARTMultiTouch.Controls;
 using LabBench.language.ui;
 
-namespace SMART_LabBench
+namespace LabBench
 {
     /// <summary>
     /// Interaction logic for Creator.xaml

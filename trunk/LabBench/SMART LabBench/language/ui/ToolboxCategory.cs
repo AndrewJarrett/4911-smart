@@ -53,22 +53,10 @@ namespace LabBench.language.ui
             double offset = 75;
             for (int i = 1; i < mIcons.Count+1; i++)
             {
-                //Rectangle mRectangle = new Rectangle();
-                //mRectangle.Height = 75; mRectangle.Width = 75;
-                //mRectangle.Fill = new SolidColorBrush(Colors.Blue);
-
-                //TouchCloner mTouchCloner = new TouchCloner(mRectangle);
-                //mTouchCloner.Source = new ToolboxItem();
-
-                //TranslateTransform mTranslateTransform = new TranslateTransform();
-                //mTranslateTransform.X = this.locX;
-                //mTranslateTransform.Y = this.locY + (i * 75);
-                //mTouchCloner.RenderTransform = mTranslateTransform;
                 Icon mIcon = new Icon(new ImagePNG(mIcons[i-1]));
                 IconFactory mIconFactory = new IconFactory(this.parent, mIcon, this.locX, this.locY + offset);
                 offset += mIcon.Height * 1.2;
-                visibleToolboxItems.Add(mIconFactory); //mTouchCloner);
-                //this.parent.Children.Add(mIconFactory); //mTouchCloner);
+                visibleToolboxItems.Add(mIconFactory);
             }
             this.open = true;
         }
@@ -79,7 +67,7 @@ namespace LabBench.language.ui
             {
                 this.parent.Children.Remove(t.Source);
             }
-            this.visibleToolboxItems = new List<IconFactory>(); //TouchCloner>();
+            this.visibleToolboxItems = new List<IconFactory>();
             this.open = false;
         }
     }
