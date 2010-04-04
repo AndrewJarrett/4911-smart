@@ -150,6 +150,7 @@
     <Compile Include="language\ui\Icon.cs" />
     <Compile Include="language\ui\IconFactory.cs" />
     <Compile Include="language\ui\ImagePNG.cs" />
+    <Compile Include="language\ui\layout\FixedGrid.cs" />
     <Compile Include="language\ui\Toolbox.cs" />
     <Compile Include="language\ui\ToolboxCategory.cs" />
     <Compile Include="language\ui\ToolboxItem.cs" />
