@@ -27,7 +27,6 @@ namespace LabBench.language.ui.control
             m_translateTransform = base.AssociatedObject.TranslateTransform;
             m_scaleTransform = base.AssociatedObject.ScaleTransform;
             base.AssociatedObject.TouchUp += new TouchContactEventHandler(AssociatedObject_TouchUp);
-            ((InteractiveBorder)m_element).Child = label;
             ((InteractiveBorder)m_element).Background = new SolidColorBrush(Colors.Red);
         }
 
