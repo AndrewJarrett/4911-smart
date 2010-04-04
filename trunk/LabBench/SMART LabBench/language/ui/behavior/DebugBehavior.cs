@@ -28,9 +28,7 @@ namespace LabBench.language.ui.control
             base.AssociatedObject.TranslateTransformUpdated += new EventHandler(AssociatedObject_TranslateTransformUpdated);
             base.AssociatedObject.TouchUp += new TouchContactEventHandler(AssociatedObject_TouchUp);
             ((InteractiveBorder)m_element).Child = label;
-            ((InteractiveBorder)m_element).Background = new SolidColorBrush(Colors.Red);
-
-            label.Text = "Position : (0,0)";
+            label.Text = "Position : (" +  m_translateTransform.X + "," + m_translateTransform.Y + ")";
         }
 
         public void AssociatedObject_TouchUp(object sender, EventArgs e)

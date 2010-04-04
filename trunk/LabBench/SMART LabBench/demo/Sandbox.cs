@@ -8,7 +8,7 @@ using System.Windows.Media;
 using System.Windows.Shapes;
 using libSMARTMultiTouch.Behaviors;
 using LabBench.language.ui.control;
-using System.Windows;
+using LabBench.language.ui.layout;
 
 namespace LabBench.demo
 {
@@ -16,6 +16,8 @@ namespace LabBench.demo
     class Sandbox
     {
         private Canvas mCanvas;
+
+        private FixedGrid mGrid;
 
         public Sandbox(Canvas mCanvas)
         {
@@ -47,6 +49,8 @@ namespace LabBench.demo
             mInteractiveBorder.Attach(mFlickBehavior);
 
             mCanvas.Children.Add(mInteractiveBorder);
+
+
         }
     }
 }
