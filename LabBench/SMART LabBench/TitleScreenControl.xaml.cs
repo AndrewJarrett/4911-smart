@@ -12,7 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SMART_LabBench
+namespace LabBench
 {
     /// <summary>
     /// Interaction logic for TitleScreenControl.xaml

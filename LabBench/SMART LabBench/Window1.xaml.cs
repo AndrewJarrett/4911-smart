@@ -13,7 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using libSMARTMultiTouch.Table;
 
-namespace SMART_LabBench
+namespace LabBench
 {
     /// <summary>
     /// Interaction logic for Window1.xaml

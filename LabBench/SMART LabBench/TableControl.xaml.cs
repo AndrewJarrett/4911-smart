@@ -16,7 +16,7 @@ using libSMARTMultiTouch.Table;
 using LabBench.language.ui;
 using LabBench.demo;
 
-namespace SMART_LabBench
+namespace LabBench
 {
     /// <summary>
     /// Interaction logic for TableControl.xaml

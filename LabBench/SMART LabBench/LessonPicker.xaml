@@ -1,4 +1,4 @@
-﻿<Window x:Class="SMART_LabBench.LessonPicker"
+﻿<Window x:Class="LabBench.LessonPicker"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Title="LessonPicker" Height="768" Width="1024">

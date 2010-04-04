@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Shapes;
 using libSMARTMultiTouch.Behaviors;
 using LabBench.language.ui.control;
+using System.Windows;
 
 namespace LabBench.demo
 {
@@ -32,13 +33,18 @@ namespace LabBench.demo
             mRectangle.Width = mInteractiveBorder.Width;
             mRectangle.Fill = new SolidColorBrush(Colors.Red);
 
-            SnapBehavior dbg = new SnapBehavior();
-            mInteractiveBorder.Attach(dbg);
+            SnapBehavior mSnapBehavior = new SnapBehavior();
+            mInteractiveBorder.Attach(mSnapBehavior);
 
-            RNTBehavior rnt = new RNTBehavior();
-            rnt.IsRotateEnabled = true; rnt.IsTranslateEnabled = true;
+            RNTBehavior mRNTBehavior = new RNTBehavior();
+            mRNTBehavior.IsRotateEnabled = true; mRNTBehavior.IsTranslateEnabled = true;
+            mInteractiveBorder.Attach(mRNTBehavior);
 
-            mInteractiveBorder.Attach(rnt);
+            DebugBehavior mDebugBehavior = new DebugBehavior();
+            mInteractiveBorder.Attach(mDebugBehavior);
+
+            FlickBehavior mFlickBehavior = new FlickBehavior();
+            mInteractiveBorder.Attach(mFlickBehavior);
 
             mCanvas.Children.Add(mInteractiveBorder);
         }

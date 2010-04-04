@@ -9,6 +9,7 @@ using System.Windows.Interactivity;
 using libSMARTMultiTouch;
 using System.Windows;
 using libSMARTMultiTouch.Input;
+using libSMARTMultiTouch.Behaviors;
 
 namespace LabBench.language.ui.control
 {

@@ -8,7 +8,7 @@
     <ProjectGuid>{4707A7EE-37BE-4AD7-A6E9-295C1055E3E1}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SMART_LabBench</RootNamespace>
+    <RootNamespace>LabBench</RootNamespace>
     <AssemblyName>SMART LabBench</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -29,7 +29,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <StartupObject>SMART_LabBench.App</StartupObject>
+    <StartupObject>LabBench.App</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

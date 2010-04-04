@@ -5,6 +5,7 @@ using System.Text;
 
 using libSMARTMultiTouch.Controls;
 using libSMARTMultiTouch.Behaviors;
+using LabBench.language.ui.control;
 
 namespace LabBench.language.ui
 {
