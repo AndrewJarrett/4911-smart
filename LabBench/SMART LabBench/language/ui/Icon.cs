@@ -6,6 +6,8 @@ using System.Windows.Media.Imaging;
 using libSMARTMultiTouch.Controls;
 using System.Windows.Controls;
 using System.Windows.Media;
+using libSMARTMultiTouch.Behaviors;
+using LabBench.language.ui.control;
 
 namespace LabBench.language.ui
 {
@@ -23,6 +25,7 @@ namespace LabBench.language.ui
             setPose(x, y, angle);
             setScale(minScale, maxScale);
             setSource(mBitmapImage);
+            setBehavior();
         }
 
         public Icon(ImagePNG mPNG)
@@ -31,7 +34,14 @@ namespace LabBench.language.ui
             minScale = 0.5; maxScale = 2;
             setPose(x, y, angle);
             setScale(minScale, maxScale);
-            setSource(mPNG.Source);   
+            setSource(mPNG.Source);
+            setBehavior();
+        }
+
+        private void setBehavior()
+        {
+            SnapBehavior dbg = new SnapBehavior();
+            base.Attach(dbg);
         }
 
         private void setScale(double minScale, double maxScale) {

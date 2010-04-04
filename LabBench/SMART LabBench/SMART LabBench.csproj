@@ -143,9 +143,10 @@
     <Compile Include="language\graph\GraphNode.cs" />
     <Compile Include="language\graph\NodeList.cs" />
     <Compile Include="language\graph\Node.cs" />
+    <Compile Include="language\ui\behavior\DebugBehavior.cs" />
     <Compile Include="language\ui\CloneableIcon.cs" />
     <Compile Include="language\ui\CloneableRectangle.cs" />
-    <Compile Include="language\ui\control\DebugBehavior.cs" />
+    <Compile Include="language\ui\behavior\SnapBehavior.cs" />
     <Compile Include="language\ui\Icon.cs" />
     <Compile Include="language\ui\IconFactory.cs" />
     <Compile Include="language\ui\ImagePNG.cs" />

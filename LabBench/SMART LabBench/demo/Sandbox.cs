@@ -32,7 +32,7 @@ namespace LabBench.demo
             mRectangle.Width = mInteractiveBorder.Width;
             mRectangle.Fill = new SolidColorBrush(Colors.Red);
 
-            DebugBehavior dbg = new DebugBehavior();
+            SnapBehavior dbg = new SnapBehavior();
             mInteractiveBorder.Attach(dbg);
 
             RNTBehavior rnt = new RNTBehavior();
