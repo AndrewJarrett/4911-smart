@@ -23,7 +23,7 @@ namespace LabBench.language.ui
         public Object Clone()
         {
             DraggableBorder r = new DraggableBorder();
-            DebugBehavior rc = new DebugBehavior();
+            SnapBehavior rc = new SnapBehavior();
             
             r.Attach(rc);
             r.Width = mInteractiveBorder.Width;
