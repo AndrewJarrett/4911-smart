@@ -9,26 +9,26 @@ using System.Windows.Interactivity;
 using libSMARTMultiTouch;
 using System.Windows;
 using libSMARTMultiTouch.Input;
+using LabBench.language.ui.layout;
 
 namespace LabBench.language.ui.control
 {
-    public class DebugBehavior : Behavior<InteractiveFrameworkElement>
+    public class DeletableBehavior : Behavior<InteractiveFrameworkElement>
     {
         private FrameworkElement m_element;
         private TranslateTransform m_translateTransform;
         private ScaleTransform m_scaleTransform;
-        private TextBlock label = new TextBlock();
 
-        private double mInitialX = 0, mInitialY = 0;
+        private Canvas mCanvas;
 
-        public DebugBehavior(double x, double y)
+        public DeletableBehavior(Canvas mCanvas)
         {
-            mInitialX = x; mInitialY = y;
+            this.mCanvas = mCanvas;
         }
 
-        public DebugBehavior()
-            : this(0, 0)
-        { ; }
+        public DeletableBehavior() {
+            this.mCanvas = GridLayout.source;
+        }
 
         protected override void OnAttached()
         {
@@ -36,25 +36,17 @@ namespace LabBench.language.ui.control
             m_element = base.AssociatedObject.FrameworkElement;
             m_translateTransform = base.AssociatedObject.TranslateTransform;
             m_scaleTransform = base.AssociatedObject.ScaleTransform;
-            base.AssociatedObject.TranslateTransformUpdated += new EventHandler(AssociatedObject_TranslateTransformUpdated);
             base.AssociatedObject.TouchUp += new TouchContactEventHandler(AssociatedObject_TouchUp);
-            ((InteractiveBorder)m_element).Child = label;
-            label.Text = "Position : (" +  mInitialX + "," + mInitialY + ")";
         }
 
         public void AssociatedObject_TouchUp(object sender, EventArgs e)
         {
             if (e != null)
             {
-                label.Text = "Position : (" + m_translateTransform.X + "," + m_translateTransform.Y + ")";
-            }
-        }
-
-        public void AssociatedObject_TranslateTransformUpdated(object sender, EventArgs e)
-        {
-            if (e != null)
-            {
-                label.Text = "Position : (" + m_translateTransform.X + "," + m_translateTransform.Y + ")";
+                if (m_translateTransform.X < 50 && m_translateTransform.Y < 50)
+                {
+                    mCanvas.Children.Remove(m_element);
+                }
             }
         }
 
@@ -62,7 +54,6 @@ namespace LabBench.language.ui.control
         protected override void OnDetaching()
         {
             base.OnDetaching();
-            base.AssociatedObject.RotateTransformUpdated -= new EventHandler(AssociatedObject_TranslateTransformUpdated);
             base.AssociatedObject.TouchUp -= new TouchContactEventHandler(AssociatedObject_TouchUp);
         }
     }
