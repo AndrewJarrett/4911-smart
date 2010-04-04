@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 using libSMARTMultiTouch.Controls;
+using libSMARTMultiTouch.Behaviors;
 
 namespace LabBench.language.ui
 {
@@ -21,6 +22,7 @@ namespace LabBench.language.ui
         public object Clone()
         {
             Icon r = new Icon(mIcon.getX(), mIcon.getY(), mIcon.getAngle(), mIcon.getSource());
+            r.Attach(new TouchBounceBehavior());
             return r;
         }
 
