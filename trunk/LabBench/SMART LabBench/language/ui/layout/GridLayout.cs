@@ -11,30 +11,30 @@ using System.Windows;
 
 namespace LabBench.language.ui.layout
 {
-    public class FixedGrid
+    public class GridLayout
     {
-        private Canvas mCanvas;
-        private List<InteractiveBorder> mInteractiveBorders = new List<InteractiveBorder>(49); 
+        public static Canvas source;
+        private List<InteractiveBorder> mInteractiveBorders = new List<InteractiveBorder>(56*42); 
 
-        public FixedGrid(Canvas mCanvas)
+        public GridLayout(Canvas mCanvas)
         {
-            this.mCanvas = mCanvas;
+            source = mCanvas;
         }
 
         public void generate() {
-            for(int i=0; i<7; i++) {
-                for (int j = 0; j < 7; j++)
+            for(int i=0; i<56; i++) {
+                for (int j = 0; j < 42; j++)
                 {
                     InteractiveBorder mInteractiveBorder = new InteractiveBorder();
-                    //mInteractiveBorder.BorderBrush = Brushes.Red;
-                    //mInteractiveBorder.BorderThickness = new System.Windows.Thickness(2);
+                    mInteractiveBorder.BorderBrush = Brushes.Red;
+                    mInteractiveBorder.BorderThickness = new System.Windows.Thickness(1);
                     mInteractiveBorder.Background = new SolidColorBrush(Colors.White);
 
                     mInteractiveBorder.Height = 150; mInteractiveBorder.Width = 200;
 
                     TranslateTransform mTranslateTransform = new TranslateTransform();
-                    mTranslateTransform.X = i * 200;
-                    mTranslateTransform.Y = j * 150;
+                    mTranslateTransform.X = i * 25;
+                    mTranslateTransform.Y = j * 25;
 
                     mInteractiveBorder.RenderTransform = mTranslateTransform;
 
@@ -43,14 +43,15 @@ namespace LabBench.language.ui.layout
 
                     mInteractiveBorder.Attach(mRNTBehavior);
 
-                    DebugBehavior mDebugBehavior = new DebugBehavior();
-                    mInteractiveBorder.Attach(mDebugBehavior);
+                    //DebugBehavior mDebugBehavior = new DebugBehavior(mTranslateTransform.X, mTranslateTransform.Y);
+                    //mInteractiveBorder.Attach(mDebugBehavior);
 
                     mInteractiveBorders.Add(mInteractiveBorder);
-
-                    mCanvas.Children.Add(mInteractiveBorder);
+                    source.Children.Add(mInteractiveBorder);
                 }
             }
+            (mInteractiveBorders.First()).Background = Brushes.LightGray;
+            (mInteractiveBorders.First()).BorderThickness = new Thickness(0);
         }
     }
 }

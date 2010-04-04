@@ -17,7 +17,7 @@ namespace LabBench.demo
     {
         private Canvas mCanvas;
 
-        private FixedGrid mGrid;
+        private GridLayout mGrid;
 
         public Sandbox(Canvas mCanvas)
         {
@@ -26,6 +26,9 @@ namespace LabBench.demo
 
         public void activate()
         {
+            mGrid = new GridLayout(mCanvas);
+            mGrid.generate();
+
             InteractiveBorder mInteractiveBorder = new InteractiveBorder();
             mInteractiveBorder.Width = 150; mInteractiveBorder.Height = 150;
             mInteractiveBorder.Background = new SolidColorBrush(Colors.Red);
@@ -49,8 +52,6 @@ namespace LabBench.demo
             mInteractiveBorder.Attach(mFlickBehavior);
 
             mCanvas.Children.Add(mInteractiveBorder);
-
-
         }
     }
 }

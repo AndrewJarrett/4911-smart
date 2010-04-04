@@ -26,6 +26,7 @@ namespace LabBench.language.ui
             setScale(minScale, maxScale);
             setSource(mBitmapImage);
             setBehavior();
+            this.IsRotateEnabled = false;
         }
 
         public Icon(ImagePNG mPNG)
@@ -42,6 +43,7 @@ namespace LabBench.language.ui
         {
             SnapBehavior dbg = new SnapBehavior();
             base.Attach(dbg);
+            base.Attach(new DeletableBehavior());
         }
 
         private void setScale(double minScale, double maxScale) {
