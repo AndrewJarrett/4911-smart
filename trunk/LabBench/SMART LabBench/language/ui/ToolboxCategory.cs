@@ -36,6 +36,22 @@ namespace LabBench.language.ui
 
         }
 
+        public ToolboxCategory(Canvas mainCanvas, List<SerializableItem> objects, int x, int y)
+        {
+            this.visibleToolboxItems = new List<IconFactory>(); //TouchCloner>();
+            this.open = false;
+            this.parent = mainCanvas;
+            this.Width = 75; this.Height = 75;
+            this.locX = x; this.locY = y;
+            this.RenderTransform = new TranslateTransform(x, y);
+            this.Background = new SolidColorBrush(Colors.Orange);
+
+            this.mIcons = null;
+
+            TouchInputManager.AddTouchContactDownHandler(this, new TouchContactEventHandler(Button_TouchContactDown));
+
+        }
+
         private void Button_TouchContactDown(object sender, TouchContactEventArgs e)
         {
             if (this.open)
