@@ -27,7 +27,7 @@ namespace LabBench.demo
         public void activate()
         {
             mGrid = new GridLayout(mCanvas);
-            mGrid.generate();
+            //mGrid.generate();
 
             InteractiveBorder mInteractiveBorder = new InteractiveBorder();
             mInteractiveBorder.Width = 150; mInteractiveBorder.Height = 150;

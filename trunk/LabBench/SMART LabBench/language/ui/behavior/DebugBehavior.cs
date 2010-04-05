@@ -9,6 +9,7 @@ using System.Windows.Interactivity;
 using libSMARTMultiTouch;
 using System.Windows;
 using libSMARTMultiTouch.Input;
+using LabBench.language.ui.layout;
 
 namespace LabBench.language.ui.control
 {
@@ -38,6 +39,7 @@ namespace LabBench.language.ui.control
             m_scaleTransform = base.AssociatedObject.ScaleTransform;
             base.AssociatedObject.TranslateTransformUpdated += new EventHandler(AssociatedObject_TranslateTransformUpdated);
             base.AssociatedObject.TouchUp += new TouchContactEventHandler(AssociatedObject_TouchUp);
+            base.AssociatedObject.TouchDown += new TouchContactEventHandler(AssociatedObject_TouchDown);
             ((InteractiveBorder)m_element).Child = label;
             label.Text = "Position : (" +  mInitialX + "," + mInitialY + ")";
         }
@@ -47,6 +49,7 @@ namespace LabBench.language.ui.control
             if (e != null)
             {
                 label.Text = "Position : (" + m_translateTransform.X + "," + m_translateTransform.Y + ")";
+                GridLayout.shade((int)m_translateTransform.X, (int)m_translateTransform.Y, (int)m_element.Width, (int)m_element.Height);
             }
         }
 
@@ -58,12 +61,21 @@ namespace LabBench.language.ui.control
             }
         }
 
+        public void AssociatedObject_TouchDown(object sender, EventArgs e)
+        {
+            if (e != null)
+            {
+                GridLayout.unshade((int)m_translateTransform.X, (int)m_translateTransform.Y, (int)m_element.Width, (int)m_element.Height);
+            }
+        }
 
         protected override void OnDetaching()
         {
             base.OnDetaching();
-            base.AssociatedObject.RotateTransformUpdated -= new EventHandler(AssociatedObject_TranslateTransformUpdated);
+            base.AssociatedObject.TouchDown -= new TouchContactEventHandler(AssociatedObject_TouchDown);
             base.AssociatedObject.TouchUp -= new TouchContactEventHandler(AssociatedObject_TouchUp);
         }
+
+
     }
 }
