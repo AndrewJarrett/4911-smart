@@ -14,13 +14,13 @@ using LabBench.language.ui.layout;
 
 namespace LabBench.language.ui.control
 {
-    public class SnapBehavior : Behavior<InteractiveFrameworkElement>
+    public class ToggleBehavior : Behavior<InteractiveFrameworkElement>
     {
         private FrameworkElement m_element;
         private TranslateTransform m_translateTransform;
         private ScaleTransform m_scaleTransform;
 
-        private const int SNAP_LEVEL = 25;
+        private Boolean isOn = false;
 
         protected override void OnAttached()
         {
@@ -29,26 +29,28 @@ namespace LabBench.language.ui.control
             m_translateTransform = base.AssociatedObject.TranslateTransform;
             m_scaleTransform = base.AssociatedObject.ScaleTransform;
             base.AssociatedObject.TouchUp += new TouchContactEventHandler(AssociatedObject_TouchUp);
-            base.AssociatedObject.RestPositionReached += new EventHandler(AssociatedObject_RestPositionReached);
-        }
-
-        public void AssociatedObject_RestPositionReached(object sender, EventArgs e)
-        {
-            if (e != null)
-            {
-                m_translateTransform.X = Math.Round(m_translateTransform.X / SNAP_LEVEL) * SNAP_LEVEL;
-                m_translateTransform.Y = Math.Round(m_translateTransform.Y / SNAP_LEVEL) * SNAP_LEVEL;
-                //label.Text = "Position : (" + m_translateTransform.X + "," + m_translateTransform.Y + ")"
-            }
         }
 
         public void AssociatedObject_TouchUp(object sender, EventArgs e)
         {
             if (e != null)
             {
-                m_translateTransform.X = Math.Round(m_translateTransform.X / SNAP_LEVEL) * SNAP_LEVEL;
-                m_translateTransform.Y = Math.Round(m_translateTransform.Y / SNAP_LEVEL) * SNAP_LEVEL;
-                //label.Text = "Position : (" + m_translateTransform.X + "," + m_translateTransform.Y + ")";
+                if (isOn)
+                {
+                    ((InteractiveBorder)m_element).Background = Brushes.Transparent;
+                    isOn = false;
+                }
+                else
+                {
+                    Color color = new Color();
+                    color.R = 0x22;
+                    color.G = 0x22;
+                    color.B = 0x22;
+                    color.A = 0x22;
+                    ((InteractiveBorder)m_element).Background = new SolidColorBrush(color);
+                    isOn = true;
+                }
+                GridLayout.shade((int) m_translateTransform.X, (int) m_translateTransform.Y, 0, 0);
             }
         }
 
@@ -56,7 +58,6 @@ namespace LabBench.language.ui.control
         {
             base.OnDetaching();
             base.AssociatedObject.TouchUp -= new TouchContactEventHandler(AssociatedObject_TouchUp);
-            base.AssociatedObject.RestPositionReached -= new EventHandler(AssociatedObject_RestPositionReached);
         }
     }
 }
