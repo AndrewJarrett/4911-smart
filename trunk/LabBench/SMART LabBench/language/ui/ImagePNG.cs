@@ -30,6 +30,5 @@ namespace LabBench.language.ui
             set { mBitmapImage = value; }
             get { return mBitmapImage; }
         }
-
     }
 }
