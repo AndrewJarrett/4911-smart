@@ -29,9 +29,12 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.createNewObject = new System.Windows.Forms.Button();
+            this.createNewCategory = new System.Windows.Forms.Button();
             this.FileChoser = new System.Windows.Forms.Button();
             this.objectBrowser = new System.Windows.Forms.TreeView();
             this.objectModifier = new System.Windows.Forms.Panel();
+            this.saveObject = new System.Windows.Forms.Button();
             this.txtVoltage = new System.Windows.Forms.TextBox();
             this.lblVoltage = new System.Windows.Forms.Label();
             this.sldVoltage = new System.Windows.Forms.TrackBar();
@@ -43,9 +46,6 @@
             this.imageChooser = new System.Windows.Forms.Button();
             this.folderBrowser = new System.Windows.Forms.FolderBrowserDialog();
             this.pictureSelector = new System.Windows.Forms.OpenFileDialog();
-            this.createNewCategory = new System.Windows.Forms.Button();
-            this.createNewObject = new System.Windows.Forms.Button();
-            this.saveObject = new System.Windows.Forms.Button();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -72,6 +72,28 @@
             this.splitContainer1.Size = new System.Drawing.Size(424, 395);
             this.splitContainer1.SplitterDistance = 203;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // createNewObject
+            // 
+            this.createNewObject.Location = new System.Drawing.Point(103, 360);
+            this.createNewObject.Name = "createNewObject";
+            this.createNewObject.Size = new System.Drawing.Size(98, 35);
+            this.createNewObject.TabIndex = 3;
+            this.createNewObject.Text = "New Object";
+            this.createNewObject.UseVisualStyleBackColor = true;
+            this.createNewObject.Visible = false;
+            this.createNewObject.Click += new System.EventHandler(this.createNewObject_Click);
+            // 
+            // createNewCategory
+            // 
+            this.createNewCategory.Location = new System.Drawing.Point(0, 360);
+            this.createNewCategory.Name = "createNewCategory";
+            this.createNewCategory.Size = new System.Drawing.Size(103, 35);
+            this.createNewCategory.TabIndex = 2;
+            this.createNewCategory.Text = "New Category";
+            this.createNewCategory.UseVisualStyleBackColor = true;
+            this.createNewCategory.Visible = false;
+            this.createNewCategory.Click += new System.EventHandler(this.createNewCategory_Click);
             // 
             // FileChoser
             // 
@@ -108,6 +130,16 @@
             this.objectModifier.Size = new System.Drawing.Size(215, 389);
             this.objectModifier.TabIndex = 1;
             this.objectModifier.Visible = false;
+            // 
+            // saveObject
+            // 
+            this.saveObject.Location = new System.Drawing.Point(15, 328);
+            this.saveObject.Name = "saveObject";
+            this.saveObject.Size = new System.Drawing.Size(187, 49);
+            this.saveObject.TabIndex = 9;
+            this.saveObject.Text = "Save Object";
+            this.saveObject.UseVisualStyleBackColor = true;
+            this.saveObject.Click += new System.EventHandler(this.saveObject_Click);
             // 
             // txtVoltage
             // 
@@ -184,6 +216,7 @@
             // 
             // imageChooser
             // 
+            this.imageChooser.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.imageChooser.Location = new System.Drawing.Point(15, 6);
             this.imageChooser.Name = "imageChooser";
             this.imageChooser.Size = new System.Drawing.Size(188, 139);
@@ -194,40 +227,8 @@
             // 
             // pictureSelector
             // 
-            this.pictureSelector.Filter = "Bitmap images|*.bmp";
+            this.pictureSelector.Filter = ".png images|*.png";
             this.pictureSelector.FileOk += new System.ComponentModel.CancelEventHandler(this.pictureSelector_FileOk);
-            // 
-            // createNewCategory
-            // 
-            this.createNewCategory.Location = new System.Drawing.Point(0, 360);
-            this.createNewCategory.Name = "createNewCategory";
-            this.createNewCategory.Size = new System.Drawing.Size(103, 35);
-            this.createNewCategory.TabIndex = 2;
-            this.createNewCategory.Text = "New Category";
-            this.createNewCategory.UseVisualStyleBackColor = true;
-            this.createNewCategory.Visible = false;
-            this.createNewCategory.Click += new System.EventHandler(this.createNewCategory_Click);
-            // 
-            // createNewObject
-            // 
-            this.createNewObject.Location = new System.Drawing.Point(103, 360);
-            this.createNewObject.Name = "createNewObject";
-            this.createNewObject.Size = new System.Drawing.Size(98, 35);
-            this.createNewObject.TabIndex = 3;
-            this.createNewObject.Text = "New Object";
-            this.createNewObject.UseVisualStyleBackColor = true;
-            this.createNewObject.Visible = false;
-            this.createNewObject.Click += new System.EventHandler(this.createNewObject_Click);
-            // 
-            // saveObject
-            // 
-            this.saveObject.Location = new System.Drawing.Point(15, 328);
-            this.saveObject.Name = "saveObject";
-            this.saveObject.Size = new System.Drawing.Size(187, 49);
-            this.saveObject.TabIndex = 9;
-            this.saveObject.Text = "Save Object";
-            this.saveObject.UseVisualStyleBackColor = true;
-            this.saveObject.Click += new System.EventHandler(this.saveObject_Click);
             // 
             // mainWindow
             // 
