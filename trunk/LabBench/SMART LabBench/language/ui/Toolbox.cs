@@ -1,4 +1,7 @@
 ﻿using System;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,23 +9,23 @@ using System.Windows.Controls;
 
 namespace LabBench.language.ui
 {
-
-    BinaryFormatter bformatter = new BinaryFormatter();
-    Stream stream;
-
     class Toolbox
     {
-        public Toolbox(Canvas canvas, List<String> icons, int locX, int locY)
+        BinaryFormatter bformatter;
+        Stream stream;
+
+        public Toolbox(Canvas canvas, List<String>[] icons, int locX, int locY)
         {
-            for (int i = 0; i < 1; i++)
+            for (int i = 0; i < icons.Length; i++)
             {
-                canvas.Children.Add(new ToolboxCategory(canvas, icons, locX + (i * 150), locY));
+                canvas.Children.Add(new ToolboxCategory(canvas, icons[i], locX + (i * 150), locY));
             }
         }
 
 
         public Toolbox(Canvas canvas, int locX, int locY)
         {
+            bformatter = new BinaryFormatter();
             string objectDirectory = "objects";
 
             int i = 0;
