@@ -37,20 +37,16 @@ namespace LabBench.language.ui.control
             {
                 if (isOn)
                 {
-                    ((InteractiveBorder)m_element).Background = Brushes.Transparent;
+                    ((InteractiveBorder)m_element).Background = Brushes.DarkGray;
+                    GridLayout.toggleCreate();
                     isOn = false;
                 }
                 else
                 {
-                    Color color = new Color();
-                    color.R = 0x22;
-                    color.G = 0x22;
-                    color.B = 0x22;
-                    color.A = 0x22;
-                    ((InteractiveBorder)m_element).Background = new SolidColorBrush(color);
+                    ((InteractiveBorder)m_element).Background = Brushes.LightGray;
+                    GridLayout.toggleCreate();
                     isOn = true;
                 }
-                GridLayout.shade((int) m_translateTransform.X, (int) m_translateTransform.Y, 0, 0);
             }
         }
 

@@ -48,8 +48,17 @@ namespace LabBench.demo
             DebugBehavior mDebugBehavior = new DebugBehavior();
             mInteractiveBorder.Attach(mDebugBehavior);
 
-            FlickBehavior mFlickBehavior = new FlickBehavior();
-            mInteractiveBorder.Attach(mFlickBehavior);
+            //FlickBehavior mFlickBehavior = new FlickBehavior();
+            //mInteractiveBorder.Attach(mFlickBehavior);
+
+            mCanvas.Children.Add(mInteractiveBorder);
+
+            mInteractiveBorder = new InteractiveBorder();
+            mInteractiveBorder.Width = 75; mInteractiveBorder.Height = 75;
+            mInteractiveBorder.Background = Brushes.DarkGray;
+
+            mInteractiveBorder.RenderTransform = new TranslateTransform(1400 - 2*75, 0);
+            mInteractiveBorder.Attach(new ToggleBehavior());
 
             mCanvas.Children.Add(mInteractiveBorder);
         }

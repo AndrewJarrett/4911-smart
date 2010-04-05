@@ -39,11 +39,11 @@ namespace LabBench.language.ui.control
             base.AssociatedObject.TouchUp += new TouchContactEventHandler(AssociatedObject_TouchUp);
         }
 
-        public void AssociatedObject_TouchUp(object sender, EventArgs e)
+        public void AssociatedObject_TouchUp(object sender, TouchContactEventArgs e)
         {
             if (e != null)
             {
-                if (m_translateTransform.X < 50 && m_translateTransform.Y < 50)
+                if (e.TouchContact.Position.X < 50 && e.TouchContact.Position.Y < 50)
                 {
                     mCanvas.Children.Remove(m_element);
                 }

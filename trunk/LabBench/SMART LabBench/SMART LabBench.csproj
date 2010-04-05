@@ -51,15 +51,19 @@
   <ItemGroup>
     <Reference Include="Interop.SBSDKComWrapperLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\SMART Technologies\SMART Table SDK\bin\WPF\Interop.SBSDKComWrapperLib.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\SMART Technologies\SMART Table SDK\bin\WPF\Interop.SBSDKComWrapperLib.dll</HintPath>
     </Reference>
     <Reference Include="libSMARTMultiTouch, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\SMART Technologies\SMART Table SDK\bin\WPF\libSMARTMultiTouch.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\SMART Technologies\SMART Table SDK\bin\WPF\libSMARTMultiTouch.dll</HintPath>
+    </Reference>
+    <Reference Include="libSMARTMultiTouch.Denominations, Version=1.3.53.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\SMART Technologies\SMART Table SDK\bin\WPF\libSMARTMultiTouch.Denominations.dll</HintPath>
     </Reference>
     <Reference Include="Sdgt 3.0, Version=2.8.2938.26576, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\SMART Technologies\SMART Table SDK\bin\WPF\Sdgt 3.0.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\SMART Technologies\SMART Table SDK\bin\WPF\Sdgt 3.0.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
