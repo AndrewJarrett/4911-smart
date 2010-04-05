@@ -4,79 +4,35 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
+using libSMARTMultiTouch.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using libSMARTMultiTouch.Controls;
-using libSMARTMultiTouch.Input;
+using libSMARTMultiTouch.Behaviors;
 using libSMARTMultiTouch.Table;
-using LabBench.language.ui;
 using LabBench.language.ui.screens;
+using LabBench.language.ui;
 using LabBench.demo;
 
-namespace LabBench
+namespace LabBench.language.ui.screens
 {
-    /// <summary>
-    /// Interaction logic for TableControl.xaml
-    /// </summary>
-    public partial class TableControl : TableApplicationControl
+    public class Creator
     {
-        public Canvas mCanvas;
-        public TitleScreen mTitleScreen;
-        public Manager mManager;
-        public Picker mPicker;
-        public Creator mCreator;
-        public Player mPlayer;
-        
-        public TableControl()
+        private Canvas mCanvas;
+        private Grid mTableLayoutRoot;
+        private TableControl mTableControl;
+
+        public Creator(TableControl tableControl)
         {
-            StateMachine.mScreen = Screens.TitleScreen;
+            mTableControl = tableControl;
             mCanvas = new Canvas();
-            InitializeComponent();
-        }
+            mTableLayoutRoot = mTableControl.TableLayoutRoot;
 
-        public void TableApplicationControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            bool displayMenu = true;
-            bool displayEditor = false;
+            // Clear the layout
+            mTableLayoutRoot.Children.Clear();
 
-            if (displayMenu)
-            {
-                switch (StateMachine.mScreen)
-                {
-                    case Screens.TitleScreen:
-                        mTitleScreen = new TitleScreen(this);
-                        InitializeComponent();
-                        break;
-                    case Screens.Manager:
-                        mManager = new Manager(this);
-                        InitializeComponent();
-                        break;
-                    case Screens.Picker:
-                        mPicker = new Picker(this);
-                        InitializeComponent();
-                        break;
-                    case Screens.Creator:
-                        mCreator = new Creator(this);
-                        break;
-                    case Screens.Player:
-                        mPlayer = new Player(this);
-                        InitializeComponent();
-                        break;
-                }
-            }
-
-            if (displayEditor)
-                showLessonEditor();
-                
-        }
-
-        private void showLessonEditor()
-        {
-            TableLayoutRoot.Children.Add(mCanvas);
+            // Setup
+            mTableLayoutRoot.Children.Add(mCanvas);
 
             mCanvas.Background = new SolidColorBrush(Colors.DarkGray);
 
