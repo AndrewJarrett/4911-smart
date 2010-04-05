@@ -49,7 +49,7 @@ namespace LabBench.language.ui.screens
             mImageBrush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/resources/images/design/background.png"));
             mGrid.Background = mImageBrush;
             mGrid.Margin = new Thickness(20);
-            mGrid.ShowGridLines = true;
+            mGrid.ShowGridLines = false;
 
             ColumnDefinition mColumnDefinition1 = new ColumnDefinition();
             ColumnDefinition mColumnDefinition2 = new ColumnDefinition();
@@ -72,8 +72,9 @@ namespace LabBench.language.ui.screens
             mGrid.RowDefinitions.Add(mRowDefinition3);
 
             Button mButton1 = new Button();
-            //mImageBrush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/resources/images/design/preview_box.png"));
-            //mButton1.Background = mImageBrush.Clone();
+            ImageBrush mImageBrush1 = new ImageBrush();
+            mImageBrush1.ImageSource = new BitmapImage(new Uri("pack://application:,,,/resources/images/design/preview_box.png"));
+            mButton1.Background = mImageBrush1;
             mButton1.Width = BUTTON_WIDTH;
             mButton1.Height = BUTTON_HEIGHT;
             mButton1.HorizontalAlignment = HorizontalAlignment.Center;
@@ -83,8 +84,9 @@ namespace LabBench.language.ui.screens
             Grid.SetColumn(mButton1, 0);
             
             Button mButton2 = new Button();
-            //mImageBrush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/resources/images/design/plus_sign_box.png"));
-            //mButton2.Background = mImageBrush.Clone();
+            ImageBrush mImageBrush2 = new ImageBrush();
+            mImageBrush2.ImageSource = new BitmapImage(new Uri("pack://application:,,,/resources/images/design/plus_sign_box.png"));
+            mButton2.Background = mImageBrush2;
             mButton2.Width = BUTTON_WIDTH;
             mButton2.Height = BUTTON_HEIGHT;
             mButton2.HorizontalAlignment = HorizontalAlignment.Center;
@@ -93,8 +95,9 @@ namespace LabBench.language.ui.screens
             Grid.SetColumn(mButton2, 1);
 
             Button mButton3 = new Button();
-            //mImageBrush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/resources/images/design/question_mark_box.png"));
-            //mButton3.Background = mImageBrush.Clone();
+            ImageBrush mImageBrush3 = new ImageBrush();
+            mImageBrush3.ImageSource = new BitmapImage(new Uri("pack://application:,,,/resources/images/design/question_mark_box.png"));
+            mButton3.Background = mImageBrush3;
             mButton3.Width = BUTTON_WIDTH;
             mButton3.Height = BUTTON_HEIGHT;
             mButton3.HorizontalAlignment = HorizontalAlignment.Center;
@@ -103,8 +106,9 @@ namespace LabBench.language.ui.screens
             Grid.SetColumn(mButton3, 2);
             
             Button mButton4 = new Button();
-            //mImageBrush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/resources/images/design/question_mark_box.png"));
-            //mButton1.Background = mImageBrush.Clone();
+            ImageBrush mImageBrush4 = new ImageBrush();
+            mImageBrush4.ImageSource = new BitmapImage(new Uri("pack://application:,,,/resources/images/design/question_mark_box.png"));
+            mButton4.Background = mImageBrush4;
             mButton4.Width = BUTTON_WIDTH;
             mButton4.Height = BUTTON_HEIGHT;
             mButton4.HorizontalAlignment = HorizontalAlignment.Center;
@@ -113,8 +117,9 @@ namespace LabBench.language.ui.screens
             Grid.SetColumn(mButton4, 0);
 
             Button mButton5 = new Button();
-            //mImageBrush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/resources/images/design/question_mark_box.png"));
-            //mButton5.Background = mImageBrush.Clone();
+            ImageBrush mImageBrush5 = new ImageBrush();
+            mImageBrush5.ImageSource = new BitmapImage(new Uri("pack://application:,,,/resources/images/design/question_mark_box.png"));
+            mButton5.Background = mImageBrush5;
             mButton5.Width = BUTTON_WIDTH;
             mButton5.Height = BUTTON_HEIGHT;
             mButton5.HorizontalAlignment = HorizontalAlignment.Center;
@@ -123,8 +128,9 @@ namespace LabBench.language.ui.screens
             Grid.SetColumn(mButton5, 1);
 
             Button mButton6 = new Button();
-            //mImageBrush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/resources/images/design/question_mark_box.png"));
-            //mButton6.Background = mImageBrush.Clone();
+            ImageBrush mImageBrush6 = new ImageBrush();
+            mImageBrush6.ImageSource = new BitmapImage(new Uri("pack://application:,,,/resources/images/design/question_mark_box.png"));
+            mButton6.Background = mImageBrush6;
             mButton6.Width = BUTTON_WIDTH;
             mButton6.Height = BUTTON_HEIGHT;
             mButton6.HorizontalAlignment = HorizontalAlignment.Center;
@@ -133,8 +139,9 @@ namespace LabBench.language.ui.screens
             Grid.SetColumn(mButton6, 2);
 
             Button mPreviousButton = new Button();
-            //mImageBrush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/resources/images/design/back_arrow.png"));
-            //mButton1.Background = mImageBrush.Clone();
+            ImageBrush mImageBrushPrev = new ImageBrush();
+            mImageBrushPrev.ImageSource = new BitmapImage(new Uri("pack://application:,,,/resources/images/design/back_arrow.png"));
+            mPreviousButton.Background = mImageBrushPrev;
             mPreviousButton.Width = NAV_BUTTON_WIDTH;
             mPreviousButton.Height = NAV_BUTTON_HEIGHT;
             mPreviousButton.HorizontalAlignment = HorizontalAlignment.Center;
@@ -151,8 +158,9 @@ namespace LabBench.language.ui.screens
             mTextBlock.VerticalAlignment = VerticalAlignment.Center;
 
             Button mNextButton = new Button();
-            //mImageBrush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/resources/images/design/forward_arrow.png"));
-            //mButton1.Background = mImageBrush.Clone();
+            ImageBrush mImageBrushNext = new ImageBrush();
+            mImageBrushNext.ImageSource = new BitmapImage(new Uri("pack://application:,,,/resources/images/design/forward_arrow.png"));
+            mNextButton.Background = mImageBrushNext;
             mNextButton.Width = NAV_BUTTON_WIDTH;
             mNextButton.Height = NAV_BUTTON_HEIGHT;
             mNextButton.HorizontalAlignment = HorizontalAlignment.Center;
