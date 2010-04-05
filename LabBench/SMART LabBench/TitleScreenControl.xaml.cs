@@ -11,6 +11,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LabBench.language.ui.screens;
+using libSMARTMultiTouch.Table;
 
 namespace LabBench
 {
@@ -19,25 +21,24 @@ namespace LabBench
     /// </summary>
     public partial class TitleScreenControl : UserControl
     {
-        public TitleScreenControl()
+        private TableControl mTableControl;
+        
+        public TitleScreenControl(TableControl tableControl)
         {
+            mTableControl = tableControl;
             InitializeComponent();
         }
 
         private void lessonManager_Click(object sender, RoutedEventArgs e)
         {
-            LessonManager mLessonManager = new LessonManager();
-            mLessonManager.WindowStyle = WindowStyle.None;
-            mLessonManager.WindowState = WindowState.Maximized;
-            mLessonManager.Show();
+            StateMachine.mScreen = Screens.Manager;
+            mTableControl.TableApplicationControl_Loaded(null, null);
         }
 
         private void lessonPicker_Click(object sender, RoutedEventArgs e)
         {
-            LessonPicker mLessonPicker = new LessonPicker();
-            mLessonPicker.WindowStyle = WindowStyle.None;
-            mLessonPicker.WindowState = WindowState.Maximized;
-            mLessonPicker.Show();
+            StateMachine.mScreen = Screens.Picker;
+            mTableControl.TableApplicationControl_Loaded(null, null);
         }
     }
 }

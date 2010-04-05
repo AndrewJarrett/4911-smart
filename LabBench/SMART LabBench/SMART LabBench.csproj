@@ -93,22 +93,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Creator.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="LessonManager.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="LessonPicker.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Player.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="TableControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -117,7 +101,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Window1.xaml">
+    <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -125,16 +109,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Window1.xaml.cs">
-      <DependentUpon>Window1.xaml</DependentUpon>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="algorithm\Dijkstra.cs" />
-    <Compile Include="Creator.xaml.cs">
-      <DependentUpon>Creator.xaml</DependentUpon>
-    </Compile>
     <Compile Include="demo\Sandbox.cs" />
     <Compile Include="language\circuit\Circuit.cs" />
     <Compile Include="language\circuit\Component.cs" />
@@ -154,19 +135,16 @@
     <Compile Include="language\ui\IconFactory.cs" />
     <Compile Include="language\ui\ImagePNG.cs" />
     <Compile Include="language\ui\layout\GridLayout.cs" />
+    <Compile Include="language\ui\screens\Creator.cs" />
+    <Compile Include="language\ui\screens\Manager.cs" />
+    <Compile Include="language\ui\screens\Picker.cs" />
+    <Compile Include="language\ui\screens\Player.cs" />
+    <Compile Include="language\ui\screens\StateMachine.cs" />
+    <Compile Include="language\ui\screens\TitleScreen.cs" />
     <Compile Include="language\ui\SerializableItem.cs" />
     <Compile Include="language\ui\Toolbox.cs" />
     <Compile Include="language\ui\ToolboxCategory.cs" />
     <Compile Include="language\ui\ToolboxItem.cs" />
-    <Compile Include="LessonManager.xaml.cs">
-      <DependentUpon>LessonManager.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="LessonPicker.xaml.cs">
-      <DependentUpon>LessonPicker.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Player.xaml.cs">
-      <DependentUpon>Player.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -190,6 +168,19 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="bin\Debug\objects\Components\9v battery.bin" />
+    <None Include="bin\Debug\objects\Components\dimmer-switch.bin" />
+    <None Include="bin\Debug\objects\Components\lightbulb.bin" />
+    <None Include="bin\Debug\objects\Components\push button.bin" />
+    <None Include="bin\Debug\objects\Components\rocker switch.bin" />
+    <None Include="bin\Debug\objects\Conductive\lemon.bin" />
+    <None Include="bin\Debug\objects\Conductive\nail.bin" />
+    <None Include="bin\Debug\objects\Conductive\paperclip.bin" />
+    <None Include="bin\Debug\objects\Conductive\penny.bin" />
+    <None Include="bin\Debug\objects\Non-Conductive\bar magnet.bin" />
+    <None Include="bin\Debug\objects\Non-Conductive\lego brick.bin" />
+    <None Include="bin\Debug\objects\Non-Conductive\playing card.bin" />
+    <None Include="bin\Release\SMART LabBench.vshost.exe.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -229,6 +220,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Release\SMART LabBench.vshost.exe" />
     <Content Include="resources\images\barmagnet.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -254,36 +246,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="resources\images\lemon.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\images\light_dimmer.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\images\nail.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\images\nine_volt_battery.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\images\paperclip.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\images\penny.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\images\plastic_toy_brick.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\images\playing_card.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\images\push_button_up.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\images\rocker_switch_0.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\images\light_bulb_off.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
