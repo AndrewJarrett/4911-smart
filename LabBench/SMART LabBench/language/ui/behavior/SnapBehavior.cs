@@ -10,6 +10,7 @@ using libSMARTMultiTouch;
 using System.Windows;
 using libSMARTMultiTouch.Input;
 using libSMARTMultiTouch.Behaviors;
+using LabBench.language.ui.layout;
 
 namespace LabBench.language.ui.control
 {
@@ -29,7 +30,6 @@ namespace LabBench.language.ui.control
             m_scaleTransform = base.AssociatedObject.ScaleTransform;
             base.AssociatedObject.TouchUp += new TouchContactEventHandler(AssociatedObject_TouchUp);
             base.AssociatedObject.RestPositionReached += new EventHandler(AssociatedObject_RestPositionReached);
-            ((InteractiveBorder)m_element).Background = new SolidColorBrush(Colors.Red);
         }
 
         public void AssociatedObject_RestPositionReached(object sender, EventArgs e)
@@ -38,7 +38,7 @@ namespace LabBench.language.ui.control
             {
                 m_translateTransform.X = Math.Round(m_translateTransform.X / SNAP_LEVEL) * SNAP_LEVEL;
                 m_translateTransform.Y = Math.Round(m_translateTransform.Y / SNAP_LEVEL) * SNAP_LEVEL;
-                //label.Text = "Position : (" + m_translateTransform.X + "," + m_translateTransform.Y + ")";
+                //label.Text = "Position : (" + m_translateTransform.X + "," + m_translateTransform.Y + ")"
             }
         }
 
