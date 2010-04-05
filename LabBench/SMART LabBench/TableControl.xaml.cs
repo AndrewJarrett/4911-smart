@@ -95,9 +95,28 @@ namespace LabBench
             Sandbox mSandbox = new Sandbox(canvas);
             mSandbox.activate();
 
-            List<String> mIcons = new List<String>();
-            mIcons.Add("lemon.png");
-            mIcons.Add("barmagnet.png");
+            List<String> cat1 = new List<String>();
+            cat1.Add("lemon.png");
+            cat1.Add("paperclip.png");
+            cat1.Add("nail.png");
+            cat1.Add("penny.png");
+
+            List<String> cat2 = new List<String>();
+            cat2.Add("plastic_toy_brick.png");
+            cat2.Add("playing_card.png");
+            cat2.Add("barmagnet.png");
+
+            List<String> cat3 = new List<String>();
+            cat3.Add("light_bulb_off.png");
+            cat3.Add("light_dimmer.png");
+            cat3.Add("nine_volt_battery.png");
+            cat3.Add("push_button_up.png");
+            cat3.Add("rocker_switch_0.png");
+
+            List<String>[] mIcons = new List<String>[3];
+            mIcons[0] = cat1;
+            mIcons[1] = cat2;
+            mIcons[2] = cat3;
 
             // Draw Toolbox
             Toolbox t = new Toolbox(canvas, mIcons, 600, 0);
