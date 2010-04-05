@@ -17,6 +17,8 @@ namespace LabBench.language.ui.layout
         public static Canvas source;
         private static List<InteractiveBorder> mInteractiveBorders = new List<InteractiveBorder>(56*42); 
         private static InteractiveBorder mOverlay;
+        private static CreateObjectBehavior mCreateObjectBehavior;
+        private static Boolean isCreateMode;
 
         public GridLayout(Canvas mCanvas)
         {
@@ -102,7 +104,9 @@ namespace LabBench.language.ui.layout
             mOverlay.Width = 1400; mOverlay.Height = 1050;
             mOverlay.Background = Brushes.Transparent;
 
-            mOverlay.Attach(new CreateObjectBehavior());
+            mCreateObjectBehavior = new CreateObjectBehavior();
+           // mOverlay.Attach(mCreateObjectBehavior);
+            isCreateMode = false;
 
             source.Children.Add(mOverlay);
         }
@@ -169,8 +173,36 @@ namespace LabBench.language.ui.layout
             
             mDraggableBorder.Child = line;
 
+            mDraggableBorder.Attach(new SnapBehavior());
+
             mDraggableBorder.Attach(new DeletableBehavior());
             source.Children.Add(mDraggableBorder);
+        }
+
+        internal static void create(Line line)
+        {
+            DraggableBorder mDraggableBorder = new DraggableBorder();
+            mDraggableBorder.IsRotateEnabled = false;
+            //mDraggableBorder.RenderTransform = new TranslateTransform(start.X, start.Y);
+
+            mDraggableBorder.Child = line;
+
+            //mDraggableBorder.Attach(new DeletableBehavior());
+            source.Children.Add(mDraggableBorder);
+        }
+
+        public static void toggleCreate()
+        {
+            if (isCreateMode)
+            {
+                mOverlay.Detach(mCreateObjectBehavior);
+                isCreateMode = false;
+            }
+            else
+            {
+                mOverlay.Attach(mCreateObjectBehavior);
+                isCreateMode = true;
+            }
         }
     }
 }
