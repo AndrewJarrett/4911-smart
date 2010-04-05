@@ -102,7 +102,9 @@ namespace WindowsFormsApplication1
         private void imageChooser_Click(object sender, EventArgs e)
         {
             if (pictureSelector.ShowDialog() == DialogResult.OK) {
-                imageChooser.Image = new Bitmap(pictureSelector.FileName);
+                imageChooser.BackgroundImage = new Bitmap(pictureSelector.FileName);
+                imageChooser.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+                imageChooser.Text = "";
             }
         }
 
@@ -144,7 +146,8 @@ namespace WindowsFormsApplication1
             chkMagnetic.Checked = SO.magnetic;
             chkFerrous.Checked = SO.ferrous;
             sldVoltage.Value = SO.charge;
-            imageChooser.Image = SO.icon;
+            imageChooser.BackgroundImage = SO.icon;
+            imageChooser.Text = "";
             txtName.Text = SO.name;
 
             stream.Close();

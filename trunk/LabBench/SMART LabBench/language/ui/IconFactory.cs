@@ -12,7 +12,7 @@ namespace LabBench.language.ui
     {
         private TouchCloner mTouchCloner;
 
-        public IconFactory(ToolboxCategory category, Canvas mCanvas, Icon mBase, Icon mClone, double x, double y)
+        public IconFactory(Canvas mCanvas, Icon mBase, Icon mClone, double x, double y)
         {
             TransformGroup trans = new TransformGroup();
 
@@ -28,8 +28,8 @@ namespace LabBench.language.ui
 
         }
 
-        public IconFactory(ToolboxCategory mCategory, Canvas mCanvas, Icon mIcon, double x, double y)
-            : this(mCategory, mCanvas, mIcon, mIcon, x, y)
+        public IconFactory(Canvas mCanvas, Icon mIcon, double x, double y)
+            : this(mCanvas, mIcon, mIcon, x, y)
         { ; }
 
         public TouchCloner Source {
