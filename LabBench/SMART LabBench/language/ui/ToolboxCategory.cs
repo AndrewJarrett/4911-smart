@@ -70,8 +70,8 @@ namespace LabBench.language.ui
             for (int i = 1; i < mIcons.Count+1; i++)
             {
                 Icon mIcon = new Icon(new ImagePNG(mIcons[i-1]));
-                IconFactory mIconFactory = new IconFactory(this.parent, mIcon, this.locX, this.locY + offset);
-                offset += mIcon.Height * 1.2;
+                IconFactory mIconFactory = new IconFactory(this, this.parent, mIcon, this.locX, this.locY + offset);
+                offset += (mIcon.Height / 2.0) * 1.2;
                 visibleToolboxItems.Add(mIconFactory);
             }
             this.open = true;

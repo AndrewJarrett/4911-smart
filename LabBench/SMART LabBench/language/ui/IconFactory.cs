@@ -12,21 +12,24 @@ namespace LabBench.language.ui
     {
         private TouchCloner mTouchCloner;
 
-        public IconFactory(Canvas mCanvas, Icon mBase, Icon mClone, double x, double y)
+        public IconFactory(ToolboxCategory category, Canvas mCanvas, Icon mBase, Icon mClone, double x, double y)
         {
+            TransformGroup trans = new TransformGroup();
+
             mTouchCloner = new TouchCloner(mBase);
             mTouchCloner.Source = new CloneableIcon(mClone);
 
-            TranslateTransform mTranslateTransform = new TranslateTransform();
-            mTranslateTransform.X = x;
-            mTranslateTransform.Y = y;
-            mTouchCloner.RenderTransform = mTranslateTransform;
+            trans.Children.Add(new ScaleTransform(0.5, 0.5));
+            trans.Children.Add(new TranslateTransform(x, y));
+
+            mTouchCloner.RenderTransform = trans;
 
             mCanvas.Children.Add(mTouchCloner);
+
         }
 
-        public IconFactory(Canvas mCanvas, Icon mIcon, double x, double y)
-            : this(mCanvas, mIcon, mIcon, x, y)
+        public IconFactory(ToolboxCategory mCategory, Canvas mCanvas, Icon mIcon, double x, double y)
+            : this(mCategory, mCanvas, mIcon, mIcon, x, y)
         { ; }
 
         public TouchCloner Source {
