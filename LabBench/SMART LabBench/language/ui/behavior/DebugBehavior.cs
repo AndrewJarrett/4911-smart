@@ -73,6 +73,7 @@ namespace LabBench.language.ui.control
         {
             base.OnDetaching();
             base.AssociatedObject.TouchDown -= new TouchContactEventHandler(AssociatedObject_TouchDown);
+            base.AssociatedObject.TranslateTransformUpdated -= new EventHandler(AssociatedObject_TranslateTransformUpdated);
             base.AssociatedObject.TouchUp -= new TouchContactEventHandler(AssociatedObject_TouchUp);
         }
 

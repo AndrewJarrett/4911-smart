@@ -11,16 +11,17 @@ using System.Windows;
 using libSMARTMultiTouch.Input;
 using libSMARTMultiTouch.Behaviors;
 using LabBench.language.ui.layout;
+using System.Collections.ObjectModel;
 
 namespace LabBench.language.ui.control
 {
-    public class SnapBehavior : Behavior<InteractiveFrameworkElement>
+    public class CreateObjectBehavior : Behavior<InteractiveFrameworkElement>
     {
         private FrameworkElement m_element;
         private TranslateTransform m_translateTransform;
         private ScaleTransform m_scaleTransform;
 
-        private const int SNAP_LEVEL = 25;
+        private Point start, end;
 
         protected override void OnAttached()
         {
@@ -29,34 +30,33 @@ namespace LabBench.language.ui.control
             m_translateTransform = base.AssociatedObject.TranslateTransform;
             m_scaleTransform = base.AssociatedObject.ScaleTransform;
             base.AssociatedObject.TouchUp += new TouchContactEventHandler(AssociatedObject_TouchUp);
-            base.AssociatedObject.RestPositionReached += new EventHandler(AssociatedObject_RestPositionReached);
+            base.AssociatedObject.TouchDown += new TouchContactEventHandler(AssociatedObject_TouchDown);
         }
 
-        public void AssociatedObject_RestPositionReached(object sender, EventArgs e)
+        public void AssociatedObject_TouchDown(object sender, TouchContactEventArgs e)
         {
             if (e != null)
             {
-                m_translateTransform.X = Math.Round(m_translateTransform.X / SNAP_LEVEL) * SNAP_LEVEL;
-                m_translateTransform.Y = Math.Round(m_translateTransform.Y / SNAP_LEVEL) * SNAP_LEVEL;
-                //label.Text = "Position : (" + m_translateTransform.X + "," + m_translateTransform.Y + ")"
+                start = e.TouchContact.Position;
             }
         }
 
-        public void AssociatedObject_TouchUp(object sender, EventArgs e)
+
+        public void AssociatedObject_TouchUp(object sender, TouchContactEventArgs e)
         {
             if (e != null)
             {
-                m_translateTransform.X = Math.Round(m_translateTransform.X / SNAP_LEVEL) * SNAP_LEVEL;
-                m_translateTransform.Y = Math.Round(m_translateTransform.Y / SNAP_LEVEL) * SNAP_LEVEL;
-                //label.Text = "Position : (" + m_translateTransform.X + "," + m_translateTransform.Y + ")";
+                end = e.TouchContact.Position;
+
+                GridLayout.create(start, end);
             }
         }
 
         protected override void OnDetaching()
         {
             base.OnDetaching();
+            base.AssociatedObject.TouchDown -= new TouchContactEventHandler(AssociatedObject_TouchDown);
             base.AssociatedObject.TouchUp -= new TouchContactEventHandler(AssociatedObject_TouchUp);
-            base.AssociatedObject.RestPositionReached -= new EventHandler(AssociatedObject_RestPositionReached);
         }
     }
 }

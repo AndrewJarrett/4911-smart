@@ -33,10 +33,10 @@ namespace LabBench.demo
             mInteractiveBorder.Width = 150; mInteractiveBorder.Height = 150;
             mInteractiveBorder.Background = new SolidColorBrush(Colors.Red);
 
-            Rectangle mRectangle = new Rectangle();
-            mRectangle.Height = mInteractiveBorder.Height;
-            mRectangle.Width = mInteractiveBorder.Width;
-            mRectangle.Fill = new SolidColorBrush(Colors.Red);
+            //Rectangle mRectangle = new Rectangle();
+            //mRectangle.Height = mInteractiveBorder.Height;
+            //mRectangle.Width = mInteractiveBorder.Width;
+            //mRectangle.Fill = new SolidColorBrush(Colors.Red);
 
             SnapBehavior mSnapBehavior = new SnapBehavior();
             mInteractiveBorder.Attach(mSnapBehavior);

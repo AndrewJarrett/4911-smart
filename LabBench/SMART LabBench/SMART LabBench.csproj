@@ -143,6 +143,8 @@
     <Compile Include="language\graph\GraphNode.cs" />
     <Compile Include="language\graph\NodeList.cs" />
     <Compile Include="language\graph\Node.cs" />
+    <Compile Include="language\ui\behavior\CreateObjectBehavior.cs" />
+    <Compile Include="language\ui\behavior\ToggleBehavior.cs" />
     <Compile Include="language\ui\behavior\DeletableBehavior.cs" />
     <Compile Include="language\ui\behavior\DebugBehavior.cs" />
     <Compile Include="language\ui\CloneableIcon.cs" />
