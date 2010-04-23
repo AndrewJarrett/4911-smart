@@ -9,7 +9,7 @@ using System.Windows.Media;
 using libSMARTMultiTouch.Behaviors;
 using LabBench.language.ui.control;
 
-namespace LabBench.language.ui
+namespace LabBench.language
 {
     public class Icon : DraggableImage
     {

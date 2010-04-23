@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Media.Imaging;
 
-namespace LabBench.language.ui
+namespace LabBench.language
 {
     public class ImagePNG
     {

@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using libSMARTMultiTouch.Controls;
+using libSMARTMultiTouch.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
@@ -13,6 +14,9 @@ using libSMARTMultiTouch.Table;
 using LabBench.language.ui.screens;
 using LabBench.language.ui;
 using LabBench.demo;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 namespace LabBench.language.ui.screens
 {
@@ -96,6 +100,59 @@ namespace LabBench.language.ui.screens
 
             // Draw Toolbox
             Toolbox t = new Toolbox(mCanvas, mIcons, 600, 0);
+
+            Border saveButton = new Border();
+            saveButton.Width = 75; saveButton.Height = 75;
+            saveButton.RenderTransform = new TranslateTransform(200, 200);
+            saveButton.Background = new SolidColorBrush(Colors.Green);
+            TouchInputManager.AddTouchContactDownHandler(saveButton, new TouchContactEventHandler(Button_SaveLesson));
+
+            mCanvas.Children.Add(saveButton);
+        }
+
+        private void Button_SaveLesson(object sender, TouchContactEventArgs e)
+        {
+            // remove buttons from canvas
+            List<UIElement> toRemove = new List<UIElement>();
+            foreach (UIElement elem in mCanvas.Children)
+            {
+                if (elem.GetType() == (new Border()).GetType())
+                    toRemove.Add(elem);
+            }
+            // need to get elements before removing them due to bad WPF Collections implementation
+            foreach (UIElement elem in toRemove)
+            {
+                mCanvas.Children.Remove(elem);
+            }
+
+            // take screenshot
+            RenderTargetBitmap screenshot = new RenderTargetBitmap(200, 200, 96, 96, PixelFormats.Pbgra32);
+            screenshot.Render(mCanvas);
+            WriteableBitmap screenShot = new WriteableBitmap(screenshot);
+            //BitmapFrame screenshotframe = BitmapFrame.Create(screenshot);
+
+            // save canvas + screenshot as Lesson
+            saveLesson(mCanvas, screenShot);
+        }
+
+        private void saveLesson(Canvas canvas, WriteableBitmap screenshot)
+        {
+            String directory = "lessons";
+            int cnt = 0;
+            foreach (string lessonName in System.IO.Directory.GetFiles(directory))
+            {
+                if (lessonName != ".svn")
+                    cnt++;
+            }
+
+            String filePath = directory + "/lesson_" + cnt + ".bin";
+
+            SerializedLesson savedlesson = new SerializedLesson(canvas, screenshot);
+
+            Stream stream = File.Open(filePath, FileMode.Create);
+            BinaryFormatter bf = new BinaryFormatter();
+            bf.Serialize(stream, savedlesson);
+            stream.Close();
         }
     }
 }
