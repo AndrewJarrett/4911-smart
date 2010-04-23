@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace LabBench.language.ui
+namespace LabBench.language
 {
     [Serializable]
     public class SerializableItem

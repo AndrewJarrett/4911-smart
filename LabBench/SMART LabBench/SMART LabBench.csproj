@@ -143,9 +143,10 @@
     <Compile Include="language\ui\screens\Manager.cs" />
     <Compile Include="language\ui\screens\Picker.cs" />
     <Compile Include="language\ui\screens\Player.cs" />
+    <Compile Include="language\Serialization\SerializedLesson.cs" />
     <Compile Include="language\ui\screens\StateMachine.cs" />
     <Compile Include="language\ui\screens\TitleScreen.cs" />
-    <Compile Include="language\ui\SerializableItem.cs" />
+    <Compile Include="language\Serialization\SerializableItem.cs" />
     <Compile Include="language\ui\Toolbox.cs" />
     <Compile Include="language\ui\ToolboxCategory.cs" />
     <Compile Include="language\ui\ToolboxItem.cs" />
@@ -282,6 +283,9 @@
     <Content Include="resources\images\rocker_switch_0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\lessons\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
