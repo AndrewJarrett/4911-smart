@@ -2,21 +2,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using libSMARTMultiTouch.Controls;
-using libSMARTMultiTouch.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+
+using libSMARTMultiTouch.Controls;
+using libSMARTMultiTouch.Input;
 using libSMARTMultiTouch.Behaviors;
 using libSMARTMultiTouch.Table;
+
+using LabBench.language.Serialization;
 using LabBench.language.ui.screens;
 using LabBench.language.ui;
 using LabBench.demo;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.IO;
+
 
 namespace LabBench.language.ui.screens
 {

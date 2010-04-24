@@ -101,10 +101,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TitleScreenControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -128,6 +124,12 @@
     <Compile Include="language\graph\GraphNode.cs" />
     <Compile Include="language\graph\NodeList.cs" />
     <Compile Include="language\graph\Node.cs" />
+    <Compile Include="language\Serialization\SerializableItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="language\Serialization\SerializedLesson.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="language\ui\behavior\CreateObjectBehavior.cs" />
     <Compile Include="language\ui\behavior\ToggleBehavior.cs" />
     <Compile Include="language\ui\behavior\DeletableBehavior.cs" />
@@ -143,10 +145,8 @@
     <Compile Include="language\ui\screens\Manager.cs" />
     <Compile Include="language\ui\screens\Picker.cs" />
     <Compile Include="language\ui\screens\Player.cs" />
-    <Compile Include="language\Serialization\SerializedLesson.cs" />
     <Compile Include="language\ui\screens\StateMachine.cs" />
     <Compile Include="language\ui\screens\TitleScreen.cs" />
-    <Compile Include="language\Serialization\SerializableItem.cs" />
     <Compile Include="language\ui\Toolbox.cs" />
     <Compile Include="language\ui\ToolboxCategory.cs" />
     <Compile Include="language\ui\ToolboxItem.cs" />
@@ -165,9 +165,6 @@
     </Compile>
     <Compile Include="TableControl.xaml.cs">
       <DependentUpon>TableControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="TitleScreenControl.xaml.cs">
-      <DependentUpon>TitleScreenControl.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
