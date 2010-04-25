@@ -151,7 +151,7 @@ namespace LabBench.language.ui.screens
 
             String filePath = directory + "/lesson_" + cnt + ".bin";
 
-            //SerializedLesson savedlesson = new SerializedLesson(canvas, screenshot);
+            SerializedLesson savedlesson = new SerializedLesson(canvas);
 
             //Stream stream = File.Open(filePath, FileMode.Create);
             //BinaryFormatter bf = new BinaryFormatter();

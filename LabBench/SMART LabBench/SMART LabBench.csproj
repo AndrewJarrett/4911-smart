@@ -61,6 +61,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\SMART Technologies\SMART Table SDK\bin\WPF\libSMARTMultiTouch.Denominations.dll</HintPath>
     </Reference>
+    <Reference Include="nunit.framework, Version=2.5.5.10112, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL" />
     <Reference Include="Sdgt 3.0, Version=2.8.2938.26576, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\SMART Technologies\SMART Table SDK\bin\WPF\Sdgt 3.0.dll</HintPath>
@@ -171,6 +172,9 @@
     <Compile Include="TableControl.xaml.cs">
       <DependentUpon>TableControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UnitTests\FileTests.cs" />
+    <Compile Include="UnitTests\GraphTests.cs" />
+    <Compile Include="UnitTests\UITests.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
