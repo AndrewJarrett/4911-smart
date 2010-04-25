@@ -19,6 +19,7 @@ namespace LabBench.language.ui.control
         private FrameworkElement m_element;
         private TranslateTransform m_translateTransform;
         private ScaleTransform m_scaleTransform;
+        private RotateTransform m_rotateTransform;
 
         private const int SNAP_LEVEL = 25;
 
@@ -27,8 +28,10 @@ namespace LabBench.language.ui.control
             base.OnAttached();
             m_element = base.AssociatedObject.FrameworkElement;
             m_translateTransform = base.AssociatedObject.TranslateTransform;
+            m_rotateTransform = base.AssociatedObject.RotateTransform;
             m_scaleTransform = base.AssociatedObject.ScaleTransform;
             base.AssociatedObject.TouchUp += new TouchContactEventHandler(AssociatedObject_TouchUp);
+            base.AssociatedObject.TouchMove += new TouchContactEventHandler(AssociatedObject_TouchMove);
             base.AssociatedObject.RestPositionReached += new EventHandler(AssociatedObject_RestPositionReached);
         }
 
@@ -38,17 +41,34 @@ namespace LabBench.language.ui.control
             {
                 m_translateTransform.X = Math.Round(m_translateTransform.X / SNAP_LEVEL) * SNAP_LEVEL;
                 m_translateTransform.Y = Math.Round(m_translateTransform.Y / SNAP_LEVEL) * SNAP_LEVEL;
-                //label.Text = "Position : (" + m_translateTransform.X + "," + m_translateTransform.Y + ")"
+                if (typeof(Component) == m_element.GetType())
+                {
+                    ((Component)m_element).setPose(m_translateTransform.X, m_translateTransform.Y, m_rotateTransform.Angle);
+                }
             }
         }
 
-        public void AssociatedObject_TouchUp(object sender, EventArgs e)
+        public void AssociatedObject_TouchUp(object sender, TouchContactEventArgs e)
         {
             if (e != null)
             {
                 m_translateTransform.X = Math.Round(m_translateTransform.X / SNAP_LEVEL) * SNAP_LEVEL;
                 m_translateTransform.Y = Math.Round(m_translateTransform.Y / SNAP_LEVEL) * SNAP_LEVEL;
-                //label.Text = "Position : (" + m_translateTransform.X + "," + m_translateTransform.Y + ")";
+                if (typeof(Component) == m_element.GetType())
+                {
+                    ((Component)m_element).setPose(m_translateTransform.X, m_translateTransform.Y, m_rotateTransform.Angle);
+                }
+            }
+        }
+
+        public void AssociatedObject_TouchMove(object sender, TouchContactEventArgs e)
+        {
+            if (e != null)
+            {
+                if (typeof(Component) == m_element.GetType())
+                {
+                    ((Component)m_element).setPose(m_translateTransform.X, m_translateTransform.Y, m_rotateTransform.Angle);
+                }
             }
         }
 
@@ -56,6 +76,7 @@ namespace LabBench.language.ui.control
         {
             base.OnDetaching();
             base.AssociatedObject.TouchUp -= new TouchContactEventHandler(AssociatedObject_TouchUp);
+            base.AssociatedObject.TouchMove -= new TouchContactEventHandler(AssociatedObject_TouchMove);
             base.AssociatedObject.RestPositionReached -= new EventHandler(AssociatedObject_RestPositionReached);
         }
     }

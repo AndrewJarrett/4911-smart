@@ -16,7 +16,7 @@ using libSMARTMultiTouch.Input;
 using libSMARTMultiTouch.Behaviors;
 using libSMARTMultiTouch.Table;
 
-using LabBench.language.Serialization;
+using LabBench.language;
 using LabBench.language.ui.screens;
 using LabBench.language.ui;
 using LabBench.demo;
@@ -76,8 +76,8 @@ namespace LabBench.language.ui.screens
             //mIcon = new Icon(new ImagePNG("barmagnet.png"));
             //mIconFactory = new IconFactory(canvas, mIcon, 200, 20);
             //mIconFactories.Add(mIconFactory);
-            Sandbox mSandbox = new Sandbox(mCanvas);
-            mSandbox.activate();
+            LessonCreator mLessonCreator = new LessonCreator(mTableControl);
+            //mSandbox.activate();
 
             List<String> cat1 = new List<String>();
             cat1.Add("lemon.png");
@@ -151,12 +151,12 @@ namespace LabBench.language.ui.screens
 
             String filePath = directory + "/lesson_" + cnt + ".bin";
 
-            SerializedLesson savedlesson = new SerializedLesson(canvas, screenshot);
+            //SerializedLesson savedlesson = new SerializedLesson(canvas, screenshot);
 
-            Stream stream = File.Open(filePath, FileMode.Create);
-            BinaryFormatter bf = new BinaryFormatter();
-            bf.Serialize(stream, savedlesson);
-            stream.Close();
+            //Stream stream = File.Open(filePath, FileMode.Create);
+            //BinaryFormatter bf = new BinaryFormatter();
+            //bf.Serialize(stream, savedlesson);
+            //stream.Close();
         }
     }
 }

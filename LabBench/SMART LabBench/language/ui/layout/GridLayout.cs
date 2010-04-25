@@ -9,21 +9,21 @@ using libSMARTMultiTouch.Behaviors;
 using LabBench.language.ui.control;
 using System.Windows;
 using System.Windows.Shapes;
+using LabBench.demo;
 
 namespace LabBench.language.ui.layout
 {
     public class GridLayout
     {
-        public static Canvas source;
         private static List<InteractiveBorder> mInteractiveBorders = new List<InteractiveBorder>(56*42); 
         private static InteractiveBorder mOverlay;
         private static CreateObjectBehavior mCreateObjectBehavior;
         private static Boolean isCreateMode;
+        private static Icon mWireTool;
 
-        public GridLayout(Canvas mCanvas)
+        public GridLayout()
         {
-            source = mCanvas;
-            generate();
+            createLayout();
         }
 
         public static void shade(int x, int y, int w, int h) {
@@ -65,7 +65,7 @@ namespace LabBench.language.ui.layout
             }
         }
 
-        private void generate()
+        private void createLayout()
         {
             for(int i=0; i<56; i++) {
                 for (int j = 0; j < 42; j++)
@@ -88,77 +88,62 @@ namespace LabBench.language.ui.layout
 
                     mInteractiveBorder.Attach(mRNTBehavior);
 
-                    //mInteractiveBorder.Attach(new CreateObjectBehavior());
-
-                    //DebugBehavior mDebugBehavior = new DebugBehavior(mTranslateTransform.X, mTranslateTransform.Y);
-                    //mInteractiveBorder.Attach(mDebugBehavior);
-
                     mInteractiveBorders.Add(mInteractiveBorder);
-                    source.Children.Add(mInteractiveBorder);
+                    LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mInteractiveBorder);
                 }
             }
-            (mInteractiveBorders.First()).Background = Brushes.LightGray;
-            (mInteractiveBorders.First()).BorderThickness = new Thickness(0);
+            //(mInteractiveBorders.First()).Background = Brushes.LightGray;
+            //(mInteractiveBorders.First()).BorderThickness = new Thickness(0);
+
+            Icon mTrashCan = new Icon(new ImagePNG("ui/trash.png"));
+            TransformGroup mTransformGroup = new TransformGroup();
+            mTransformGroup.Children.Add(new ScaleTransform(0.4, 0.4));
+            mTransformGroup.Children.Add(new TranslateTransform(-62.5, -62.5));
+            mTrashCan.RenderTransform = mTransformGroup;
+            //mTrashCan.Attach(new TouchBounceBehavior());
+
+            LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mTrashCan);
+
+            Icon mDeleteButton = new Icon(new ImagePNG("ui/delete.png"));
+            mTransformGroup = new TransformGroup();
+            mTransformGroup.Children.Add(new ScaleTransform(0.4, 0.4));
+            mTransformGroup.Children.Add(new TranslateTransform(475, -62.5));
+            mDeleteButton.RenderTransform = mTransformGroup;
+
+            mDeleteButton.Attach(new ClearLessonBehavior());
+            mDeleteButton.Attach(new TouchBounceBehavior());
+            LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mDeleteButton);
+
+
 
             mOverlay = new InteractiveBorder();
             mOverlay.Width = 1400; mOverlay.Height = 1050;
             mOverlay.Background = Brushes.Transparent;
 
             mCreateObjectBehavior = new CreateObjectBehavior();
-           // mOverlay.Attach(mCreateObjectBehavior);
             isCreateMode = false;
 
-            source.Children.Add(mOverlay);
+            LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mOverlay);
+            Grid.SetZIndex(mOverlay, int.MinValue);
+
+            setWireToolButton("wire.png");
+            
+            LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mWireTool);
+        }
+
+        private static void setWireToolButton(String mIcon)
+        {
+            mWireTool = new Icon(new ImagePNG("ui/" + mIcon));
+            TransformGroup mTransformGroup = new TransformGroup();
+            mTransformGroup.Children.Add(new ScaleTransform(0.5, 0.5));
+            mTransformGroup.Children.Add(new TranslateTransform(37.5, -62.25));
+            mWireTool.RenderTransform = mTransformGroup;
+            mWireTool.Attach(new ToggleBehavior());
+            //mWireTool.Attach(new TouchBounceBehavior());
         }
 
         public static void create(Point start, Point end)
         {
-            //if (start.X > end.X)
-            //{
-            //    Point t = new Point(start.X, start.Y);
-            //    start.X = end.X; start.Y = end.Y;
-            //    end.X = t.X; end.Y = t.Y;
-            //}
-
-            //InteractiveBorder mInteractiveBorder = new InteractiveBorder();
-            //mInteractiveBorder.Height = 25;
-
-            
-
-            //mInteractiveBorder.Width = Math.Sqrt(Math.Pow(end.X - start.X,2) + Math.Pow(end.Y - start.Y,2));
-
-            //TransformGroup mTransform = new TransformGroup();
-
-            //TranslateTransform mTranslateTransform = new TranslateTransform();
-            //mTranslateTransform.X = start.X;
-            //mTranslateTransform.Y = start.Y;
-
-
-            //mInteractiveBorder.RenderTransform = mTranslateTransform;
-
-            //RotateTransform mRotateTransform = new RotateTransform();
-            //mRotateTransform.Angle = Math.Atan2(end.Y - start.Y, end.X - start.X) * 180.0 / Math.PI;
-            //mRotateTransform.CenterX = 0;
-            //mRotateTransform.CenterY = 0;
-
-            //mTransform.Children.Add(mRotateTransform);
-            //mTransform.Children.Add(mTranslateTransform);
-
-            //mInteractiveBorder.RenderTransform = mTransform;
-
-            //RNTBehavior mRNTBehavior = new RNTBehavior();
-            //mRNTBehavior.IsRotateEnabled = false; mRNTBehavior.IsTranslateEnabled = false;
-
-            //mInteractiveBorder.Attach(mRNTBehavior);
-            //mInteractiveBorder.Attach(new SnapBehavior());
-
-            //mInteractiveBorder.Background = Brushes.PowderBlue;
-
-            //mInteractiveBorders.Add(mInteractiveBorder);
-            ////Grid.SetZIndex(mInteractiveBorder, Int16.MaxValue);
-            //source.Children.Add(mInteractiveBorder);
-
-
             Line line = new Line();
             line.X1 = start.X;
             line.X2 = end.X;
@@ -169,40 +154,42 @@ namespace LabBench.language.ui.layout
 
             DraggableBorder mDraggableBorder = new DraggableBorder();
             mDraggableBorder.IsRotateEnabled = false;
-            //mDraggableBorder.RenderTransform = new TranslateTransform(start.X, start.Y);
+            mDraggableBorder.IsTranslateEnabled = false;
             
             mDraggableBorder.Child = line;
 
             mDraggableBorder.Attach(new SnapBehavior());
 
             mDraggableBorder.Attach(new DeletableBehavior());
-            source.Children.Add(mDraggableBorder);
-        }
-
-        internal static void create(Line line)
-        {
-            DraggableBorder mDraggableBorder = new DraggableBorder();
-            mDraggableBorder.IsRotateEnabled = false;
-            //mDraggableBorder.RenderTransform = new TranslateTransform(start.X, start.Y);
-
-            mDraggableBorder.Child = line;
-
-            //mDraggableBorder.Attach(new DeletableBehavior());
-            source.Children.Add(mDraggableBorder);
+            LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mDraggableBorder);
         }
 
         public static void toggleCreate()
         {
             if (isCreateMode)
             {
+                LessonCreator.ActiveLesson.LabBench.Canvas.Children.Remove(mWireTool);
+                setWireToolButton("wire.png");
+                LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mWireTool);
                 mOverlay.Detach(mCreateObjectBehavior);
+                Grid.SetZIndex(mOverlay, int.MinValue);
                 isCreateMode = false;
             }
             else
             {
+                LessonCreator.ActiveLesson.LabBench.Canvas.Children.Remove(mWireTool);
+                setWireToolButton("cancel.png");
+                LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mWireTool);
                 mOverlay.Attach(mCreateObjectBehavior);
+                Grid.SetZIndex(mOverlay, int.MaxValue / 2);
+                //Grid.SetZIndex(mWireTool, int.MaxValue);
                 isCreateMode = true;
             }
+        }
+
+        public static void demote()
+        {
+            Grid.SetZIndex(mOverlay, int.MinValue);
         }
     }
 }
