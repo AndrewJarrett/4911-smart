@@ -40,8 +40,8 @@ namespace LabBench
 
         public void TableApplicationControl_Loaded(object sender, RoutedEventArgs e)
         {
-            bool displayMenu = true;
-            bool displayEditor = false;
+            bool displayMenu = false;
+            bool displayEditor = true;
 
             if (displayMenu)
             {
@@ -76,44 +76,11 @@ namespace LabBench
 
         private void showLessonEditor()
         {
-            TableLayoutRoot.Children.Add(mCanvas);
+            //TableLayoutRoot.Children.Add(mCanvas);
 
-            mCanvas.Background = new SolidColorBrush(Colors.DarkGray);
+            LessonCreator mLessonCreator = new LessonCreator(this);
+            mLessonCreator.createLesson();
 
-            Rectangle mRectangle = new Rectangle();
-            mRectangle.Height = 960;
-            mRectangle.Width = 1280;
-
-            TranslateTransform mTranslateTransform = new TranslateTransform();
-            mTranslateTransform.X = 60;
-            mTranslateTransform.Y = 45;
-
-            mRectangle.RenderTransform = mTranslateTransform;
-
-            mRectangle.Fill = new SolidColorBrush(Colors.White);
-
-            mCanvas.Children.Add(mRectangle);
-
-            //InteractiveBorder mInteractiveBorder = new InteractiveBorder();
-            //mInteractiveBorder.Width = 75; mInteractiveBorder.Height = 75;
-            //mInteractiveBorder.Background = new SolidColorBrush(Colors.Red);
-
-            //Rectangle mRectangle = new Rectangle();
-            //mRectangle.Height = mInteractiveBorder.Height;
-            //mRectangle.Width = mInteractiveBorder.Width;
-            //mRectangle.Fill = new SolidColorBrush(Colors.Red);
-
-            //mIconFactories = new List<IconFactory>();
-
-            //Icon mIcon = new Icon(new ImagePNG("lemon.png"));
-            //IconFactory mIconFactory = new IconFactory(canvas, mIcon, 0, 0);
-            //mIconFactories.Add(mIconFactory);
-
-            //mIcon = new Icon(new ImagePNG("barmagnet.png"));
-            //mIconFactory = new IconFactory(canvas, mIcon, 200, 20);
-            //mIconFactories.Add(mIconFactory);
-            Sandbox mSandbox = new Sandbox(mCanvas);
-            mSandbox.activate();
 
             List<String> cat1 = new List<String>();
             cat1.Add("lemon.png");
@@ -138,8 +105,9 @@ namespace LabBench
             mIcons[1] = cat2;
             mIcons[2] = cat3;
 
-            // Draw Toolbox
-            Toolbox t = new Toolbox(mCanvas, mIcons, 600, 0);
+            //// Draw Toolbox
+            Toolbox t = new Toolbox(LessonCreator.ActiveLesson.LabBench.Canvas, mIcons, 200, 0);
+            LessonCreator.ActiveLesson.LabBench.addToolbox(t);
         }
     }
 }

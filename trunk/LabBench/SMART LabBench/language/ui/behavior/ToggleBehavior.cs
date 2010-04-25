@@ -37,13 +37,13 @@ namespace LabBench.language.ui.control
             {
                 if (isOn)
                 {
-                    ((InteractiveBorder)m_element).Background = Brushes.DarkGray;
+                    //((InteractiveBorder)m_element).Background = Brushes.DarkGray;
                     GridLayout.toggleCreate();
                     isOn = false;
                 }
                 else
                 {
-                    ((InteractiveBorder)m_element).Background = Brushes.LightGray;
+                    //((InteractiveBorder)m_element).Background = Brushes.LightGray;
                     GridLayout.toggleCreate();
                     isOn = true;
                 }

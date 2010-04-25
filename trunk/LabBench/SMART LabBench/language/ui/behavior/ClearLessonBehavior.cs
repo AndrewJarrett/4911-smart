@@ -14,7 +14,7 @@ using LabBench.demo;
 
 namespace LabBench.language.ui.control
 {
-    public class DeletableBehavior : Behavior<InteractiveFrameworkElement>
+    public class ClearLessonBehavior : Behavior<InteractiveFrameworkElement>
     {
         private FrameworkElement m_element;
         private TranslateTransform m_translateTransform;
@@ -22,12 +22,7 @@ namespace LabBench.language.ui.control
 
         private Canvas mCanvas;
 
-        public DeletableBehavior(Canvas mCanvas)
-        {
-            this.mCanvas = mCanvas;
-        }
-
-        public DeletableBehavior() {
+        public ClearLessonBehavior() {
             this.mCanvas = LessonCreator.ActiveLesson.LabBench.Canvas;
         }
 
@@ -44,12 +39,7 @@ namespace LabBench.language.ui.control
         {
             if (e != null)
             {
-                if (e.TouchContact.Position.X < 75 && e.TouchContact.Position.Y < 75)
-                {
-                    mCanvas.Children.Remove(m_element);
-                    if(typeof(Component) == m_element.GetType())
-                        LessonCreator.ActiveLesson.Circuit.removeComponent((Component)m_element);
-                }
+                LessonCreator.ActiveLesson.Circuit.deleteCircuit();
             }
         }
 

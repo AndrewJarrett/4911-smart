@@ -116,14 +116,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="algorithm\Dijkstra.cs" />
-    <Compile Include="demo\Sandbox.cs" />
+    <Compile Include="demo\Lesson.cs" />
+    <Compile Include="demo\LessonCreator.cs" />
     <Compile Include="language\circuit\Circuit.cs" />
     <Compile Include="language\circuit\Component.cs" />
     <Compile Include="language\circuit\ComponentFactory.cs" />
+    <Compile Include="language\circuit\Connection.cs" />
     <Compile Include="language\graph\Graph.cs" />
     <Compile Include="language\graph\GraphNode.cs" />
     <Compile Include="language\graph\NodeList.cs" />
     <Compile Include="language\graph\Node.cs" />
+    <Compile Include="language\ui\behavior\ClearLessonBehavior.cs" />
+    <Compile Include="language\ui\layout\LabBenchLayout.cs" />
     <Compile Include="language\Serialization\SerializableItem.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -137,6 +141,7 @@
     <Compile Include="language\ui\CloneableIcon.cs" />
     <Compile Include="language\ui\CloneableRectangle.cs" />
     <Compile Include="language\ui\behavior\SnapBehavior.cs" />
+    <Compile Include="language\ui\CloneableComponent.cs" />
     <Compile Include="language\ui\Icon.cs" />
     <Compile Include="language\ui\IconFactory.cs" />
     <Compile Include="language\ui\ImagePNG.cs" />
@@ -226,6 +231,7 @@
     <Content Include="resources\images\barmagnet.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="resources\images\default.png" />
     <Content Include="resources\images\design\background.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -280,6 +286,12 @@
     <Content Include="resources\images\rocker_switch_0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="resources\images\ui\undo.png" />
+    <Resource Include="resources\images\ui\delete.png" />
+    <Resource Include="resources\images\ui\wire.png" />
+    <Resource Include="resources\images\ui\cancel.png" />
+    <Resource Include="resources\images\ui\drawer.png" />
+    <Resource Include="resources\images\ui\trash.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Debug\lessons\" />

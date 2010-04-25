@@ -18,7 +18,7 @@ namespace LabBench.language.ui
         {
             for (int i = 0; i < icons.Length; i++)
             {
-                canvas.Children.Add(new ToolboxCategory(canvas, icons[i], locX + (i * 150), locY));
+                canvas.Children.Add(new ToolboxCategory(canvas, icons[i], locX + (i * 100), locY));
             }
         }
 

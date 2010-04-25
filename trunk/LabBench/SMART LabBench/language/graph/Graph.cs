@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows;
 
 namespace LabBench.language.graph
 {
@@ -43,6 +44,15 @@ namespace LabBench.language.graph
 
             to.Neighbors.Add(from);
             to.Costs.Add(cost);
+        }
+
+        public void RemoveUndirectedEdge(GraphNode<T> from, GraphNode<T> to, int cost)
+        {
+            from.Neighbors.Remove(to);
+            from.Costs.Remove(cost);
+
+            to.Neighbors.Remove(from);
+            to.Costs.Remove(cost);
         }
 
         public bool Contains(T value)

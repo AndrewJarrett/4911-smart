@@ -14,6 +14,7 @@ namespace LabBench.language
     public class Icon : DraggableImage
     {
         private BitmapImage mBitmapImage;
+        private ImagePNG mImagePNG;
 
         private double x, y, angle;
         private double minScale, maxScale;
@@ -25,7 +26,6 @@ namespace LabBench.language
             setPose(x, y, angle);
             setScale(minScale, maxScale);
             setSource(mBitmapImage);
-            setBehavior();
             this.IsRotateEnabled = false;
         }
 
@@ -36,27 +36,28 @@ namespace LabBench.language
             setPose(x, y, angle);
             setScale(minScale, maxScale);
             setSource(mPNG.Source);
-            setBehavior();
+            mImagePNG = mPNG;
+            //setBehavior();
         }
 
-        private void setBehavior()
-        {
-            SnapBehavior dbg = new SnapBehavior();
-            base.Attach(dbg);
-            base.Attach(new DeletableBehavior());
-        }
+        //private void setBehavior()
+        //{
+        //    SnapBehavior dbg = new SnapBehavior();
+        //    base.Attach(dbg);
+        //    base.Attach(new DeletableBehavior());
+        //}
 
-        private void setScale(double minScale, double maxScale) {
+        protected void setScale(double minScale, double maxScale) {
             this.minScale = minScale;
             this.maxScale = maxScale;
         }
 
-        private void setPose(double x, double y, double angle)
+        public void setPose(double x, double y, double angle)
         {
             this.x = x; this.y = y; this.angle = angle;
         }
 
-        private void setSource(BitmapImage mBitmapImage)
+        protected void setSource(BitmapImage mBitmapImage)
         {
             this.mBitmapImage = mBitmapImage;
         }
@@ -86,9 +87,9 @@ namespace LabBench.language
             return maxScale;
         }
 
-        public BitmapImage getSource()
+        public ImagePNG getSource()
         {
-            return mBitmapImage;
+            return mImagePNG;
         }
 
     }

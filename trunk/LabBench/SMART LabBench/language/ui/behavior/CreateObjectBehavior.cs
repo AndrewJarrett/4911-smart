@@ -13,6 +13,7 @@ using libSMARTMultiTouch.Behaviors;
 using LabBench.language.ui.layout;
 using System.Collections.ObjectModel;
 using System.Windows.Shapes;
+using LabBench.demo;
 
 namespace LabBench.language.ui.control
 {
@@ -28,6 +29,8 @@ namespace LabBench.language.ui.control
 
         private Ellipse mEllipseStart;
         private Ellipse mEllipseMove;
+
+        private Component src;
 
         protected override void OnAttached()
         {
@@ -46,22 +49,26 @@ namespace LabBench.language.ui.control
         {
             if (e != null)
             {
-                if (mEllipseMove != null)
+                if (mEllipseStart != null)
                 {
-                    GridLayout.source.Children.Remove(mEllipseMove);
+                    if (mEllipseMove != null)
+                    {
+                        LessonCreator.ActiveLesson.LabBench.Canvas.Children.Remove(mEllipseMove);
+                    }
+
+                    Point move = e.TouchContact.Position;
+                    move.X = Math.Round(move.X / 25) * 25;
+                    move.Y = Math.Round(move.Y / 25) * 25;
+
+                    mEllipseMove = new Ellipse();
+                    mEllipseMove.Width = 10;
+                    mEllipseMove.Height = 10;
+                    mEllipseMove.Fill = new SolidColorBrush(Colors.Red);
+                    LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mEllipseMove);
+                    Canvas.SetLeft(mEllipseMove, move.X - 5);
+                    Canvas.SetTop(mEllipseMove, move.Y - 5);
+                    Grid.SetZIndex(mEllipseMove, int.MaxValue);
                 }
-
-                Point move = e.TouchContact.Position;
-                move.X = Math.Round(move.X / 25) * 25;
-                move.Y = Math.Round(move.Y / 25) * 25;
-
-                mEllipseMove = new Ellipse();
-                mEllipseMove.Width = 10;
-                mEllipseMove.Height = 10;
-                mEllipseMove.Fill = new SolidColorBrush(Colors.Red);
-                GridLayout.source.Children.Add(mEllipseMove);
-                Canvas.SetLeft(mEllipseMove, move.X - 5);
-                Canvas.SetTop(mEllipseMove, move.Y - 5);
             }
         }
 
@@ -69,23 +76,38 @@ namespace LabBench.language.ui.control
         {
             if (e != null)
             {
+                start = e.TouchContact.Position;
+
+                if (start.X > 100 && start.X < 175 && start.Y > 0 && start.Y < 75)
+                {
+                    GridLayout.demote();
+                    return;
+                }
+
+
                 if (mEllipseStart != null)
                 {
-                    GridLayout.source.Children.Remove(mEllipseStart);
+                    LessonCreator.ActiveLesson.LabBench.Canvas.Children.Remove(mEllipseStart);
                 }
 
                 start = e.TouchContact.Position;
+                src = LessonCreator.ActiveLesson.Circuit.componentAtCursor(start);
+                
+                if(src != null)
+                {
 
-                start.X = Math.Round(start.X / 25) * 25;
-                start.Y = Math.Round(start.Y / 25) * 25;
+                    start.X = Math.Round(start.X / 25) * 25;
+                    start.Y = Math.Round(start.Y / 25) * 25;
 
-                mEllipseStart = new Ellipse();
-                mEllipseStart.Width = 10;
-                mEllipseStart.Height = 10;
-                mEllipseStart.Fill = new SolidColorBrush(Colors.Red);
-                GridLayout.source.Children.Add(mEllipseStart);
-                Canvas.SetLeft(mEllipseStart, start.X - 5);
-                Canvas.SetTop(mEllipseStart, start.Y - 5);
+                    mEllipseStart = new Ellipse();
+                    mEllipseStart.Width = 10;
+                    mEllipseStart.Height = 10;
+                    mEllipseStart.Fill = new SolidColorBrush(Colors.Red);
+                    LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mEllipseStart);
+                    Grid.SetZIndex(mEllipseStart, int.MaxValue);
+                    Canvas.SetLeft(mEllipseStart, start.X - 5);
+                    Canvas.SetTop(mEllipseStart, start.Y - 5);
+                }
             }
         }
 
@@ -94,14 +116,23 @@ namespace LabBench.language.ui.control
         {
             if (e != null)
             {
-                GridLayout.source.Children.Remove(mEllipseStart);
-                GridLayout.source.Children.Remove(mEllipseMove);
-                end = e.TouchContact.Position;
+                if (mEllipseStart != null)
+                {
+                    LessonCreator.ActiveLesson.LabBench.Canvas.Children.Remove(mEllipseStart);
+                    LessonCreator.ActiveLesson.LabBench.Canvas.Children.Remove(mEllipseMove);
+                    mEllipseStart = null;
 
-                end.X = Math.Round(end.X / 25) * 25;
-                end.Y = Math.Round(end.Y / 25) * 25;
+                    end = e.TouchContact.Position;
+                    Component dst = LessonCreator.ActiveLesson.Circuit.componentAtCursor(end);
+                    if (dst != null)
+                    {
 
-                GridLayout.create(start, end);
+                        end.X = Math.Round(end.X / 25) * 25;
+                        end.Y = Math.Round(end.Y / 25) * 25;
+
+                        LessonCreator.ActiveLesson.Circuit.connectComponents(src, dst);
+                    }
+                }
             }
         }
 
