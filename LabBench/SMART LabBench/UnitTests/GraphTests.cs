@@ -9,8 +9,6 @@ namespace LabBench
     [TestFixture]
     class GraphTests
     {
-        private language.graph.Graph<int> graph;
-
         [Test]
         public void createNode()
         {
@@ -52,13 +50,19 @@ namespace LabBench
         {
             List<language.graph.GraphNode<int>> graphNodes = new List<language.graph.GraphNode<int>>();
 
-            language.graph.GraphNode<int> testGraphNode1 = new language.graph.GraphNode<int>();
+            graphNodes.Add(new language.graph.GraphNode<int>());
+            graphNodes.Add(new language.graph.GraphNode<int>(1));
+            graphNodes.Add(new language.graph.GraphNode<int>(-1));
+            graphNodes.Add(new language.graph.GraphNode<int>(12));
+            graphNodes.Add(new language.graph.GraphNode<int>(3, new language.graph.NodeList<int>()));
+            graphNodes.Add(new language.graph.GraphNode<int>(3, new language.graph.NodeList<int>(4)));
 
-            graphNodes.Add(testGraphNode1);
+            Assert.Greater(graphNodes.Count, 0);
 
             foreach (language.graph.GraphNode<int> graphNode in graphNodes)
             {
                 Assert.NotNull(graphNode);
+                Assert.NotNull(graphNode.Value);
             }
         }
 
@@ -67,27 +71,22 @@ namespace LabBench
         {
             language.graph.Graph<int> test1 = new language.graph.Graph<int>();
 
+            language.graph.NodeList<int> nodes = new language.graph.NodeList<int>(2);
+            nodes.Add(new language.graph.Node<int>(8));
+            nodes.Add(new language.graph.Node<int>(9));
+            language.graph.Graph<int> test2 = new language.graph.Graph<int>(nodes);
+
             Assert.NotNull(test1);
+            Assert.NotNull(test2);
+            Assert.Greater(test2.Count, 0);
+            Assert.True(test2.Contains(8));
+            Assert.True(test2.Contains(9));
         }
 
         [Test]
         public void populateGraph()
         {
-            language.graph.Graph<int> testGraph = new language.graph.Graph<int>();
-
-            language.graph.NodeList<int> neighbors = new LabBench.language.graph.NodeList<int>(3);
-            neighbors.Add(new language.graph.GraphNode<int>(22));
-            neighbors.Add(new language.graph.GraphNode<int>(25));
-            neighbors.Add(new language.graph.GraphNode<int>(27));
-
-            language.graph.GraphNode<int> root = new LabBench.language.graph.GraphNode<int>(30, neighbors);
-
-            testGraph.AddNode(root);
-            testGraph.AddNode(10);
-            testGraph.AddNode(13);
-            testGraph.AddNode(15);
-            testGraph.AddNode(new language.graph.GraphNode<int>(16));
-            testGraph.AddNode(new language.graph.GraphNode<int>(18));
+            language.graph.Graph<int> testGraph = this.generateGraph();
 
             Assert.True(testGraph.Contains(22));
             Assert.True(testGraph.Contains(25));
@@ -100,13 +99,12 @@ namespace LabBench
             Assert.True(testGraph.Contains(18));
 
             Assert.True(testGraph.Contains(30));
-
-            graph = testGraph;
         }
 
         [Test]
         public void testEdges()
         {
+            language.graph.Graph<int> graph = this.generateGraph();
             graph.AddDirectedEdge(graph.Get(22), graph.Get(25), 10);
             graph.AddDirectedEdge(graph.Get(22), graph.Get(27), 15);
             graph.AddDirectedEdge(graph.Get(25), graph.Get(27), 2);
@@ -141,6 +139,31 @@ namespace LabBench
             graph.Remove(25);
             graph.Remove(27);
             Assert.AreEqual(graph.Get(22).Neighbors.Count, 0);
+        }
+
+        private language.graph.Graph<int> generateGraph()
+        {
+            language.graph.Graph<int> testGraph = new language.graph.Graph<int>();
+
+            testGraph.AddNode(22);
+            testGraph.AddNode(25);
+            testGraph.AddNode(27);
+
+            language.graph.NodeList<int> neighbors = new LabBench.language.graph.NodeList<int>(3);
+            neighbors.Add(new language.graph.GraphNode<int>(22));
+            neighbors.Add(new language.graph.GraphNode<int>(25));
+            neighbors.Add(new language.graph.GraphNode<int>(27));
+
+            language.graph.GraphNode<int> root = new LabBench.language.graph.GraphNode<int>(30, neighbors);
+
+            testGraph.AddNode(root);
+            testGraph.AddNode(10);
+            testGraph.AddNode(13);
+            testGraph.AddNode(15);
+            testGraph.AddNode(new language.graph.GraphNode<int>(16));
+            testGraph.AddNode(new language.graph.GraphNode<int>(18));
+
+            return testGraph;
         }
     }
 }
