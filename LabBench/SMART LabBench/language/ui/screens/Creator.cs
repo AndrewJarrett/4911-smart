@@ -58,24 +58,6 @@ namespace LabBench.language.ui.screens
 
             mCanvas.Children.Add(mRectangle);
 
-            //InteractiveBorder mInteractiveBorder = new InteractiveBorder();
-            //mInteractiveBorder.Width = 75; mInteractiveBorder.Height = 75;
-            //mInteractiveBorder.Background = new SolidColorBrush(Colors.Red);
-
-            //Rectangle mRectangle = new Rectangle();
-            //mRectangle.Height = mInteractiveBorder.Height;
-            //mRectangle.Width = mInteractiveBorder.Width;
-            //mRectangle.Fill = new SolidColorBrush(Colors.Red);
-
-            //mIconFactories = new List<IconFactory>();
-
-            //Icon mIcon = new Icon(new ImagePNG("lemon.png"));
-            //IconFactory mIconFactory = new IconFactory(canvas, mIcon, 0, 0);
-            //mIconFactories.Add(mIconFactory);
-
-            //mIcon = new Icon(new ImagePNG("barmagnet.png"));
-            //mIconFactory = new IconFactory(canvas, mIcon, 200, 20);
-            //mIconFactories.Add(mIconFactory);
             LessonCreator mLessonCreator = new LessonCreator(mTableControl);
             //mSandbox.activate();
 
@@ -153,10 +135,6 @@ namespace LabBench.language.ui.screens
 
             SerializedLesson savedlesson = new SerializedLesson(canvas);
 
-            //Stream stream = File.Open(filePath, FileMode.Create);
-            //BinaryFormatter bf = new BinaryFormatter();
-            //bf.Serialize(stream, savedlesson);
-            //stream.Close();
         }
     }
 }

@@ -290,6 +290,9 @@
     <Content Include="resources\images\rocker_switch_0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="resources\images\ui\save.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="resources\images\ui\undo.png" />
     <Resource Include="resources\images\ui\delete.png" />
     <Resource Include="resources\images\ui\wire.png" />

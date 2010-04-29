@@ -6,6 +6,8 @@ using System.Text;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Windows.Media.Imaging;
+using System.Windows;
 
 namespace LabBench
 {
@@ -14,8 +16,10 @@ namespace LabBench
     {
         public bool conductive, magnetic, ferrous;
         public int charge;
-        public Image icon;
+        public String iconName;
         public string name;
+        public double x, y, angle;
+
 
         public SerializableItem()
         {
@@ -23,6 +27,8 @@ namespace LabBench
             magnetic = false;
             ferrous = false;
             charge = 0;
+            x = 0.0;
+            y = 0.0;
         }
 
         public bool saveFile(String filePath)
@@ -35,7 +41,9 @@ namespace LabBench
                 stream.Close();
                 return true;
             }
-            catch (Exception ex) { }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
             return false;
         }
 
@@ -58,7 +66,7 @@ namespace LabBench
             this.magnetic = SO.magnetic;
             this.ferrous = SO.ferrous;
             this.charge = SO.charge;
-            this.icon = SO.icon;
+            this.iconName = SO.iconName;
             this.name = SO.name;
 
             return true;

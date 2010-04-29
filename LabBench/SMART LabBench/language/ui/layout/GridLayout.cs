@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using libSMARTMultiTouch.Controls;
 using System.Windows.Media;
 using libSMARTMultiTouch.Behaviors;
+using libSMARTMultiTouch.Input;
 using LabBench.language.ui.control;
 using System.Windows;
 using System.Windows.Shapes;
@@ -104,6 +105,16 @@ namespace LabBench.language.ui.layout
 
             LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mTrashCan);
 
+            Icon mSaveButton = new Icon(new ImagePNG("ui/save.png"));
+            TransformGroup m2TransformGroup = new TransformGroup();
+            m2TransformGroup.Children.Add(new ScaleTransform(0.4, 0.4));
+            m2TransformGroup.Children.Add(new TranslateTransform(580, -62.5));
+            mSaveButton.RenderTransform = m2TransformGroup;
+
+            TouchInputManager.AddTouchContactDownHandler(mSaveButton, new TouchContactEventHandler(Button_SaveLesson));
+
+            LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mSaveButton);
+
             Icon mDeleteButton = new Icon(new ImagePNG("ui/delete.png"));
             mTransformGroup = new TransformGroup();
             mTransformGroup.Children.Add(new ScaleTransform(0.4, 0.4));
@@ -191,5 +202,38 @@ namespace LabBench.language.ui.layout
         {
             Grid.SetZIndex(mOverlay, int.MinValue);
         }
+
+        private void Button_SaveLesson(object sender, TouchContactEventArgs e)
+        {
+            SerializedLesson toSave = new SerializedLesson(LessonCreator.ActiveLesson.LabBench.Canvas);
+
+            String directory = "lessons";
+            int cnt = 0;
+            foreach (string lessonName in System.IO.Directory.GetFiles(directory))
+            {
+                if (lessonName != ".svn")
+                    cnt++;
+            }
+            String path = directory + "/lesson_" + cnt + ".bin";
+            toSave.saveFile(path);
+
+        }
+
+        private void Button_LoadLesson(object sender, TouchContactEventArgs e)
+        {
+            SerializedLesson loaded = new SerializedLesson();
+
+            String directory = "lessons";
+            int cnt = 0;
+            foreach (string lessonName in System.IO.Directory.GetFiles(directory))
+            {
+                if (lessonName != ".svn")
+                    cnt++;
+            }
+            String path = directory + "/lesson_" + cnt + ".bin";
+            loaded.loadFile(path);
+
+        }
+
     }
 }
