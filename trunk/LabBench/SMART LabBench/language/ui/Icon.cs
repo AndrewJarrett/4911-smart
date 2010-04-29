@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Media.Imaging;
+using System.Windows;
 using libSMARTMultiTouch.Controls;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -15,6 +16,7 @@ namespace LabBench.language
     {
         private BitmapImage mBitmapImage;
         private ImagePNG mImagePNG;
+        private String mImageName;
 
         private double x, y, angle;
         private double minScale, maxScale;
@@ -32,11 +34,15 @@ namespace LabBench.language
         public Icon(ImagePNG mPNG)
             : base(0, 0, 0, mPNG.Source, false, 0.5, 2.0)
         {
+
             minScale = 0.5; maxScale = 2;
             setPose(x, y, angle);
             setScale(minScale, maxScale);
             setSource(mPNG.Source);
             mImagePNG = mPNG;
+ 
+            mImageName = mImagePNG.Source.ToString().Split('/').Last();
+
             //setBehavior();
         }
 
@@ -90,6 +96,17 @@ namespace LabBench.language
         public ImagePNG getSource()
         {
             return mImagePNG;
+        }
+
+        public SerializableItem getSerialData()
+        {
+            SerializableItem ret = new SerializableItem();
+            ret.x = x;
+            ret.y = y;
+            ret.iconName = mImageName;
+            ret.angle = angle;
+
+            return ret;
         }
 
     }

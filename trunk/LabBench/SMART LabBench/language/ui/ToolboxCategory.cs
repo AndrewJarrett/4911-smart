@@ -14,10 +14,8 @@ namespace LabBench.language.ui
     class ToolboxCategory : Icon
     {
         private Canvas parent;
-        //private List<Component> objects;
         private int locX, locY;
         private bool open;
-        //private List<TouchCloner> visibleToolboxItems;
         private List<ComponentFactory> visibleToolboxItems;
         private List<String> mIcons;
 
@@ -35,7 +33,6 @@ namespace LabBench.language.ui
             mTransformGroup.Children.Add(new TranslateTransform(x-50, y-62.5));
 
             this.RenderTransform = mTransformGroup;
-            //this.Background = new SolidColorBrush(Colors.Orange);
 
             this.mIcons = mIcons;
 
