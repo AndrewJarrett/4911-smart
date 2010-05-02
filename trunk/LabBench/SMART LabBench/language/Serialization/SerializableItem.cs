@@ -11,6 +11,9 @@ using System.Windows;
 
 namespace LabBench
 {
+    /// <summary>
+    /// Represents an item which can be serialized. Stores the information mabout the object, its position, and the file name of the image used.
+    /// </summary>
     [Serializable]
     public class SerializableItem
     {
@@ -20,7 +23,9 @@ namespace LabBench
         public string name;
         public double x, y, angle;
 
-
+        /// <summary>
+        /// Default constructor, needs no parameters (are to be specified after instantiation).
+        /// </summary>
         public SerializableItem()
         {
             conductive = false;
@@ -31,6 +36,10 @@ namespace LabBench
             y = 0.0;
         }
 
+        /// <summary>
+        /// helper function to save the item at a given path. 
+        /// returns true if the save operation is successful.
+        /// </summary>
         public bool saveFile(String filePath)
         {
             try
@@ -43,10 +52,14 @@ namespace LabBench
             }
             catch (Exception ex) {
                 MessageBox.Show(ex.Message);
+                return false;
             }
-            return false;
         }
 
+        /// <summary>
+        /// loads the information stored in an item at the given file path.
+        /// returns true if the load operation is successful.
+        /// </summary>
         public bool loadFile(String filePath)
         {
             SerializableItem SO = new SerializableItem();
@@ -56,20 +69,19 @@ namespace LabBench
                 BinaryFormatter bf = new BinaryFormatter();
                 SO = (SerializableItem)bf.Deserialize(stream);
                 stream.Close();
+                this.conductive = SO.conductive;
+                this.magnetic = SO.magnetic;
+                this.ferrous = SO.ferrous;
+                this.charge = SO.charge;
+                this.iconName = SO.iconName;
+                this.name = SO.name;
+                return true;
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 return false;
             }
-
-            this.conductive = SO.conductive;
-            this.magnetic = SO.magnetic;
-            this.ferrous = SO.ferrous;
-            this.charge = SO.charge;
-            this.iconName = SO.iconName;
-            this.name = SO.name;
-
-            return true;
         }
     }
 }

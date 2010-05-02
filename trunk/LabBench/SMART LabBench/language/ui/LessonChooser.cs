@@ -10,6 +10,9 @@ using libSMARTMultiTouch.Input;
 
 namespace LabBench.language.ui
 {
+    /// <summary>
+    /// A UI element that allows users to select a lesson or create a new one.
+    /// </summary>
     class LessonChooser
     {
         List<Icon> visible;
@@ -22,6 +25,9 @@ namespace LabBench.language.ui
         int x, y;
         int currentPage;
 
+        /// <summary>
+        /// Constructor, adds a lesson chooser to the given canvas at x, y
+        /// </summary>
         public LessonChooser(Canvas canvas, int x, int y)
         {
             this.canvas = canvas;
@@ -42,6 +48,9 @@ namespace LabBench.language.ui
 
         }
 
+        /// <summary>
+        /// Opens the lesson changer dialog menu.
+        /// </summary>
         public void displayLessons(int page)
         {
             this.clearLessons();
@@ -65,6 +74,9 @@ namespace LabBench.language.ui
             }
         }
 
+        /// <summary>
+        /// Shows the right arrow button to scroll to the next lesson chooser page
+        /// </summary>
         private void showRightArrow()
         {
             language.Icon right_arrow = new language.Icon(new language.ImagePNG("ui/right_arrow.png"));
@@ -81,6 +93,9 @@ namespace LabBench.language.ui
             visible.Add(right_arrow);
         }
 
+        /// <summary>
+        /// Shows the arrow button to scroll to the previous page.
+        /// </summary>
         private void showLeftArrow()
         {
             language.Icon left_arrow = new language.Icon(new language.ImagePNG("ui/left_arrow.png"));
@@ -97,18 +112,27 @@ namespace LabBench.language.ui
             visible.Add(left_arrow);
         }
 
+        /// <summary>
+        /// Scrolls to the next page of the lesson chooser.
+        /// </summary>
         private void Button_NextPage(object sender, TouchContactEventArgs e)
         {
             currentPage = currentPage + 1;
             this.displayLessons(currentPage);
         }
 
+        /// <summary>
+        /// Scrolls to the previous page of the lesson chooser.
+        /// </summary>
         private void Button_PrevPage(object sender, TouchContactEventArgs e)
         {
             currentPage = currentPage - 1;
             this.displayLessons(currentPage);
         }
 
+        /// <summary>
+        /// clears the lesson chooser from the screen.
+        /// </summary>
         public void clearLessons()
         {
             foreach (Icon lesson in visible)
@@ -118,6 +142,9 @@ namespace LabBench.language.ui
             visible = new List<Icon>();
         }
 
+        /// <summary>
+        /// helper function which returns a SerializedLesson file at the address given.
+        /// </summary>
         private SerializedLesson deserializeItem(string objLocation)
         {
             stream = File.Open(objLocation, FileMode.Open);

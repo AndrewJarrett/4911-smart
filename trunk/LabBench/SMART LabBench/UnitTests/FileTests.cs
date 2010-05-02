@@ -7,12 +7,18 @@ using System.IO;
 
 namespace LabBench
 {
+    /// <summary>
+    /// Test Fixture that tests all of the file load and save operations
+    /// </summary>
     [TestFixture]
     class FileTests
     {
         List<String> objectFiles = new List<String>();
         List<String> lessonFiles = new List<String>();
 
+        /// <summary>
+        /// Tests saving an object from a component
+        /// </summary>
         [Test]
         public void SaveObject()
         {
@@ -25,6 +31,9 @@ namespace LabBench
             Assert.True(si.saveFile(filePath));
         }
 
+        /// <summary>
+        /// Tests loading an object from disk.
+        /// </summary>
         [Test]
         public void LoadObject()
         {
@@ -44,6 +53,9 @@ namespace LabBench
             }
         }
 
+        /// <summary>
+        /// tests saving a lesson to a file
+        /// </summary>
         [Test]
         public void SaveLesson()
         {
@@ -58,6 +70,9 @@ namespace LabBench
             Assert.True(sl.saveFile(filePath));
         }
 
+        /// <summary>
+        /// Tests loading a lesson from a file.
+        /// </summary>
         [Test]
         public void LoadLesson()
         {

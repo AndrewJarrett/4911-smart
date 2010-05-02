@@ -9,11 +9,17 @@ using System.Windows.Controls;
 
 namespace LabBench.language.ui
 {
+    /// <summary>
+    /// A UI element for the lesson creator which allows the user to create new objects.
+    /// </summary>
     class Toolbox
     {
         BinaryFormatter bformatter;
         Stream stream;
 
+        /// <summary>
+        /// Default constructor, takes in a list of icon names and creates a toolbox on the given canvas at x, y.
+        /// </summary>
         public Toolbox(Canvas canvas, List<String>[] icons, int locX, int locY)
         {
             for (int i = 0; i < icons.Length; i++)
@@ -22,7 +28,9 @@ namespace LabBench.language.ui
             }
         }
 
-
+        /// <summary>
+        /// Secondary constructor, draws a toolbox at x, y on given canvas based upon files read in.
+        /// </summary>
         public Toolbox(Canvas canvas, int locX, int locY)
         {
             bformatter = new BinaryFormatter();
@@ -52,6 +60,9 @@ namespace LabBench.language.ui
             }
         }
 
+        /// <summary>
+        /// Helper function to return a DeserializableItem from the given directory.
+        /// </summary>
         private SerializableItem deserializeItem(string objLocation)
         {
             stream = File.Open(objLocation, FileMode.Open);
