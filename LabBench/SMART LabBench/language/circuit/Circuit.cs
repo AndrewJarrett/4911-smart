@@ -22,16 +22,21 @@ namespace LabBench.language
 
         public void deleteCircuit()
         {
-            MessageBox.Show("size : " + Nodes.Count);
-            while(Nodes.Count > 2) {
-                Node<Component> n = Nodes.Last();
-                if(n.Value != source && n.Value != sink) {
-                    //LessonCreator.ActiveLesson.LabBench.Canvas.Children.Remove(n.Value);
-                    //Remove(n.Value);
-                    removeComponent(n.Value);
-                }
+            //MessageBox.Show("size : " + Nodes.Count);
+            //while(Nodes.Count > 2) {
+            //    Node<Component> n = Nodes.Last();
+            //    if(n.Value != source && n.Value != sink) {
+            //        //LessonCreator.ActiveLesson.LabBench.Canvas.Children.Remove(n.Value);
+            //        //Remove(n.Value);
+            //        removeComponent(n.Value);
+            //    }
+            //}
+            //MessageBox.Show("size : " + Nodes.Count);
+            while (Nodes.Count > 0)
+            {
+                removeComponent(Nodes.Last().Value);
             }
-            MessageBox.Show("size : " + Nodes.Count);
+            AddNode(source); AddNode(sink);
         }
 
         public Component componentAtCursor(Point mPosition)
@@ -71,18 +76,18 @@ namespace LabBench.language
                 RemoveUndirectedEdge(Get(mConnection.src), Get(mConnection.dst), 0);
                 if (mComponent == mConnection.src)
                 {
-                    MessageBox.Show("deleting @ dst");
+                    //MessageBox.Show("deleting @ dst");
                     mConnection.dst.Connections.Remove(mConnection);
                 }
                 else
                 {
-                    MessageBox.Show("deleting @ src");
+                    //MessageBox.Show("deleting @ src");
                     mConnection.src.Connections.Remove(mConnection);
                 }
             }
 
             LessonCreator.ActiveLesson.LabBench.Canvas.Children.Remove(mComponent);
-            Nodes.Remove(Get(mComponent));
+            Remove(mComponent);
             
         }
 

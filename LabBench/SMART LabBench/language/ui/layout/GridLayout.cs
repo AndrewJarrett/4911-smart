@@ -11,6 +11,7 @@ using LabBench.language.ui.control;
 using System.Windows;
 using System.Windows.Shapes;
 using LabBench.demo;
+using System.Windows.Media.Imaging;
 
 namespace LabBench.language.ui.layout
 {
@@ -69,33 +70,10 @@ namespace LabBench.language.ui.layout
 
         private void createLayout()
         {
-            for(int i=0; i<56; i++) {
-                for (int j = 0; j < 42; j++)
-                {
-                    InteractiveBorder mInteractiveBorder = new InteractiveBorder();
-                    mInteractiveBorder.BorderBrush = Brushes.LightGray;
-                    mInteractiveBorder.BorderThickness = new System.Windows.Thickness(1);
-                    mInteractiveBorder.Background = new SolidColorBrush(Colors.White);
 
-                    mInteractiveBorder.Height = 150; mInteractiveBorder.Width = 200;
-
-                    TranslateTransform mTranslateTransform = new TranslateTransform();
-                    mTranslateTransform.X = i * 25;
-                    mTranslateTransform.Y = j * 25;
-
-                    mInteractiveBorder.RenderTransform = mTranslateTransform;
-
-                    RNTBehavior mRNTBehavior = new RNTBehavior();
-                    mRNTBehavior.IsRotateEnabled = false; mRNTBehavior.IsTranslateEnabled = false;
-
-                    mInteractiveBorder.Attach(mRNTBehavior);
-
-                    mInteractiveBorders.Add(mInteractiveBorder);
-                    LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mInteractiveBorder);
-                }
-            }
-            //(mInteractiveBorders.First()).Background = Brushes.LightGray;
-            //(mInteractiveBorders.First()).BorderThickness = new Thickness(0);
+            ImageBrush mImageBrush = new ImageBrush();
+            mImageBrush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/resources/images/ui/grid.png"));
+            LessonCreator.ActiveLesson.LabBench.Canvas.Background = mImageBrush;
 
             // trash button
             Icon mTrashCan = new Icon(new ImagePNG("ui/trash.png"));

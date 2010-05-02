@@ -62,7 +62,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\SMART Technologies\SMART Table SDK\bin\WPF\libSMARTMultiTouch.Denominations.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework, Version=2.5.5.10112, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL" />
+    <Reference Include="nunit.framework, Version=2.5.5.10112, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\NUnit 2.5.5\bin\net-2.0\framework\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="Sdgt 3.0, Version=2.8.2938.26576, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\SMART Technologies\SMART Table SDK\bin\WPF\Sdgt 3.0.dll</HintPath>
@@ -293,6 +295,7 @@
     <Content Include="resources\images\rocker_switch_0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="resources\images\ui\grid.png" />
     <Resource Include="resources\images\ui\left_arrow.png" />
     <Resource Include="resources\images\ui\right_arrow.png" />
     <Resource Include="resources\images\ui\plus_sign.png" />
