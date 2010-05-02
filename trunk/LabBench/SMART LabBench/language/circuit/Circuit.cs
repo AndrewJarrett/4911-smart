@@ -7,6 +7,7 @@ using System.Windows.Media;
 using libSMARTMultiTouch.Controls;
 using LabBench.language.circuit;
 using System.Collections.Generic;
+using System;
 
 namespace LabBench.language
 {
@@ -28,6 +29,11 @@ namespace LabBench.language
             }
             AddNode(source); AddNode(sink);
             AddDirectedEdge(Get(source), Get(sink), int.MaxValue-1);
+        }
+
+        public void addDirectedEdge(Component from, Component to, int cost)
+        {
+            AddDirectedEdge(Get(from), Get(to), cost);
         }
 
         public Component componentAtCursor(Point mPosition)
@@ -90,8 +96,9 @@ namespace LabBench.language
             Line mLine = new Line();
             mLine.X1 = start.X; mLine.Y1 = start.Y;
             mLine.X2 = end.X; mLine.Y2 = end.Y;
-            mLine.Stroke = Brushes.PowderBlue;
             mLine.StrokeThickness = 25;
+            mLine.StrokeEndLineCap = PenLineCap.Round;
+            mLine.Stroke = Brushes.PowderBlue;// new LinearGradientBrush(Colors.Red, Colors.Black, Math.Atan2(end.Y - start.Y, end.X - start.X));
 
             DraggableBorder mDraggableBorder = new DraggableBorder();
             mDraggableBorder.IsRotateEnabled = false;
@@ -104,7 +111,7 @@ namespace LabBench.language
 
             src.addConnection(mConnection); dst.addConnection(mConnection);
 
-            AddUndirectedEdge(Get(src), Get(dst), 0);
+            AddDirectedEdge(Get(src), Get(dst), 0);
         }
 
         public Component Source
