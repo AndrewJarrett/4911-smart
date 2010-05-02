@@ -143,7 +143,7 @@ namespace LabBench
             Assert.Greater(graph.Get(18).Neighbors.Count, 0);
 
             algorithm.Dijkstra<int> algorithm = new algorithm.Dijkstra<int>(graph, 30);
-            Queue<language.graph.GraphNode<int>> path = algorithm.shortestPathTo(graph.Get(22));
+            Queue<language.graph.GraphNode<int>> path = algorithm.shortestPathTo(22);
             while (path.Count > 1)
             {
                 Assert.AreNotEqual(path.Dequeue(), graph.Get(22));
@@ -154,7 +154,7 @@ namespace LabBench
             }
 
             algorithm.Dijkstra<int> failAlgorithm = new algorithm.Dijkstra<int>(graph, 13);
-            Queue<language.graph.GraphNode<int>> failPath = algorithm.shortestPathTo(graph.Get(22));
+            Queue<language.graph.GraphNode<int>> failPath = algorithm.shortestPathTo(22);
             Assert.AreEqual(failPath.Count, 0);
 
             graph.Remove(25);

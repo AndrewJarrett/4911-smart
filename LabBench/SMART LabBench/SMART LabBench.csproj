@@ -74,6 +74,7 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -122,6 +123,7 @@
     <Compile Include="algorithm\Dijkstra.cs" />
     <Compile Include="demo\Lesson.cs" />
     <Compile Include="demo\LessonCreator.cs" />
+    <Compile Include="demo\PhysicsEngine.cs" />
     <Compile Include="language\circuit\Circuit.cs" />
     <Compile Include="language\circuit\Component.cs" />
     <Compile Include="language\circuit\ComponentFactory.cs" />
@@ -131,6 +133,7 @@
     <Compile Include="language\graph\NodeList.cs" />
     <Compile Include="language\graph\Node.cs" />
     <Compile Include="language\ui\behavior\ClearLessonBehavior.cs" />
+    <Compile Include="language\ui\behavior\ValidateCircuitBehavior.cs" />
     <Compile Include="language\ui\layout\LabBenchLayout.cs" />
     <Compile Include="language\Serialization\SerializableItem.cs">
       <SubType>Code</SubType>
@@ -295,6 +298,9 @@
     <Content Include="resources\images\rocker_switch_0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="resources\images\ui\invalid.png" />
+    <Resource Include="resources\images\ui\valid.png" />
+    <Resource Include="resources\images\ui\validate.png" />
     <Resource Include="resources\images\ui\document.png" />
     <Resource Include="resources\images\ui\grid.png" />
     <Resource Include="resources\images\ui\left_arrow.png" />

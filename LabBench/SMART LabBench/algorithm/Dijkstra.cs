@@ -5,6 +5,7 @@ using System.Text;
 
 using LabBench.language.graph;
 using LabBench.language;
+using System.Windows.Forms;
 
 namespace LabBench.algorithm
 {
@@ -27,14 +28,15 @@ namespace LabBench.algorithm
 
         public void build() {
 
+            NodeList<T> Q = new NodeList<T>();
+
             foreach(GraphNode<T> v in graph.Nodes) {
                 distance.Add(v, int.MaxValue); // infinity
                 previous.Add(v, null);
+                Q.Add(v);
             }
 
             distance[graph.Get(source)] = 0;
-
-            NodeList<T> Q = graph.Nodes;
 
             while (Q.Count > 0)
             {
@@ -63,10 +65,12 @@ namespace LabBench.algorithm
         }
 
         // will return empty queue if no path to target exists from source
-        public Queue<GraphNode<T>> shortestPathTo(GraphNode<T> target)
+        public Queue<GraphNode<T>> shortestPathTo(T target)
         {
             Queue<GraphNode<T>> sequence = new Queue<GraphNode<T>>();
-            GraphNode<T> u = target;
+            GraphNode<T> u = graph.Get(target);
+
+
 
             while (previous[u] != null)
             {
@@ -74,7 +78,9 @@ namespace LabBench.algorithm
                 u = previous[u];
             }
 
-            return (Queue<GraphNode<T>>) sequence.Reverse();
+            return sequence;
+
+            //return ((Queue<GraphNode<T>>) sequence.Reverse());
         }
 
     }

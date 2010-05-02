@@ -85,6 +85,15 @@ namespace LabBench.language.ui.layout
 
             LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mTrashCan);
 
+            // validate button
+            Icon mValidateButton = new Icon(new ImagePNG("ui/validate.png"));
+            TransformGroup m3TransformGroup = new TransformGroup();
+            m3TransformGroup.Children.Add(new ScaleTransform(0.4, 0.4));
+            m3TransformGroup.Children.Add(new TranslateTransform(780, -62.5));
+            mValidateButton.RenderTransform = m3TransformGroup;
+            mValidateButton.Attach(new ValidateCircuitBehavior());
+
+            LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mValidateButton);
 
             // save button
             Icon mSaveButton = new Icon(new ImagePNG("ui/save.png"));
@@ -100,10 +109,10 @@ namespace LabBench.language.ui.layout
 
             //load button
             Icon mLoadButton = new Icon(new ImagePNG("ui/save.png"));
-            TransformGroup m3TransformGroup = new TransformGroup();
-            m3TransformGroup.Children.Add(new ScaleTransform(0.4, 0.4));
-            m3TransformGroup.Children.Add(new TranslateTransform(680, -62.5));
-            mLoadButton.RenderTransform = m3TransformGroup;
+            TransformGroup m7TransformGroup = new TransformGroup();
+            m7TransformGroup.Children.Add(new ScaleTransform(0.4, 0.4));
+            m7TransformGroup.Children.Add(new TranslateTransform(680, -62.5));
+            mLoadButton.RenderTransform = m7TransformGroup;
             mLoadButton.Attach(new TouchBounceBehavior());
 
             TouchInputManager.AddTouchContactDownHandler(mLoadButton, new TouchContactEventHandler(Button_LoadLesson));
