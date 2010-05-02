@@ -92,6 +92,7 @@ namespace LabBench.language.ui.layout
             m2TransformGroup.Children.Add(new ScaleTransform(0.4, 0.4));
             m2TransformGroup.Children.Add(new TranslateTransform(580, -62.5));
             mSaveButton.RenderTransform = m2TransformGroup;
+            mSaveButton.Attach(new TouchBounceBehavior());
 
             TouchInputManager.AddTouchContactDownHandler(mSaveButton, new TouchContactEventHandler(Button_SaveLesson));
 
@@ -103,6 +104,7 @@ namespace LabBench.language.ui.layout
             m3TransformGroup.Children.Add(new ScaleTransform(0.4, 0.4));
             m3TransformGroup.Children.Add(new TranslateTransform(680, -62.5));
             mLoadButton.RenderTransform = m3TransformGroup;
+            mLoadButton.Attach(new TouchBounceBehavior());
 
             TouchInputManager.AddTouchContactDownHandler(mLoadButton, new TouchContactEventHandler(Button_LoadLesson));
 
