@@ -13,16 +13,25 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace LabBench
 {
+    /// <summary>
+    /// represents a lesson which can be serialized. Saves the list of objects on the canvas (which each store their location information).
+    /// </summary>
     [Serializable]
     public class SerializedLesson
     {
         public List<SerializableItem> mObjects;
 
+        /// <summary>
+        /// Default constructor, initializes item list.
+        /// </summary>
         public SerializedLesson()
         {
             mObjects = new List<SerializableItem>();
         }
 
+        /// <summary>
+        /// Secondary constructor, takes in a canvas and populates the item list with the objects on that canvas.
+        /// </summary>
         public SerializedLesson(Canvas canvas)
         {
             // add icons to serialized list
@@ -38,6 +47,10 @@ namespace LabBench
             }
         }
 
+        /// <summary>
+        /// helper function to save this lesson.
+        /// returns true if save operation is succesful.
+        /// </summary>
         public bool saveFile(String filePath)
         {
             try {
@@ -53,6 +66,10 @@ namespace LabBench
             return true;
         }
 
+        /// <summary>
+        /// helper function to load the contents of a file at the given path.
+        /// returns true if load operation is succesul.
+        /// </summary>
         public bool loadFile(String filePath)
         {
             SerializedLesson sl = new SerializedLesson();

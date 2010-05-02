@@ -6,9 +6,15 @@ using NUnit.Framework;
 
 namespace LabBench
 {
+    /// <summary>
+    /// Tests the functionality of the graph subsystem which is responsible for simulating the circuit
+    /// </summary>
     [TestFixture]
     class GraphTests
     {
+        /// <summary>
+        /// tests the constructors and accessors of node by creating and verifying node creation
+        /// </summary>
         [Test]
         public void createNode()
         {
@@ -28,6 +34,9 @@ namespace LabBench
             }
         }
 
+        /// <summary>
+        /// tests the constructors and accessors of NodeList by creating and verifying NodeList creation under a variety of circumstances.
+        /// </summary>
         [Test]
         public void createNodeList()
         {
@@ -45,6 +54,9 @@ namespace LabBench
             }
         }
 
+        /// <summary>
+        /// tests the creation of graph nodes of integer type.
+        /// </summary>
         [Test]
         public void createGraphNode()
         {
@@ -66,6 +78,9 @@ namespace LabBench
             }
         }
 
+        /// <summary>
+        /// tests the creation of a graph, including verifying that it includes the proper nodes.
+        /// </summary>
         [Test]
         public void createGraph()
         {
@@ -83,6 +98,9 @@ namespace LabBench
             Assert.True(test2.Contains(9));
         }
 
+        /// <summary>
+        /// tests that all nodes added to a graph are included in that graph.
+        /// </summary>
         [Test]
         public void populateGraph()
         {
@@ -101,6 +119,9 @@ namespace LabBench
             Assert.True(testGraph.Contains(30));
         }
 
+        /// <summary>
+        /// tests the edge traversal of Djikstra's algorithm
+        /// </summary>
         [Test]
         public void testEdges()
         {
@@ -141,6 +162,9 @@ namespace LabBench
             Assert.AreEqual(graph.Get(22).Neighbors.Count, 0);
         }
 
+        /// <summary>
+        /// helper function which creates a graph that can be used by the graph test functions.
+        /// </summary>
         private language.graph.Graph<int> generateGraph()
         {
             language.graph.Graph<int> testGraph = new language.graph.Graph<int>();

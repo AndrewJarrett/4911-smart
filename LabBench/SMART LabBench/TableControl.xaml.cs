@@ -30,7 +30,10 @@ namespace LabBench
         public Picker mPicker;
         public Creator mCreator;
         public Player mPlayer;
-        
+
+        /// <summary>
+        /// default constructor, creates the canvas and initializes the state machine
+        /// </summary>
         public TableControl()
         {
             StateMachine.mScreen = Screens.TitleScreen;
@@ -38,6 +41,9 @@ namespace LabBench
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Executed upon application launch, controls the state machine
+        /// </summary>
         public void TableApplicationControl_Loaded(object sender, RoutedEventArgs e)
         {
             bool displayMenu = false;
@@ -74,6 +80,9 @@ namespace LabBench
                 
         }
 
+        /// <summary>
+        /// Draws the graphical compontents of the lesson editor.
+        /// </summary>
         private void showLessonEditor()
         {
             //TableLayoutRoot.Children.Add(mCanvas);

@@ -11,6 +11,9 @@ using LabBench.language.circuit;
 
 namespace LabBench.language.ui
 {
+    /// <summary>
+    /// Represents a toolbox category. Is a button that, when clicked, opens an object drawer.
+    /// </summary>
     class ToolboxCategory : Icon
     {
         private Canvas parent;
@@ -19,6 +22,9 @@ namespace LabBench.language.ui
         private List<ComponentFactory> visibleToolboxItems;
         private List<String> mIcons;
 
+        /// <summary>
+        /// Default constructor, takes in a list of image file names
+        /// </summary>
         public ToolboxCategory(Canvas mainCanvas, List<String> mIcons, int x, int y)
             : base(new ImagePNG("ui/drawer.png"))
         {
@@ -40,6 +46,9 @@ namespace LabBench.language.ui
 
         }
 
+        /// <summary>
+        /// Secondary constructor, takes in a list of Serializeable Items
+        /// </summary>
         public ToolboxCategory(Canvas mainCanvas, List<SerializableItem> objects, int x, int y)
             : base(new ImagePNG("ui/drawer.png"))
         {
@@ -63,6 +72,9 @@ namespace LabBench.language.ui
 
         }
 
+        /// <summary>
+        /// Responds to touching the category. Determines whether to open or close the menu based upon its state.
+        /// </summary>
         private void Button_TouchContactDown(object sender, TouchContactEventArgs e)
         {
             if (this.open)
@@ -75,6 +87,9 @@ namespace LabBench.language.ui
             }
         }
 
+        /// <summary>
+        /// Draws the selection choice UI elements for the given category.
+        /// </summary>
         public void openMenu()
         {
             double offset = 75;
@@ -88,6 +103,9 @@ namespace LabBench.language.ui
             this.open = true;
         }
 
+        /// <summary>
+        /// Closes the drawer by removing all of its elements from the canvas.
+        /// </summary>
         public void closeMenu()
         {
             foreach (ComponentFactory t in this.visibleToolboxItems)

@@ -23,11 +23,17 @@ namespace LabBench.language.ui.layout
             mToolboxes = new List<Toolbox>();
         }
 
+        /// <summary>
+        /// adds new toolbox to canvas at given x/y coordinates.
+        /// </summary>
         public void addToolbox(int x, int y)
         {
             mToolboxes.Add(new Toolbox(mCanvas, x, y));
         }
 
+        /// <summary>
+        /// adds the given toolbox to the canvas. toolbox already has x/y coordinates.
+        /// </summary>
         public void addToolbox(Toolbox mToolbox)
         {
             mToolboxes.Add(mToolbox);

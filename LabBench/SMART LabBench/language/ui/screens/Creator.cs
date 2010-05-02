@@ -21,7 +21,9 @@ using LabBench.language.ui.screens;
 using LabBench.language.ui;
 using LabBench.demo;
 
-
+/// <summary>
+/// a UI screen which is used for creating lessons.
+/// </summary>
 namespace LabBench.language.ui.screens
 {
     public class Creator
@@ -30,6 +32,9 @@ namespace LabBench.language.ui.screens
         private Grid mTableLayoutRoot;
         private TableControl mTableControl;
 
+        /// <summary>
+        /// Lesson creator default constructor
+        /// </summary>
         public Creator(TableControl tableControl)
         {
             mTableControl = tableControl;
@@ -96,6 +101,9 @@ namespace LabBench.language.ui.screens
             mCanvas.Children.Add(saveButton);
         }
 
+        /// <summary>
+        /// Save button listener
+        /// </summary>
         private void Button_SaveLesson(object sender, TouchContactEventArgs e)
         {
             // remove buttons from canvas
@@ -121,6 +129,9 @@ namespace LabBench.language.ui.screens
             saveLesson(mCanvas, screenShot);
         }
 
+        /// <summary>
+        /// Lesson save helper function.
+        /// </summary>
         private void saveLesson(Canvas canvas, WriteableBitmap screenshot)
         {
             String directory = "lessons";

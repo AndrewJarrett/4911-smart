@@ -97,6 +97,7 @@ namespace LabBench.language.ui.layout
             //(mInteractiveBorders.First()).Background = Brushes.LightGray;
             //(mInteractiveBorders.First()).BorderThickness = new Thickness(0);
 
+            // trash button
             Icon mTrashCan = new Icon(new ImagePNG("ui/trash.png"));
             TransformGroup mTransformGroup = new TransformGroup();
             mTransformGroup.Children.Add(new ScaleTransform(0.4, 0.4));
@@ -218,6 +219,9 @@ namespace LabBench.language.ui.layout
             Grid.SetZIndex(mOverlay, int.MinValue);
         }
 
+        /// <summary>
+        /// Saves the current lesson creator session as a new Lesson file.
+        /// </summary>
         private void Button_SaveLesson(object sender, TouchContactEventArgs e)
         {
             SerializedLesson toSave = new SerializedLesson(LessonCreator.ActiveLesson.LabBench.Canvas);
@@ -234,6 +238,9 @@ namespace LabBench.language.ui.layout
 
         }
 
+        /// <summary>
+        /// Opens or closes the lesson chooser, which in turn loads or creates new lessons.
+        /// </summary>
         private void Button_LoadLesson(object sender, TouchContactEventArgs e)
         {
             if (lessonChooserOpen)
