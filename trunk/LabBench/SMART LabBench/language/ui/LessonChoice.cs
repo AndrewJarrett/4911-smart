@@ -71,7 +71,14 @@ namespace LabBench
         private void Button_ChooseLesson(object sender, TouchContactEventArgs e)
         {
             this.chooser.clearLessons();
-            LessonCreator.ActiveLesson.Circuit.deleteCircuit();
+            try
+            {
+                LessonCreator.ActiveLesson.Circuit.deleteCircuit();
+            }
+            catch (Exception ex)
+            {
+                LessonPlayer.ActiveLesson.Circuit.deleteCircuit();
+            }
 
             foreach (SerializableItem item in lesson.mObjects)
             {
@@ -85,7 +92,14 @@ namespace LabBench
                 newComp.IsTranslateEnabled = true;
                 newComp.AnimateTranslate(item.x, item.y, 0.5, 0.5, new TimeSpan(0, 0, 2));
 
-                LessonCreator.ActiveLesson.Circuit.AddNode(newComp);
+                try
+                {
+                    LessonCreator.ActiveLesson.Circuit.AddNode(newComp);
+                }
+                catch (Exception ex)
+                {
+                    LessonPlayer.ActiveLesson.Circuit.AddNode(newComp);
+                }
                 
                 parent.Children.Add(newComp);
             }

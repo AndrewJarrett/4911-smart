@@ -28,7 +28,14 @@ namespace LabBench.language.ui.control
         }
 
         public DeletableBehavior() {
-            this.mCanvas = LessonCreator.ActiveLesson.LabBench.Canvas;
+            try
+            {
+                this.mCanvas = LessonCreator.ActiveLesson.LabBench.Canvas;
+            }
+            catch (Exception ex)
+            {
+                this.mCanvas = LessonPlayer.ActiveLesson.LabBench.Canvas;
+            }
         }
 
         protected override void OnAttached()

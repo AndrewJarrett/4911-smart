@@ -46,8 +46,8 @@ namespace LabBench
         /// </summary>
         public void TableApplicationControl_Loaded(object sender, RoutedEventArgs e)
         {
-            bool displayMenu = false;
-            bool displayEditor = true;
+            bool displayMenu = true;
+            bool displayEditor = false;
 
             if (displayMenu)
             {
@@ -58,15 +58,18 @@ namespace LabBench
                         InitializeComponent();
                         break;
                     case Screens.Manager:
-                        mManager = new Manager(this);
-                        InitializeComponent();
+                        this.showLessonEditor();
+                        //mManager = new Manager(this);
+                        //InitializeComponent();
                         break;
                     case Screens.Picker:
-                        mPicker = new Picker(this);
-                        InitializeComponent();
+                        this.showLessonPlayer();
+                        //mPicker = new Picker(this);
+                        //InitializeComponent();
                         break;
                     case Screens.Creator:
-                        mCreator = new Creator(this);
+                        this.showLessonEditor();
+                        //mCreator = new Creator(this);
                         break;
                     case Screens.Player:
                         mPlayer = new Player(this);
@@ -78,6 +81,15 @@ namespace LabBench
             if (displayEditor)
                 showLessonEditor();
                 
+        }
+
+       /// <summary>
+        /// Draws the graphical compontents of the lesson editor.
+        /// </summary>
+        private void showLessonPlayer()
+        {
+            LessonPlayer mLessonPlayer = new LessonPlayer(this);
+            mLessonPlayer.createLesson();
         }
 
         /// <summary>
