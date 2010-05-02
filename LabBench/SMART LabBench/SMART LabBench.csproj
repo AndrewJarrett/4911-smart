@@ -16,7 +16,6 @@
     <WarningLevel>4</WarningLevel>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <StartupObject>LabBench.App</StartupObject>
-    <ApplicationManifest>bin\Release\SMART LabBench.vshost.exe.manifest</ApplicationManifest>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
