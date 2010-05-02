@@ -10,8 +10,9 @@ using libSMARTMultiTouch.Behaviors;
 using libSMARTMultiTouch.Controls;
 using LabBench.demo;
 using System.Windows.Shapes;
-using System.Drawing;
+using System.Windows;
 using LabBench.language.circuit;
+using System.Windows.Media;
 
 namespace LabBench.language
 {
@@ -81,8 +82,9 @@ namespace LabBench.language
                 mLine.X1 = start.X; mLine.Y1 = start.Y;
                 mLine.X2 = end.X; mLine.Y2 = end.Y;
 
-                mLine.Stroke = System.Windows.Media.Brushes.PowderBlue;
+                mLine.StrokeEndLineCap = PenLineCap.Round;
                 mLine.StrokeThickness = 25;
+                mLine.Stroke = Brushes.PowderBlue;
 
                 DraggableBorder mDraggableBorder = new DraggableBorder();
                 mDraggableBorder.IsTranslateEnabled = false; mDraggableBorder.IsRotateEnabled = false;
