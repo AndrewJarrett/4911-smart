@@ -20,7 +20,7 @@ namespace LabBench.language.ui.layout
         private static List<InteractiveBorder> mInteractiveBorders = new List<InteractiveBorder>(56*42); 
         private static InteractiveBorder mOverlay;
         private static CreateObjectBehavior mCreateObjectBehavior;
-        private static Boolean isCreateMode, lessonChooserOpen;
+        private static Boolean isCreateMode;
         private static Icon mWireTool;
         private static LessonChooser lessonChooser;
 
@@ -103,7 +103,6 @@ namespace LabBench.language.ui.layout
             m3TransformGroup.Children.Add(new ScaleTransform(0.4, 0.4));
             m3TransformGroup.Children.Add(new TranslateTransform(680, -62.5));
             mLoadButton.RenderTransform = m3TransformGroup;
-            lessonChooserOpen = false;
 
             TouchInputManager.AddTouchContactDownHandler(mLoadButton, new TouchContactEventHandler(Button_LoadLesson));
 
@@ -221,15 +220,15 @@ namespace LabBench.language.ui.layout
         /// </summary>
         private void Button_LoadLesson(object sender, TouchContactEventArgs e)
         {
-            if (lessonChooserOpen)
+            if (lessonChooser != null && lessonChooser.open)
             {
-                lessonChooserOpen = false;
+                lessonChooser.open = false;
                 lessonChooser.clearLessons();
             }
             else
             {
-                lessonChooserOpen = true;
                 lessonChooser = new LessonChooser(LessonCreator.ActiveLesson.LabBench.Canvas, 500, 200);
+                lessonChooser.open = true;
             }
         }
 

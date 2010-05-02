@@ -24,12 +24,14 @@ namespace LabBench.language.ui
         Canvas canvas;
         int x, y;
         int currentPage;
+        public bool open;
 
         /// <summary>
         /// Constructor, adds a lesson chooser to the given canvas at x, y
         /// </summary>
         public LessonChooser(Canvas canvas, int x, int y)
         {
+            this.open = false;
             this.canvas = canvas;
             this.x = x; this.y = y;
 
@@ -45,6 +47,7 @@ namespace LabBench.language.ui
             }
             this.currentPage = 0;
             this.displayLessons(0);
+            this.open = true;
 
         }
 
@@ -65,9 +68,9 @@ namespace LabBench.language.ui
                 int posx = x + (i * 100) - (300 * (i / 3));
                 int posy = y + ((i / 3) * 100);
                 if (index < lessonchoices.Count)
-                    element = new LessonChoice(canvas, lessonchoices.ElementAt(index), posx, posy);
+                    element = new LessonChoice(this, canvas, lessonchoices.ElementAt(index), posx, posy);
                 else
-                    element = new LessonChoice(canvas, posx, posy);
+                    element = new LessonChoice(this, canvas, posx, posy);
 
                 canvas.Children.Add(element);
                 visible.Add(element);
@@ -140,6 +143,7 @@ namespace LabBench.language.ui
                 canvas.Children.Remove(lesson);
             }
             visible = new List<Icon>();
+            this.open = false;
         }
 
         /// <summary>
