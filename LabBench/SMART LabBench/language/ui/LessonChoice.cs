@@ -9,6 +9,9 @@ using libSMARTMultiTouch.Controls;
 using libSMARTMultiTouch.Input;
 using LabBench.language.circuit;
 using LabBench.language.ui;
+using LabBench.language;
+using LabBench.demo;
+using LabBench.language.ui.control;
 
 namespace LabBench
 {
@@ -45,7 +48,7 @@ namespace LabBench
         ///  Concrete constructor for LessonChoice, tied to a specific lesson, loads it when clicked
         /// </summary>
         public LessonChoice(LessonChooser lc, Canvas mainCanvas, SerializedLesson lesson, int x, int y)
-            : base(new language.ImagePNG("ui/plus_sign.png"))
+            : base(new language.ImagePNG("ui/document.png"))
         {
             this.chooser = lc;
             this.lesson = lesson;
@@ -67,13 +70,24 @@ namespace LabBench
         /// </summary>
         private void Button_ChooseLesson(object sender, TouchContactEventArgs e)
         {
+            this.chooser.clearLessons();
+            LessonCreator.ActiveLesson.Circuit.deleteCircuit();
+
             foreach (SerializableItem item in lesson.mObjects)
             {
-                this.chooser.clearLessons();
-                parent.Children.Add(new language.Icon(item.x, 
-                                                      item.y, 
-                                                      item.angle, 
-                                                      new language.ImagePNG(item.iconName).Source));
+                Component newComp = new Component(new language.ImagePNG(item.iconName));
+
+                TransformGroup mTransformGroup = new TransformGroup();
+                mTransformGroup.Children.Add(new ScaleTransform(0.5, 0.5));
+                mTransformGroup.Children.Add(new RotateTransform(item.angle));
+
+                newComp.LayoutTransform = mTransformGroup;
+                newComp.IsTranslateEnabled = true;
+                newComp.AnimateTranslate(item.x, item.y, 0.5, 0.5, new TimeSpan(0, 0, 2));
+
+                LessonCreator.ActiveLesson.Circuit.AddNode(newComp);
+                
+                parent.Children.Add(newComp);
             }
         }
 
@@ -83,6 +97,7 @@ namespace LabBench
         private void Button_NewLesson(object sender, TouchContactEventArgs e)
         {
             this.chooser.clearLessons();
+            LessonCreator.ActiveLesson.Circuit.deleteCircuit();
         }
     }
 }

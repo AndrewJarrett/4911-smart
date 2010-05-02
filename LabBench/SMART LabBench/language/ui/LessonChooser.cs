@@ -57,6 +57,7 @@ namespace LabBench.language.ui
         public void displayLessons(int page)
         {
             this.clearLessons();
+            this.open = true;
             if (page > 0)
                 showLeftArrow();
             showRightArrow();
@@ -73,6 +74,7 @@ namespace LabBench.language.ui
                     element = new LessonChoice(this, canvas, posx, posy);
 
                 canvas.Children.Add(element);
+
                 visible.Add(element);
             }
         }

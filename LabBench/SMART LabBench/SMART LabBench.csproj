@@ -295,6 +295,7 @@
     <Content Include="resources\images\rocker_switch_0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="resources\images\ui\document.png" />
     <Resource Include="resources\images\ui\grid.png" />
     <Resource Include="resources\images\ui\left_arrow.png" />
     <Resource Include="resources\images\ui\right_arrow.png" />
