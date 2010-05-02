@@ -121,9 +121,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="algorithm\Dijkstra.cs" />
-    <Compile Include="demo\Lesson.cs" />
+    <Compile Include="demo\Lesson.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="demo\LessonCreator.cs" />
+    <Compile Include="demo\LessonPlayer.cs" />
     <Compile Include="demo\PhysicsEngine.cs" />
+    <Compile Include="demo\PlayableLesson.cs" />
     <Compile Include="language\circuit\Circuit.cs" />
     <Compile Include="language\circuit\Component.cs" />
     <Compile Include="language\circuit\ComponentFactory.cs" />
@@ -134,7 +138,6 @@
     <Compile Include="language\graph\Node.cs" />
     <Compile Include="language\ui\behavior\ClearLessonBehavior.cs" />
     <Compile Include="language\ui\behavior\ValidateCircuitBehavior.cs" />
-    <Compile Include="language\ui\layout\LabBenchLayout.cs" />
     <Compile Include="language\Serialization\SerializableItem.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -153,6 +156,11 @@
     <Compile Include="language\ui\IconFactory.cs" />
     <Compile Include="language\ui\ImagePNG.cs" />
     <Compile Include="language\ui\layout\GridLayout.cs" />
+    <Compile Include="language\ui\layout\LabBenchLayout.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="language\ui\layout\PlayerGridLayout.cs" />
+    <Compile Include="language\ui\layout\PlayerLabBenchLayout.cs" />
     <Compile Include="language\ui\LessonChoice.cs" />
     <Compile Include="language\ui\LessonChooser.cs" />
     <Compile Include="language\ui\screens\Creator.cs" />

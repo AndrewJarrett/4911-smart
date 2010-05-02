@@ -76,7 +76,14 @@ namespace LabBench.language
 
                 }
 
-                LessonCreator.ActiveLesson.LabBench.Canvas.Children.Remove(mConnection.wire);
+                try
+                {
+                    LessonCreator.ActiveLesson.LabBench.Canvas.Children.Remove(mConnection.wire);
+                }
+                catch (Exception ex)
+                {
+                    LessonPlayer.ActiveLesson.LabBench.Canvas.Children.Remove(mConnection.wire);
+                }
                 
                 Line mLine = new Line();
                 mLine.X1 = start.X; mLine.Y1 = start.Y;
@@ -90,7 +97,13 @@ namespace LabBench.language
                 mDraggableBorder.IsTranslateEnabled = false; mDraggableBorder.IsRotateEnabled = false;
                 mDraggableBorder.Child = mLine;
 
-                LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mDraggableBorder);
+                try{
+                    LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mDraggableBorder);
+                }
+                catch (Exception ex)
+                {
+                    LessonPlayer.ActiveLesson.LabBench.Canvas.Children.Add(mDraggableBorder);
+                }
 
                 mConnection.wire = mDraggableBorder;
             }

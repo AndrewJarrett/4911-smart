@@ -53,7 +53,14 @@ namespace LabBench.language.ui.control
                 {
                     if (mEllipseMove != null)
                     {
-                        LessonCreator.ActiveLesson.LabBench.Canvas.Children.Remove(mEllipseMove);
+                        try
+                        {
+                            LessonCreator.ActiveLesson.LabBench.Canvas.Children.Remove(mEllipseMove);
+                        }
+                        catch (Exception ex)
+                        {
+                            LessonPlayer.ActiveLesson.LabBench.Canvas.Children.Remove(mEllipseMove);
+                        }
                     }
 
                     Point move = e.TouchContact.Position;
@@ -64,7 +71,14 @@ namespace LabBench.language.ui.control
                     mEllipseMove.Width = 10;
                     mEllipseMove.Height = 10;
                     mEllipseMove.Fill = new SolidColorBrush(Colors.Red);
-                    LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mEllipseMove);
+                    try
+                    {
+                        LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mEllipseMove);
+                    }
+                    catch (Exception ex)
+                    {
+                        LessonPlayer.ActiveLesson.LabBench.Canvas.Children.Add(mEllipseMove);
+                    }
                     Canvas.SetLeft(mEllipseMove, move.X - 5);
                     Canvas.SetTop(mEllipseMove, move.Y - 5);
                     Grid.SetZIndex(mEllipseMove, int.MaxValue);
@@ -80,18 +94,39 @@ namespace LabBench.language.ui.control
 
                 if (start.X > 100 && start.X < 175 && start.Y > 0 && start.Y < 75)
                 {
-                    GridLayout.demote();
+                    try
+                    {
+                        GridLayout.demote();
+                    }
+                    catch (Exception ex)
+                    {
+                        PlayerGridLayout.demote();
+                    }
                     return;
                 }
 
 
                 if (mEllipseStart != null)
                 {
-                    LessonCreator.ActiveLesson.LabBench.Canvas.Children.Remove(mEllipseStart);
+                    try
+                    {
+                        LessonCreator.ActiveLesson.LabBench.Canvas.Children.Remove(mEllipseStart);
+                    }
+                    catch (Exception ex)
+                    {
+                        LessonPlayer.ActiveLesson.LabBench.Canvas.Children.Remove(mEllipseStart);
+                    }
                 }
 
                 start = e.TouchContact.Position;
-                src = LessonCreator.ActiveLesson.Circuit.componentAtCursor(start);
+                try
+                {
+                    src = LessonCreator.ActiveLesson.Circuit.componentAtCursor(start);
+                }
+                catch (Exception ex)
+                {
+                    src = LessonPlayer.ActiveLesson.Circuit.componentAtCursor(start);
+                }
                 
                 if(src != null)
                 {
@@ -103,7 +138,12 @@ namespace LabBench.language.ui.control
                     mEllipseStart.Width = 10;
                     mEllipseStart.Height = 10;
                     mEllipseStart.Fill = new SolidColorBrush(Colors.Red);
-                    LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mEllipseStart);
+                    try{
+                        LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mEllipseStart);
+                    }
+                    catch (Exception ex){
+                        LessonPlayer.ActiveLesson.LabBench.Canvas.Children.Add(mEllipseStart);
+                    }
                     Grid.SetZIndex(mEllipseStart, int.MaxValue);
                     Canvas.SetLeft(mEllipseStart, start.X - 5);
                     Canvas.SetTop(mEllipseStart, start.Y - 5);
@@ -118,19 +158,42 @@ namespace LabBench.language.ui.control
             {
                 if (mEllipseStart != null)
                 {
-                    LessonCreator.ActiveLesson.LabBench.Canvas.Children.Remove(mEllipseStart);
-                    LessonCreator.ActiveLesson.LabBench.Canvas.Children.Remove(mEllipseMove);
+                    try
+                    {
+                        LessonCreator.ActiveLesson.LabBench.Canvas.Children.Remove(mEllipseStart);
+                        LessonCreator.ActiveLesson.LabBench.Canvas.Children.Remove(mEllipseMove);
+                    }
+                    catch (Exception ex)
+                    {
+                        LessonPlayer.ActiveLesson.LabBench.Canvas.Children.Remove(mEllipseStart);
+                        LessonPlayer.ActiveLesson.LabBench.Canvas.Children.Remove(mEllipseMove);
+                    }
                     mEllipseStart = null;
 
                     end = e.TouchContact.Position;
-                    Component dst = LessonCreator.ActiveLesson.Circuit.componentAtCursor(end);
+                    Component dst;
+                    try
+                    {
+                        dst = LessonCreator.ActiveLesson.Circuit.componentAtCursor(end);
+                    }
+                    catch (Exception ex)
+                    {
+                        dst = LessonPlayer.ActiveLesson.Circuit.componentAtCursor(end);
+                    }
                     if (dst != null)
                     {
 
                         end.X = Math.Round(end.X / 25) * 25;
                         end.Y = Math.Round(end.Y / 25) * 25;
 
-                        LessonCreator.ActiveLesson.Circuit.connectComponents(src, dst);
+                        try
+                        {
+                            LessonCreator.ActiveLesson.Circuit.connectComponents(src, dst);
+                        }
+                        catch (Exception ex)
+                        {
+                            LessonPlayer.ActiveLesson.Circuit.connectComponents(src, dst);
+                        }
                     }
                 }
             }

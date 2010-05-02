@@ -69,7 +69,14 @@ namespace LabBench.language
             mComponent.clear();
             foreach (Connection mConnection in mComponent.Connections)
             {
-                LessonCreator.ActiveLesson.LabBench.Canvas.Children.Remove(mConnection.wire);
+                try
+                {
+                    LessonCreator.ActiveLesson.LabBench.Canvas.Children.Remove(mConnection.wire);
+                }
+                catch (Exception ex)
+                {
+                    LessonPlayer.ActiveLesson.LabBench.Canvas.Children.Remove(mConnection.wire);
+                }
                 RemoveUndirectedEdge(Get(mConnection.src), Get(mConnection.dst), 0);
                 if (mComponent == mConnection.src)
                 {
@@ -83,7 +90,14 @@ namespace LabBench.language
                 }
             }
 
-            LessonCreator.ActiveLesson.LabBench.Canvas.Children.Remove(mComponent);
+            try
+            {
+                LessonCreator.ActiveLesson.LabBench.Canvas.Children.Remove(mComponent);
+            }
+            catch (Exception ex)
+            {
+                LessonPlayer.ActiveLesson.LabBench.Canvas.Children.Remove(mComponent);
+            }
             Remove(mComponent);
             
         }
@@ -105,7 +119,14 @@ namespace LabBench.language
             mDraggableBorder.IsTranslateEnabled = false;
             mDraggableBorder.Child = mLine;
 
-            LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mDraggableBorder);
+            try
+            {
+                LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mDraggableBorder);
+            }
+            catch (Exception ex)
+            {
+                LessonPlayer.ActiveLesson.LabBench.Canvas.Children.Add(mDraggableBorder);
+            }
 
             Connection mConnection = new Connection(src, dst, mDraggableBorder);
 
