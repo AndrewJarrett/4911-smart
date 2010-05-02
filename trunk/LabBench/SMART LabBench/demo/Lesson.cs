@@ -12,11 +12,13 @@ namespace LabBench.demo
     {
         private LabBenchLayout mLabBench;
         private Circuit mCircuit;
+        private PhysicsEngine mPhysicsEngine;
 
         public Lesson(Canvas mCanvas)
         {
             mLabBench = new LabBenchLayout(mCanvas);
             mCircuit = new Circuit();
+            mPhysicsEngine = new PhysicsEngine(mCircuit);
         }
 
         public void initialize()
@@ -34,6 +36,11 @@ namespace LabBench.demo
         {
             set { mCircuit = value; }
             get { return mCircuit; }
+        }
+
+        public PhysicsEngine Engine
+        {
+            get { return mPhysicsEngine; }
         }
     }
 }

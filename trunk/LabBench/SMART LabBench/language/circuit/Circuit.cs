@@ -17,26 +17,17 @@ namespace LabBench.language
         public Circuit() : base()
         {
             AddNode(source); AddNode(sink);
-            AddDirectedEdge(Get(source), Get(sink), int.MaxValue); // open
+            AddDirectedEdge(Get(source), Get(sink), int.MaxValue-1); // open
         }
 
         public void deleteCircuit()
         {
-            //MessageBox.Show("size : " + Nodes.Count);
-            //while(Nodes.Count > 2) {
-            //    Node<Component> n = Nodes.Last();
-            //    if(n.Value != source && n.Value != sink) {
-            //        //LessonCreator.ActiveLesson.LabBench.Canvas.Children.Remove(n.Value);
-            //        //Remove(n.Value);
-            //        removeComponent(n.Value);
-            //    }
-            //}
-            //MessageBox.Show("size : " + Nodes.Count);
             while (Nodes.Count > 0)
             {
                 removeComponent(Nodes.Last().Value);
             }
             AddNode(source); AddNode(sink);
+            AddDirectedEdge(Get(source), Get(sink), int.MaxValue-1);
         }
 
         public Component componentAtCursor(Point mPosition)
@@ -114,6 +105,16 @@ namespace LabBench.language
             src.addConnection(mConnection); dst.addConnection(mConnection);
 
             AddUndirectedEdge(Get(src), Get(dst), 0);
+        }
+
+        public Component Source
+        {
+            get { return source; }
+        }
+
+        public Component Sink
+        {
+            get { return sink; }
         }
     }
 }
