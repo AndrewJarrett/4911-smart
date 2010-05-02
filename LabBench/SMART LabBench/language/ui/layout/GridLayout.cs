@@ -19,8 +19,9 @@ namespace LabBench.language.ui.layout
         private static List<InteractiveBorder> mInteractiveBorders = new List<InteractiveBorder>(56*42); 
         private static InteractiveBorder mOverlay;
         private static CreateObjectBehavior mCreateObjectBehavior;
-        private static Boolean isCreateMode;
+        private static Boolean isCreateMode, lessonChooserOpen;
         private static Icon mWireTool;
+        private static LessonChooser lessonChooser;
 
         public GridLayout()
         {
@@ -105,6 +106,8 @@ namespace LabBench.language.ui.layout
 
             LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mTrashCan);
 
+
+            // save button
             Icon mSaveButton = new Icon(new ImagePNG("ui/save.png"));
             TransformGroup m2TransformGroup = new TransformGroup();
             m2TransformGroup.Children.Add(new ScaleTransform(0.4, 0.4));
@@ -114,6 +117,18 @@ namespace LabBench.language.ui.layout
             TouchInputManager.AddTouchContactDownHandler(mSaveButton, new TouchContactEventHandler(Button_SaveLesson));
 
             LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mSaveButton);
+
+            //load button
+            Icon mLoadButton = new Icon(new ImagePNG("ui/save.png"));
+            TransformGroup m3TransformGroup = new TransformGroup();
+            m3TransformGroup.Children.Add(new ScaleTransform(0.4, 0.4));
+            m3TransformGroup.Children.Add(new TranslateTransform(680, -62.5));
+            mLoadButton.RenderTransform = m3TransformGroup;
+            lessonChooserOpen = false;
+
+            TouchInputManager.AddTouchContactDownHandler(mLoadButton, new TouchContactEventHandler(Button_LoadLesson));
+
+            LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mLoadButton);
 
             Icon mDeleteButton = new Icon(new ImagePNG("ui/delete.png"));
             mTransformGroup = new TransformGroup();
@@ -221,18 +236,16 @@ namespace LabBench.language.ui.layout
 
         private void Button_LoadLesson(object sender, TouchContactEventArgs e)
         {
-            SerializedLesson loaded = new SerializedLesson();
-
-            String directory = "lessons";
-            int cnt = 0;
-            foreach (string lessonName in System.IO.Directory.GetFiles(directory))
+            if (lessonChooserOpen)
             {
-                if (lessonName != ".svn")
-                    cnt++;
+                lessonChooserOpen = false;
+                lessonChooser.clearLessons();
             }
-            String path = directory + "/lesson_" + cnt + ".bin";
-            loaded.loadFile(path);
-
+            else
+            {
+                lessonChooserOpen = true;
+                lessonChooser = new LessonChooser(LessonCreator.ActiveLesson.LabBench.Canvas, 500, 200);
+            }
         }
 
     }

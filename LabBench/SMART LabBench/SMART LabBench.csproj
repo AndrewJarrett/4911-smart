@@ -106,6 +106,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -147,6 +151,8 @@
     <Compile Include="language\ui\IconFactory.cs" />
     <Compile Include="language\ui\ImagePNG.cs" />
     <Compile Include="language\ui\layout\GridLayout.cs" />
+    <Compile Include="language\ui\LessonChoice.cs" />
+    <Compile Include="language\ui\LessonChooser.cs" />
     <Compile Include="language\ui\screens\Creator.cs" />
     <Compile Include="language\ui\screens\Manager.cs" />
     <Compile Include="language\ui\screens\Picker.cs" />
@@ -290,6 +296,9 @@
     <Content Include="resources\images\rocker_switch_0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="resources\images\ui\left_arrow.png" />
+    <Resource Include="resources\images\ui\right_arrow.png" />
+    <Resource Include="resources\images\ui\plus_sign.png" />
     <Resource Include="resources\images\ui\save.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
