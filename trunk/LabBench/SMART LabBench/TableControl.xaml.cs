@@ -103,32 +103,31 @@ namespace LabBench
             mLessonCreator.createLesson();
 
 
-            List<String> cat1 = new List<String>();
-            cat1.Add("lemon.png");
-            cat1.Add("paperclip.png");
-            cat1.Add("nail.png");
-            cat1.Add("penny.png");
+            Dictionary<String, String> cat1 = new Dictionary<String, String>();
+            cat1.Add("lemon.png", "conductor");
+            cat1.Add("paperclip.png", "conductor");
+            cat1.Add("nail.png", "conductor");
+            cat1.Add("penny.png", "conductor");
 
-            List<String> cat2 = new List<String>();
-            cat2.Add("plastic_toy_brick.png");
-            cat2.Add("playing_card.png");
-            cat2.Add("barmagnet.png");
+            Dictionary<String, String> cat2 = new Dictionary<String, String>();
+            cat2.Add("plastic_toy_brick.png", "insulator");
+            cat2.Add("playing_card.png", "insulator");
+            cat2.Add("barmagnet.png", "insulator");
 
-            List<String> cat3 = new List<String>();
-            cat3.Add("light_bulb_off.png");
-            cat3.Add("light_dimmer.png");
-            cat3.Add("nine_volt_battery.png");
-            cat3.Add("push_button_up.png");
-            cat3.Add("rocker_switch_0.png");
+            Dictionary<String, String> cat3 = new Dictionary<String, String>();
+            cat3.Add("light_bulb_off.png", "output");
+            cat3.Add("light_dimmer.png", "conductor");
+            cat3.Add("nine_volt_battery.png", "input");
+            cat3.Add("push_button_up.png", "insulator");
+            cat3.Add("rocker_switch_0.png", "conductor");
 
-            List<String>[] mIcons = new List<String>[3];
-            mIcons[0] = cat1;
-            mIcons[1] = cat2;
-            mIcons[2] = cat3;
+            Dictionary<String, String>[] mCategories = new Dictionary<String, String>[3];
+            mCategories[0] = cat1;
+            mCategories[1] = cat2;
+            mCategories[2] = cat3;
 
-            //// Draw Toolbox
-            Toolbox t = new Toolbox(LessonCreator.ActiveLesson.LabBench.Canvas, mIcons, 200, 0);
-            LessonCreator.ActiveLesson.LabBench.addToolbox(t);
+            // Draw Toolbox
+            Toolbox t = new Toolbox(LessonCreator.ActiveLesson.LabBench.Canvas, mCategories, 200, 0);
         }
     }
 }
