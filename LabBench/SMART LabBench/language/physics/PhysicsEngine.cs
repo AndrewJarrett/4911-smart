@@ -28,8 +28,11 @@ namespace LabBench.demo
             {
                 if (n.Value != mCircuit.Sink && n.Value != mCircuit.Source)
                 {
-                    mCircuit.addDirectedEdge(mCircuit.Source, n.Value, 0);
-                    break;
+                    if (n.Value.Resistivity == "input")
+                    {
+                        mCircuit.addDirectedEdge(mCircuit.Source, n.Value, 0);
+                        break;
+                    }
                 }
             }
 
@@ -41,6 +44,11 @@ namespace LabBench.demo
             if ((mAlgoritm.shortestPathTo(mCircuit.Sink)).Count > 0)
             {
                 MessageBox.Show("Hurrah!" + mAlgoritm.shortestPathTo(mCircuit.Sink).Count);
+
+                foreach (Node<Component> n in mCircuit.Nodes)
+                {
+
+                }
             }
             else
             {

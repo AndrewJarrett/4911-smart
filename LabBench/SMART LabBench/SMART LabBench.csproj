@@ -126,7 +126,7 @@
     </Compile>
     <Compile Include="demo\LessonCreator.cs" />
     <Compile Include="demo\LessonPlayer.cs" />
-    <Compile Include="demo\PhysicsEngine.cs" />
+    <Compile Include="language\physics\PhysicsEngine.cs" />
     <Compile Include="demo\PlayableLesson.cs" />
     <Compile Include="language\circuit\Circuit.cs" />
     <Compile Include="language\circuit\Component.cs" />
@@ -279,6 +279,7 @@
     <Content Include="resources\images\light_bulb_off.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="resources\images\light_bulb_on.png" />
     <Content Include="resources\images\light_dimmer.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

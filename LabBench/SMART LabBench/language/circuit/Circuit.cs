@@ -18,7 +18,7 @@ namespace LabBench.language
         public Circuit() : base()
         {
             AddNode(source); AddNode(sink);
-            AddDirectedEdge(Get(source), Get(sink), int.MaxValue-1); // open
+            AddDirectedEdge(Get(source), Get(sink), int.MaxValue/2); // open
         }
 
         public void deleteCircuit()
@@ -28,7 +28,7 @@ namespace LabBench.language
                 removeComponent(Nodes.Last().Value);
             }
             AddNode(source); AddNode(sink);
-            AddDirectedEdge(Get(source), Get(sink), int.MaxValue-1);
+            AddDirectedEdge(Get(source), Get(sink), int.MaxValue/2);
         }
 
         public void addDirectedEdge(Component from, Component to, int cost)

@@ -24,7 +24,7 @@ namespace LabBench.language.ui
 
         public object Clone()
         {
-            Component r = new Component(mComponent.getSource());
+            Component r = new Component(mComponent.Resistivity, mComponent.getSource());
             LessonCreator.ActiveLesson.Circuit.AddNode(r);
             return r;
         }
