@@ -20,7 +20,7 @@ namespace LabBench.language.ui
         /// <summary>
         /// Default constructor, takes in a list of icon names and creates a toolbox on the given canvas at x, y.
         /// </summary>
-        public Toolbox(Canvas canvas, List<String>[] icons, int locX, int locY)
+        public Toolbox(Canvas canvas, Dictionary<String,String>[] icons, int locX, int locY)
         {
             for (int i = 0; i < icons.Length; i++)
             {

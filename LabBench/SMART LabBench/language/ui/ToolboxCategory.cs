@@ -22,10 +22,16 @@ namespace LabBench.language.ui
         private List<ComponentFactory> visibleToolboxItems;
         private List<String> mIcons;
 
+        private Dictionary<String, String> mComponentList;
+
         /// <summary>
-        /// Default constructor, takes in a list of image file names
+        /// Class constructor
         /// </summary>
-        public ToolboxCategory(Canvas mainCanvas, List<String> mIcons, int x, int y)
+        /// <param name="mainCanvas">Canvas to draw on</param>
+        /// <param name="mComponentList">List of components for this category</param>
+        /// <param name="x">x coordinate on canvas for this category</param>
+        /// <param name="y">y coordinate on canvas for this category</param>
+        public ToolboxCategory(Canvas mainCanvas, Dictionary<String, String> mComponentList, int x, int y)
             : base(new ImagePNG("ui/drawer.png"))
         {
             this.visibleToolboxItems = new List<ComponentFactory>(); //TouchCloner>();
@@ -40,7 +46,7 @@ namespace LabBench.language.ui
 
             this.RenderTransform = mTransformGroup;
 
-            this.mIcons = mIcons;
+            this.mComponentList = mComponentList;
 
             TouchInputManager.AddTouchContactDownHandler(this, new TouchContactEventHandler(Button_TouchContactDown));
 
@@ -93,17 +99,11 @@ namespace LabBench.language.ui
         public void openMenu()
         {
             double offset = 75;
-            for (int i = 1; i < mIcons.Count+1; i++)
+            for (int i = 1; i < mComponentList.Keys.Count+1; i++)
             {
-                Component mComponent;
-                if (mIcons[i - 1] == "light_bulb_off.png")
-                    mComponent = new Component("output", new ImagePNG(mIcons[i - 1]));
-                else if (mIcons[i - 1] == "nine_volt_battery.png")
-                    mComponent = new Component("input",new ImagePNG(mIcons[i - 1]));
-                else
-                    mComponent = new Component(new ImagePNG(mIcons[i - 1]));
-
-                ComponentFactory mComponentFactory = new ComponentFactory(mIcons[i-1], this.parent, mComponent, mComponent, this.locX, this.locY + offset);
+                String key = mComponentList.Keys.ElementAt(i - 1);
+                Component mComponent = new Component(mComponentList[key], new ImagePNG(key));
+                ComponentFactory mComponentFactory = new ComponentFactory(key, this.parent, mComponent, mComponent, this.locX, this.locY + offset);
                 offset += (mComponent.Height / 2.0) * 1.2;
                 visibleToolboxItems.Add(mComponentFactory);
             }
