@@ -16,6 +16,9 @@ using System.Windows.Media;
 
 namespace LabBench.language
 {
+    /// <summary>
+    /// A visual component which can be placed on the lab bench and manipulated
+    /// </summary>
     public class Component : Icon
     {
         private Dictionary<String, Behavior<InteractiveFrameworkElement>> behaviors = 
@@ -23,21 +26,37 @@ namespace LabBench.language
 
         private List<Connection> mConnectionList = new List<Connection>();
 
+        // default properties
+        private String mResistivity = "none";
+
+        /// <summary>Class constructor</summary>
+        /// <param name="mResistivity">Type of component: insulator, conductor, input, or output</param>
+        /// <param name="icon">Image representing this component</param>
+        public Component(String mResistivity, ImagePNG icon)
+            : base(icon)
+        { setBehavior(); this.mResistivity = mResistivity; }
+
+        /// <summary>Class constructor</summary>
+        /// <param name="icon">Image representing this component</param>
         public Component(ImagePNG icon)
             : base(icon)
         { setBehavior(); }
 
+        /// <summary>Default class constructor</summary>
         public Component()
             : base(new ImagePNG("default.png"))
         { ; }
 
-        void setBehavior()
+        private void setBehavior()
         {
             newBehavior("Snap", new SnapBehavior());
             newBehavior("Deleteable", new DeletableBehavior());
             newBehavior("MoveToTopOnTouch", new MoveToTopOnTouchBehavior());
         }
 
+        /// <summary>Toggles on/off touch input behaviors</summary>
+        /// <param name="mName">Canonical name of the behavior</param>
+        /// <param name="mBehavior">Reference to the behavior that should be toggled</param>
         public void toggleBehavior(String mName, Behavior<InteractiveFrameworkElement> mBehavior)
         {
             if (behaviors[mName] != null)
@@ -52,7 +71,11 @@ namespace LabBench.language
             }
         }
 
-        new public void setPose(double x, double y, double angle)
+        /// <summary>Set the pose on the canvas of this component</summary>
+        /// <param name="x">x coordinate</param>
+        /// <param name="y">y coordinate</param>
+        /// <param name="angle">angle about the horizontal</param>
+        public void setPose(double x, double y, double angle)
         {
             base.setPose(x, y, angle);
 
@@ -89,9 +112,9 @@ namespace LabBench.language
                 mLine.X1 = start.X; mLine.Y1 = start.Y;
                 mLine.X2 = end.X; mLine.Y2 = end.Y;
 
-                mLine.StrokeEndLineCap = PenLineCap.Round;
                 mLine.StrokeThickness = 25;
                 mLine.Stroke = Brushes.PowderBlue;
+                mLine.StrokeEndLineCap = PenLineCap.Round;
 
                 DraggableBorder mDraggableBorder = new DraggableBorder();
                 mDraggableBorder.IsTranslateEnabled = false; mDraggableBorder.IsRotateEnabled = false;
@@ -109,27 +132,40 @@ namespace LabBench.language
             }
         }
 
+        /// <summary>Add a new touch input behavior to this component</summary>
+        /// <param name="mName">Canonical name of the behavior</param>
+        /// <param name="mBehavior">Reference to the behavior that should be added</param>
         public void newBehavior(String mName, Behavior<InteractiveFrameworkElement> mBehavior) {
             behaviors.Add(mName, mBehavior);
             this.Attach(mBehavior);
         }
 
+        /// <summary>Add a new connection to this component</summary>
+        /// <param name="mConnection">Connection to add</param>
         public void addConnection(Connection mConnection)
         {
             mConnectionList.Add(mConnection);
         }
 
+        /// <summary>Collection of connection from/to this component</summary>
         public List<Connection> Connections
         {
             get { return mConnectionList; }
         }
-
+        
+        /// <summary>Remove all behaviors from this component</summary>
         public void clear()
         {
             foreach (String mBehavior in behaviors.Keys)
             {
                 Detach(behaviors[mBehavior]);
             }
+        }
+
+        /// <summary>Return the component type</summary>
+        public String Resistivity {
+            set{ mResistivity = value; }
+            get{ return mResistivity; }
         }
     }
 }

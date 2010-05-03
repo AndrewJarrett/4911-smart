@@ -95,7 +95,14 @@ namespace LabBench.language.ui
             double offset = 75;
             for (int i = 1; i < mIcons.Count+1; i++)
             {
-                Component mComponent = new Component(new ImagePNG(mIcons[i-1]));
+                Component mComponent;
+                if (mIcons[i - 1] == "light_bulb_off.png")
+                    mComponent = new Component("output", new ImagePNG(mIcons[i - 1]));
+                else if (mIcons[i - 1] == "nine_volt_battery.png")
+                    mComponent = new Component("input",new ImagePNG(mIcons[i - 1]));
+                else
+                    mComponent = new Component(new ImagePNG(mIcons[i - 1]));
+
                 ComponentFactory mComponentFactory = new ComponentFactory(mIcons[i-1], this.parent, mComponent, mComponent, this.locX, this.locY + offset);
                 offset += (mComponent.Height / 2.0) * 1.2;
                 visibleToolboxItems.Add(mComponentFactory);
