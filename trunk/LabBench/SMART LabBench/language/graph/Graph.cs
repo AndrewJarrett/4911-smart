@@ -55,6 +55,12 @@ namespace LabBench.language.graph
             to.Costs.Remove(cost);
         }
 
+        public void RemoveDirectedEdge(GraphNode<T> from, GraphNode<T> to, int cost)
+        {
+            from.Neighbors.Remove(to);
+            from.Costs.Add(cost);
+        }
+
         public bool Contains(T value)
         {
             return nodeSet.FindByValue(value) != null;

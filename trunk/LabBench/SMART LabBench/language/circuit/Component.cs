@@ -118,6 +118,7 @@ namespace LabBench.language
 
                 DraggableBorder mDraggableBorder = new DraggableBorder();
                 mDraggableBorder.IsTranslateEnabled = false; mDraggableBorder.IsRotateEnabled = false;
+                mDraggableBorder.IsMoveToTopOnTouchEnabled = false;
                 mDraggableBorder.Child = mLine;
 
                 try{

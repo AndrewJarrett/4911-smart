@@ -36,6 +36,11 @@ namespace LabBench.language
             AddDirectedEdge(Get(from), Get(to), cost);
         }
 
+        public void removeDirectedEdge(Component from, Component to, int cost)
+        {
+            
+        }
+
         public Component componentAtCursor(Point mPosition)
         {
             int x = (int) mPosition.X, y = (int) mPosition.Y;
@@ -117,6 +122,7 @@ namespace LabBench.language
             DraggableBorder mDraggableBorder = new DraggableBorder();
             mDraggableBorder.IsRotateEnabled = false;
             mDraggableBorder.IsTranslateEnabled = false;
+            mDraggableBorder.IsMoveToTopOnTouchEnabled = false;
             mDraggableBorder.Child = mLine;
 
             try
