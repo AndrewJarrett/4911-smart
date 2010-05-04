@@ -9,7 +9,10 @@ using System.Windows.Forms;
 
 namespace LabBench.algorithm
 {
-
+    /// <summary>
+    /// Dijkstra's algorithm for Graphs
+    /// </summary>
+    /// <typeparam name="T">type of element in Graph</typeparam>
     public class Dijkstra<T>
     {
         private Graph<T> graph;
@@ -18,6 +21,10 @@ namespace LabBench.algorithm
         private Dictionary<GraphNode<T>, int> distance;
         private Dictionary<GraphNode<T>, GraphNode<T>> previous;
 
+        /// <summary>
+        /// class constructor
+        /// </summary>
+        /// <typeparam name="T">type of element</typeparam>
         public Dijkstra(Graph<T> graph, T source)
         {
             this.graph = graph; this.source = source;
@@ -26,6 +33,9 @@ namespace LabBench.algorithm
             build();
         }
 
+        /// <summary>
+        /// constructs the paths
+        /// </summary>
         public void build() {
 
             NodeList<T> Q = new NodeList<T>();
@@ -64,13 +74,15 @@ namespace LabBench.algorithm
             }
         }
 
-        // will return empty queue if no path to target exists from source
+        /// <summary>
+        /// returns the sequence of elements that make up the shortest path from the source to the target
+        /// </summary>
+        /// <param name="target">target element</param>
+        /// <returns>will return empty queue if no path to target exists from source</returns>
         public Queue<GraphNode<T>> shortestPathTo(T target)
         {
             Queue<GraphNode<T>> sequence = new Queue<GraphNode<T>>();
             GraphNode<T> u = graph.Get(target);
-
-
 
             while (previous[u] != null)
             {
@@ -79,7 +91,6 @@ namespace LabBench.algorithm
             }
 
             return sequence;
-
             //return ((Queue<GraphNode<T>>) sequence.Reverse());
         }
 

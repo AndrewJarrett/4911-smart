@@ -11,16 +11,25 @@ using System;
 
 namespace LabBench.language
 {
+    /// <summary>
+    /// Circuit of Components represented as a Graph
+    /// </summary>
     public class Circuit : Graph<Component>
     {
         private Component source = new Component(), sink = new Component();
 
+        /// <summary>
+        /// class constructor
+        /// </summary>
         public Circuit() : base()
         {
             AddNode(source); AddNode(sink);
             AddDirectedEdge(Get(source), Get(sink), int.MaxValue/2); // open
         }
 
+        /// <summary>
+        /// delete all components in the circuit
+        /// </summary>
         public void deleteCircuit()
         {
             while (Nodes.Count > 0)
@@ -31,16 +40,11 @@ namespace LabBench.language
             AddDirectedEdge(Get(source), Get(sink), int.MaxValue/2);
         }
 
-        public void addDirectedEdge(Component from, Component to, int cost)
-        {
-            AddDirectedEdge(Get(from), Get(to), cost);
-        }
-
-        public void removeDirectedEdge(Component from, Component to, int cost)
-        {
-            
-        }
-
+        /// <summary>
+        /// retrieve the component that exists at the location of the touch input
+        /// </summary>
+        /// <param name="mPosition">position of the touch input on the canvas</param>
+        /// <returns>component at the touch point, else null</returns>
         public Component componentAtCursor(Point mPosition)
         {
             int x = (int) mPosition.X, y = (int) mPosition.Y;
@@ -65,10 +69,13 @@ namespace LabBench.language
                     }
                 }
             }
-
             return null;
         }
 
+        /// <summary>
+        /// remove a component from the Circuit
+        /// </summary>
+        /// <param name="mComponent">Component to be removed</param>
         public void removeComponent(Component mComponent)
         {
             mComponent.clear();
@@ -107,6 +114,11 @@ namespace LabBench.language
             
         }
 
+        /// <summary>
+        /// connect two Components together (UI and Graph)
+        /// </summary>
+        /// <param name="src">source Component</param>
+        /// <param name="dst">destination Component</param>
         public void connectComponents(Component src, Component dst) //, Point start, Point end)
         {
             Point start = new Point((int)(src.getX() + (src.Width / 2)), (int)(src.getY() + (src.Height / 2)));
@@ -141,11 +153,17 @@ namespace LabBench.language
             AddDirectedEdge(Get(src), Get(dst), 0);
         }
 
+        /// <summary>
+        /// accessor to source Component
+        /// </summary>
         public Component Source
         {
             get { return source; }
         }
 
+        /// <summary>
+        /// accessor to sink Component
+        /// </summary>
         public Component Sink
         {
             get { return sink; }

@@ -21,11 +21,18 @@ namespace LabBench.demo
         private Grid mGrid;
         private List<Lesson> mLessonList = new List<Lesson>();
 
+        /// <summary>
+        /// class constructor
+        /// </summary>
+        /// <param name="mTableControl">top level table control structure</param>
         public LessonCreator(TableControl mTableControl)
         {
             mGrid = mTableControl.TableLayoutRoot;
         }
 
+        /// <summary>
+        /// create a new lesson
+        /// </summary>
         public void createLesson()
         {
             Lesson mLesson = new Lesson(new Canvas());
@@ -35,12 +42,19 @@ namespace LabBench.demo
             mLesson.initialize();
         }
 
+        /// <summary>
+        /// delete a Lesson
+        /// </summary>
+        /// <param name="mLesson">Lesson to be deleted</param>
         public void deleteLesson(Lesson mLesson)
         {
             mGrid.Children.Remove(mLesson.LabBench.Canvas);
             mLessonList.Remove(mLesson);
         }
 
+        /// <summary>
+        /// accessor to the ActiveLesson
+        /// </summary>
         public static Lesson ActiveLesson
         {
             set { mActiveLesson = value; }

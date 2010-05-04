@@ -14,6 +14,9 @@ using LabBench.demo;
 
 namespace LabBench.language.ui.control
 {
+    /// <summary>
+    /// behavior that allows UI elements to be deleted
+    /// </summary>
     public class DeletableBehavior : Behavior<InteractiveFrameworkElement>
     {
         private FrameworkElement m_element;
@@ -22,11 +25,18 @@ namespace LabBench.language.ui.control
 
         private Canvas mCanvas;
 
+        /// <summary>
+        /// class constructor
+        /// </summary>
+        /// <param name="mCanvas">Canvas to delete UI element from</param>
         public DeletableBehavior(Canvas mCanvas)
         {
             this.mCanvas = mCanvas;
         }
 
+        /// <summary>
+        /// default constructor
+        /// </summary>
         public DeletableBehavior() {
             try
             {
@@ -38,6 +48,9 @@ namespace LabBench.language.ui.control
             }
         }
 
+        /// <summary>
+        /// start up function
+        /// </summary>
         protected override void OnAttached()
         {
             base.OnAttached();
@@ -47,6 +60,11 @@ namespace LabBench.language.ui.control
             base.AssociatedObject.TouchUp += new TouchContactEventHandler(AssociatedObject_TouchUp);
         }
 
+        /// <summary>
+        /// touch event handler for releasing UI element
+        /// </summary>
+        /// <param name="sender">UI element</param>
+        /// <param name="e">touch event</param>
         public void AssociatedObject_TouchUp(object sender, TouchContactEventArgs e)
         {
             if (e != null)
@@ -60,7 +78,9 @@ namespace LabBench.language.ui.control
             }
         }
 
-
+        /// <summary>
+        /// closing function
+        /// </summary>
         protected override void OnDetaching()
         {
             base.OnDetaching();

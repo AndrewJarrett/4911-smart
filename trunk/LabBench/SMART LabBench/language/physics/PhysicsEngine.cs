@@ -19,12 +19,20 @@ namespace LabBench.demo
     {
         private Circuit mCircuit;
 
+        /// <summary>
+        /// Class constructor
+        /// </summary>
+        /// <param name="mCircuit">Circuit to which the physics are applied</param>
         public PhysicsEngine(Circuit mCircuit)
         {
             this.mCircuit = mCircuit;
         }
 
-        public bool validate()
+        /// <summary>
+        /// Validates the circuit and if valid, applies physics.
+        /// </summary>
+        /// <returns>true if the circuit is valid, else false</returns>
+        public bool applyPhysics()
         {
             if (mCircuit.Nodes.Count < 4)
                 return false;
@@ -48,7 +56,7 @@ namespace LabBench.demo
 
             if ((mAlgoritm.shortestPathTo(mCircuit.Sink)).Count > 1)
             {
-                MessageBox.Show("Hurrah!" + mAlgoritm.shortestPathTo(mCircuit.Sink).Count);
+                //MessageBox.Show("Hurrah!" + mAlgoritm.shortestPathTo(mCircuit.Sink).Count);
 
                 Component mLightBulb = null;
 
@@ -116,14 +124,11 @@ namespace LabBench.demo
                     mLightBulbOn.UpdateLayout();
                     mLightBulbOn.Focus();
                     Grid.SetZIndex(mLightBulbOn, Grid.GetZIndex(mLightBulbOn) + 1);
-                }
-
-                
-                    
+                }           
             }
             else
             {
-                MessageBox.Show("Booo!");
+                //MessageBox.Show("Booo!");
             }
 
             return true;

@@ -39,7 +39,7 @@ namespace LabBench.language.ui.control
         {
             if (e != null)
             {
-                LessonCreator.ActiveLesson.Engine.validate();
+                LessonCreator.ActiveLesson.Engine.applyPhysics();
             }
         }
 

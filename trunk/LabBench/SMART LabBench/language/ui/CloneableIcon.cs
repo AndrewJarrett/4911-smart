@@ -9,10 +9,17 @@ using LabBench.language.ui.control;
 
 namespace LabBench.language.ui
 {
+    /// <summary>
+    /// Icon that can be cloned
+    /// </summary>
     class CloneableIcon : libSMARTMultiTouch.ICloneable
     {
         private Icon mIcon;
 
+        /// <summary>
+        /// class constructor
+        /// </summary>
+        /// <param name="mIcon">Icon to be cloned</param>
         public CloneableIcon(Icon mIcon)
         {
             this.mIcon = mIcon;
@@ -20,6 +27,10 @@ namespace LabBench.language.ui
 
         #region ICloneable Members
 
+        /// <summary>
+        /// create a new clone
+        /// </summary>
+        /// <returns>cloned object</returns>
         public object Clone()
         {
             Icon r = new Icon(mIcon.getSource());//new Icon(mIcon.getX(), mIcon.getY(), mIcon.getAngle(), mIcon.getSource());

@@ -6,17 +6,27 @@ using System.Windows.Controls;
 
 namespace LabBench.language.ui.layout
 {
+    /// <summary>
+    /// overall layout of the UI
+    /// </summary>
     class LabBenchLayout
     {
         private Canvas mCanvas;
         private GridLayout mGridLayout;
         private List<Toolbox> mToolboxes;
 
+        /// <summary>
+        /// class constructor
+        /// </summary>
+        /// <param name="mReferenceCanvas">the reference canvas to which everything is drawn</param>
         public LabBenchLayout(Canvas mReferenceCanvas)
         {
             mCanvas = mReferenceCanvas;
         }
 
+        /// <summary>
+        /// create the grid layout for the lab bench
+        /// </summary>
         public void createLayout()
         {
             mGridLayout = new GridLayout();
