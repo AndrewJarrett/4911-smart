@@ -14,6 +14,9 @@ using LabBench.language.ui.layout;
 
 namespace LabBench.language.ui.control
 {
+    /// <summary>
+    /// behavior that snaps the UI element to the grid
+    /// </summary>
     public class SnapBehavior : Behavior<InteractiveFrameworkElement>
     {
         private FrameworkElement m_element;
@@ -23,6 +26,9 @@ namespace LabBench.language.ui.control
 
         private const int SNAP_LEVEL = 25;
 
+        /// <summary>
+        /// start up function
+        /// </summary>
         protected override void OnAttached()
         {
             base.OnAttached();
@@ -35,6 +41,11 @@ namespace LabBench.language.ui.control
             base.AssociatedObject.RestPositionReached += new EventHandler(AssociatedObject_RestPositionReached);
         }
 
+        /// <summary>
+        /// touch event handler for when UI elements slide across the screen
+        /// </summary>
+        /// <param name="sender">UI element</param>
+        /// <param name="e">touch event</param>
         public void AssociatedObject_RestPositionReached(object sender, EventArgs e)
         {
             if (e != null)
@@ -48,6 +59,11 @@ namespace LabBench.language.ui.control
             }
         }
 
+        /// <summary>
+        /// touch event handler for releasing UI element
+        /// </summary>
+        /// <param name="sender">UI element</param>
+        /// <param name="e">touch event</param>
         public void AssociatedObject_TouchUp(object sender, TouchContactEventArgs e)
         {
             if (e != null)
@@ -61,6 +77,11 @@ namespace LabBench.language.ui.control
             }
         }
 
+        /// <summary>
+        /// touch event handler for moving UI element
+        /// </summary>
+        /// <param name="sender">UI element</param>
+        /// <param name="e">touch event</param>
         public void AssociatedObject_TouchMove(object sender, TouchContactEventArgs e)
         {
             if (e != null)
@@ -72,6 +93,9 @@ namespace LabBench.language.ui.control
             }
         }
 
+        /// <summary>
+        /// closing function
+        /// </summary>
         protected override void OnDetaching()
         {
             base.OnDetaching();

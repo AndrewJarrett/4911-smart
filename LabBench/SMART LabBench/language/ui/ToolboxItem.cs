@@ -7,10 +7,16 @@ using libSMARTMultiTouch.Controls;
 
 namespace LabBench.language.ui
 {
+    /// <summary>
+    /// Item that is to be stored in the toolbox and is cloneable
+    /// </summary>
     class ToolboxItem : libSMARTMultiTouch.ICloneable
     {
         private InteractiveBorder mInteractiveBorder;
 
+        /// <summary>
+        /// default constructor
+        /// </summary>
         public ToolboxItem()
         {
             this.mInteractiveBorder = new InteractiveBorder();
@@ -18,6 +24,10 @@ namespace LabBench.language.ui
             this.mInteractiveBorder.Background = new SolidColorBrush(Colors.Red);
         }
 
+        /// <summary>
+        /// clone the blueprint object
+        /// </summary>
+        /// <returns>cloned object</returns>
         public Object Clone()
         {
             DraggableBorder r = new DraggableBorder();

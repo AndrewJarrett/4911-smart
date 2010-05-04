@@ -17,6 +17,9 @@ using LabBench.demo;
 
 namespace LabBench.language.ui.control
 {
+    /// <summary>
+    /// behavior allowing UI element to enter/exit wiring mode
+    /// </summary>
     public class CreateObjectBehavior : Behavior<InteractiveFrameworkElement>
     {
         private FrameworkElement m_element;
@@ -32,6 +35,9 @@ namespace LabBench.language.ui.control
 
         private Component src;
 
+        /// <summary>
+        /// start up function
+        /// </summary>
         protected override void OnAttached()
         {
             base.OnAttached();
@@ -45,6 +51,11 @@ namespace LabBench.language.ui.control
             start.X = -1; start.Y = -1; line = null; db = null;
         }
 
+        /// <summary>
+        /// touch event handler for moving UI element
+        /// </summary>
+        /// <param name="sender">UI element</param>
+        /// <param name="e">touch event</param>
         public void AssociatedObject_TouchMove(object sender, TouchContactEventArgs e)
         {
             if (e != null)
@@ -86,6 +97,11 @@ namespace LabBench.language.ui.control
             }
         }
 
+        /// <summary>
+        /// touch event handler for pressing down on UI element
+        /// </summary>
+        /// <param name="sender">UI element</param>
+        /// <param name="e">touch event</param>
         public void AssociatedObject_TouchDown(object sender, TouchContactEventArgs e)
         {
             if (e != null)
@@ -151,7 +167,11 @@ namespace LabBench.language.ui.control
             }
         }
 
-
+        /// <summary>
+        /// touch event handler for releasing UI element
+        /// </summary>
+        /// <param name="sender">UI element</param>
+        /// <param name="e">touch event</param>
         public void AssociatedObject_TouchUp(object sender, TouchContactEventArgs e)
         {
             if (e != null)
@@ -199,6 +219,9 @@ namespace LabBench.language.ui.control
             }
         }
 
+        /// <summary>
+        /// closing function
+        /// </summary>
         protected override void OnDetaching()
         {
             base.OnDetaching();

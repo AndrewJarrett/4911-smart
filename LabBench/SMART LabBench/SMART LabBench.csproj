@@ -147,7 +147,6 @@
     <Compile Include="language\ui\behavior\CreateObjectBehavior.cs" />
     <Compile Include="language\ui\behavior\ToggleBehavior.cs" />
     <Compile Include="language\ui\behavior\DeletableBehavior.cs" />
-    <Compile Include="language\ui\behavior\DebugBehavior.cs" />
     <Compile Include="language\ui\CloneableIcon.cs" />
     <Compile Include="language\ui\CloneableRectangle.cs" />
     <Compile Include="language\ui\behavior\SnapBehavior.cs" />

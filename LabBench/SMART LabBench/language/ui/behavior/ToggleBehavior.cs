@@ -40,7 +40,7 @@ namespace LabBench.language.ui.control
                     //((InteractiveBorder)m_element).Background = Brushes.DarkGray;
                     try
                     {
-                        GridLayout.toggleCreate();
+                        GridLayout.toggleWiringMode();
                     }
                     catch (Exception ex)
                     {
@@ -53,7 +53,7 @@ namespace LabBench.language.ui.control
                     //((InteractiveBorder)m_element).Background = Brushes.LightGray;
                     try
                     {
-                        GridLayout.toggleCreate();
+                        GridLayout.toggleWiringMode();
                     }
                     catch (Exception ex)
                     {

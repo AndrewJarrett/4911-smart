@@ -14,6 +14,9 @@ using LabBench.demo;
 
 namespace LabBench.language.ui.control
 {
+    /// <summary>
+    /// behavior that allows UI elements to clear the lesson
+    /// </summary>
     public class ClearLessonBehavior : Behavior<InteractiveFrameworkElement>
     {
         private FrameworkElement m_element;
@@ -22,6 +25,9 @@ namespace LabBench.language.ui.control
 
         private Canvas mCanvas;
 
+        /// <summary>
+        /// default constructor
+        /// </summary>
         public ClearLessonBehavior() {
             try
             {
@@ -33,6 +39,9 @@ namespace LabBench.language.ui.control
             }
         }
 
+        /// <summary>
+        /// start up function
+        /// </summary>
         protected override void OnAttached()
         {
             base.OnAttached();
@@ -42,6 +51,11 @@ namespace LabBench.language.ui.control
             base.AssociatedObject.TouchUp += new TouchContactEventHandler(AssociatedObject_TouchUp);
         }
 
+        /// <summary>
+        /// processes releasing the UI element
+        /// </summary>
+        /// <param name="sender">the UI element</param>
+        /// <param name="e">the touch event</param>
         public void AssociatedObject_TouchUp(object sender, TouchContactEventArgs e)
         {
             if (e != null)
@@ -50,7 +64,9 @@ namespace LabBench.language.ui.control
             }
         }
 
-
+        /// <summary>
+        /// closing function
+        /// </summary>
         protected override void OnDetaching()
         {
             base.OnDetaching();

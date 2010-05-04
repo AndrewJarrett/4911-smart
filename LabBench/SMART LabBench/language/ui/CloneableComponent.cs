@@ -11,10 +11,17 @@ using System.Windows;
 
 namespace LabBench.language.ui
 {
+    /// <summary>
+    /// Component that can be cloned
+    /// </summary>
     class CloneableComponent : libSMARTMultiTouch.ICloneable
     {
         private Component mComponent;
 
+        /// <summary>
+        /// class constructor
+        /// </summary>
+        /// <param name="mComponent">Component to be cloned</param>
         public CloneableComponent(Component mComponent)
         {
             this.mComponent = mComponent;
@@ -22,6 +29,10 @@ namespace LabBench.language.ui
 
         #region ICloneable Members
 
+        /// <summary>
+        /// create a new clone 
+        /// </summary>
+        /// <returns>cloned object</returns>
         public object Clone()
         {
             Component r = new Component(mComponent.Resistivity, mComponent.getSource());

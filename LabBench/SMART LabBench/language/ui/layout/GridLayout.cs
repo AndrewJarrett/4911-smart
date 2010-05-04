@@ -15,6 +15,9 @@ using System.Windows.Media.Imaging;
 
 namespace LabBench.language.ui.layout
 {
+    /// <summary>
+    /// a data structure that defines a grid layout with buttons
+    /// </summary>
     public class GridLayout
     {
         private static List<InteractiveBorder> mInteractiveBorders = new List<InteractiveBorder>(56*42); 
@@ -24,50 +27,17 @@ namespace LabBench.language.ui.layout
         private static Icon mWireTool;
         private static LessonChooser lessonChooser;
 
+        /// <summary>
+        /// default constructor
+        /// </summary>
         public GridLayout()
         {
             createLayout();
         }
 
-        public static void shade(int x, int y, int w, int h) {
-            int index = (x/25) * 42 + (y/25);
-
-            if (index > -1 && index < 42*56)
-            {
-                mInteractiveBorders[index].Background = Brushes.Gray;
-
-                for (int i = 0; i < w / 25; i++)
-                {
-                    for (int j = 0; j < h / 25; j++)
-                    {
-                        int k = ((x / 25) + i) * 42 + ((y / 25) + j);
-                        mInteractiveBorders[k].Background = Brushes.LightGray;
-                        mInteractiveBorders[k].BorderThickness = new Thickness(0);
-                    }
-                }
-            }
-        }
-
-        public static void unshade(int x, int y, int w, int h)
-        {
-            int index = (x / 25) * 42 + (y / 25);
-
-            if (index > -1 && index < 42*56)
-            {
-                mInteractiveBorders[index].Background = Brushes.White;
-
-                for (int i = 0; i < w / 25; i++)
-                {
-                    for (int j = 0; j < h / 25; j++)
-                    {
-                        int k = ((x / 25) + i) * 42 + ((y / 25) + j);
-                        mInteractiveBorders[k].Background = Brushes.White;
-                        mInteractiveBorders[k].BorderThickness = new Thickness(1);
-                    }
-                }
-            }
-        }
-
+        /// <summary>
+        /// create the layout in its entirety
+        /// </summary>
         private void createLayout()
         {
 
@@ -146,6 +116,10 @@ namespace LabBench.language.ui.layout
             LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mWireTool);
         }
 
+        /// <summary>
+        /// set the icon of the wire tool button
+        /// </summary>
+        /// <param name="mIcon">Icon to represent the button</param>
         private static void setWireToolButton(String mIcon)
         {
             mWireTool = new Icon(new ImagePNG("ui/" + mIcon));
@@ -157,7 +131,12 @@ namespace LabBench.language.ui.layout
             //mWireTool.Attach(new TouchBounceBehavior());
         }
 
-        public static void create(Point start, Point end)
+        /// <summary>
+        /// create a new Wire between two points
+        /// </summary>
+        /// <param name="start">starting point</param>
+        /// <param name="end">ending point</param>
+        public static void createWire(Point start, Point end)
         {
             Line line = new Line();
             line.X1 = start.X;
@@ -179,7 +158,10 @@ namespace LabBench.language.ui.layout
             LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mDraggableBorder);
         }
 
-        public static void toggleCreate()
+        /// <summary>
+        /// toggle Wiring mode on/off
+        /// </summary>
+        public static void toggleWiringMode()
         {
             if (isCreateMode)
             {
@@ -202,6 +184,9 @@ namespace LabBench.language.ui.layout
             }
         }
 
+        /// <summary>
+        /// lower overlay
+        /// </summary>
         public static void demote()
         {
             Grid.SetZIndex(mOverlay, int.MinValue);

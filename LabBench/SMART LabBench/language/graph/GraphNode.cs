@@ -5,6 +5,10 @@ using System.Text;
 
 namespace LabBench.language.graph
 {
+    /// <summary>
+    /// A node in the Graph data structure
+    /// </summary>
+    /// <typeparam name="T">type of element</typeparam>
     public class GraphNode<T> : Node<T>
     {
         private List<int> costs;
@@ -13,6 +17,9 @@ namespace LabBench.language.graph
         public GraphNode(T value) : base(value) { }
         public GraphNode(T value, NodeList<T> neighbors) : base(value, neighbors) { }
 
+        /// <summary>
+        /// List of neighboring GraphNodes
+        /// </summary>
         new public NodeList<T> Neighbors {
             get {
                 if (base.Neighbors == null)
@@ -22,6 +29,9 @@ namespace LabBench.language.graph
             }
         }
 
+        /// <summary>
+        /// Weight of edges from this node to another GraphNode
+        /// </summary>
         public List<int> Costs {
             get {
                 if (costs == null)
