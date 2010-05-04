@@ -14,6 +14,9 @@ using LabBench.language.ui.screens;
 
 namespace LabBench.language.ui.screens
 {
+    /// <summary>
+    /// Lesson Manager screen
+    /// </summary>
     public class Manager
     {
         private Canvas mCanvas;
@@ -28,6 +31,10 @@ namespace LabBench.language.ui.screens
         private const int NAV_BUTTON_WIDTH = 100;
         private const int NAV_BUTTON_HEIGHT = 100;
         
+        /// <summary>
+        /// class constructor
+        /// </summary>
+        /// <param name="tableControl">table control from application</param>
         public Manager(TableControl tableControl)
         {
             mTableControl = tableControl;
@@ -186,12 +193,22 @@ namespace LabBench.language.ui.screens
             UpdateText();
         }
 
+        /// <summary>
+        /// event handler for clicking on button
+        /// </summary>
+        /// <param name="sender">button</param>
+        /// <param name="e">touch event</param>
         private void mButton1_Click(object sender, EventArgs e)
         {
             StateMachine.mScreen = Screens.Creator;
             mTableControl.TableApplicationControl_Loaded(null, null);
         }
 
+        /// <summary>
+        /// event handler for clicking on button
+        /// </summary>
+        /// <param name="sender">button</param>
+        /// <param name="e">touch event</param>
         private void mPreviousButton_Click(object sender, EventArgs e)
         {
             if (pageNumber == 1)
@@ -205,7 +222,11 @@ namespace LabBench.language.ui.screens
 
             UpdateText();
         }
-
+        /// <summary>
+        /// event handler for clicking on button
+        /// </summary>
+        /// <param name="sender">button</param>
+        /// <param name="e">touch event</param>
         private void mNextButton_Click(object sender, EventArgs e)
         {
             if (pageNumber == totalPages)
@@ -216,6 +237,9 @@ namespace LabBench.language.ui.screens
             UpdateText();
         }
 
+        /// <summary>
+        /// update the text indicating the current page number
+        /// </summary>
         private void UpdateText()
         {
             mTextBlock.Text = "Page " + pageNumber + "/" + totalPages;

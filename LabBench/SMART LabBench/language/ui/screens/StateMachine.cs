@@ -5,6 +5,9 @@ using System.Text;
 
 namespace LabBench.language.ui.screens
 {
+    /// <summary>
+    /// clollection of states
+    /// </summary>
     public enum Screens
     {
         TitleScreen,
@@ -14,6 +17,9 @@ namespace LabBench.language.ui.screens
         Player
     }
 
+    /// <summary>
+    /// data structure for all available states
+    /// </summary>
     public static class StateMachine
     {
         public static Screens mScreen;
