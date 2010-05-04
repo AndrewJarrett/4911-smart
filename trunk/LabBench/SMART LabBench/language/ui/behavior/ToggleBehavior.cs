@@ -44,7 +44,7 @@ namespace LabBench.language.ui.control
                     }
                     catch (Exception ex)
                     {
-                        PlayerGridLayout.toggleCreate();
+                        PlayerGridLayout.toggleWiringMode();
                     }
                     isOn = false;
                 }
@@ -57,7 +57,7 @@ namespace LabBench.language.ui.control
                     }
                     catch (Exception ex)
                     {
-                        PlayerGridLayout.toggleCreate();
+                        PlayerGridLayout.toggleWiringMode();
                     }
                     isOn = true;
                 }

@@ -18,6 +18,9 @@ using LabBench.language.ui.screens;
 namespace LabBench.language.ui.screens
 {
     
+    /// <summary>
+    /// Title Screen of the application
+    /// </summary>
     public class TitleScreen
     {
         #region Object Declarations for the TitleScreen State
@@ -33,6 +36,10 @@ namespace LabBench.language.ui.screens
         private InteractiveControl mPickerButton;
         #endregion
 
+        /// <summary>
+        /// class constructor
+        /// </summary>
+        /// <param name="tableControl">table control from the application</param>
         public TitleScreen(TableControl tableControl)
         {
             #region Setup all the variables for this state
@@ -114,11 +121,21 @@ namespace LabBench.language.ui.screens
         }
 
         #region Touch Event Handlers
+        /// <summary>
+        /// handle touch releases on the Manager Button
+        /// </summary>
+        /// <param name="sender">button</param>
+        /// <param name="e">touch event</param>
         private void ManagerButton_TouchContactUp(object sender, TouchContactEventArgs e)
         {
             StateMachine.mScreen = Screens.Manager;
             mTableControl.TableApplicationControl_Loaded(null, null);
         }
+        /// <summary>
+        /// handle touch releases on the Lesson Picker button
+        /// </summary>
+        /// <param name="sender">button</param>
+        /// <param name="e">touch event</param>
         private void PickerButton_TouchContactUp(object sender, TouchContactEventArgs e)
         {
             StateMachine.mScreen = Screens.Picker;

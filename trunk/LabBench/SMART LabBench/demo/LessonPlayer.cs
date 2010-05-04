@@ -13,7 +13,9 @@ using LabBench.language;
 
 namespace LabBench.demo
 {
-
+    /// <summary>
+    /// Lesson Player mode
+    /// </summary>
     class LessonPlayer
     {
         private static PlayableLesson mActiveLesson;
@@ -21,11 +23,19 @@ namespace LabBench.demo
         private Grid mGrid;
         private List<PlayableLesson> mLessonList = new List<PlayableLesson>();
 
+        /// <summary>
+        /// class constructor
+        /// </summary>
+        /// <param name="mTableControl">table control from application</param>
         public LessonPlayer(TableControl mTableControl)
         {
             mGrid = mTableControl.TableLayoutRoot;
         }
 
+
+        /// <summary>
+        /// create a new lesson
+        /// </summary>
         public void createLesson()
         {
             PlayableLesson mLesson = new PlayableLesson(new Canvas());
@@ -35,12 +45,19 @@ namespace LabBench.demo
             mLesson.initialize();
         }
 
+        /// <summary>
+        /// delete a lesson
+        /// </summary>
+        /// <param name="mLesson">lesson to be deleted</param>
         public void deleteLesson(PlayableLesson mLesson)
         {
             mGrid.Children.Remove(mLesson.LabBench.Canvas);
             mLessonList.Remove(mLesson);
         }
 
+        /// <summary>
+        /// the currently played lesson
+        /// </summary>
         public static PlayableLesson ActiveLesson
         {
             set { mActiveLesson = value; }

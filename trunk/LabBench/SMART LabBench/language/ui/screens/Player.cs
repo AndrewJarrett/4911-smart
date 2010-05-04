@@ -14,12 +14,19 @@ using LabBench.language.ui.screens;
 
 namespace LabBench.language.ui.screens
 {
+    /// <summary>
+    /// Player start up screen
+    /// </summary>
     public class Player
     {
         private Canvas mCanvas;
         private Grid mTableLayoutRoot;
         private TableControl mTableControl;
 
+        /// <summary>
+        /// class constructor
+        /// </summary>
+        /// <param name="tableControl">table control from application</param>
         public Player(TableControl tableControl)
         {
             mTableControl = tableControl;
@@ -44,6 +51,11 @@ namespace LabBench.language.ui.screens
             mTableLayoutRoot.Children.Add(mCanvas);
         }
 
+        /// <summary>
+        /// event handler for clicking on the back icon
+        /// </summary>
+        /// <param name="sender">back icon</param>
+        /// <param name="e">click event</param>
         private void mBackIcon_Click(object sender, EventArgs e)
         {
             StateMachine.mScreen = Screens.Picker;
