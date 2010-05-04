@@ -5,8 +5,13 @@ using System.Text;
 
 using LabBench.algorithm;
 using LabBench.language;
-using System.Windows.Forms;
 using LabBench.language.graph;
+using LabBench.language.circuit;
+using System.Windows.Media;
+using libSMARTMultiTouch.Behaviors;
+using System.Windows.Media.Imaging;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace LabBench.demo
 {
@@ -41,14 +46,80 @@ namespace LabBench.demo
 
             Dijkstra<Component> mAlgoritm = new Dijkstra<Component>(mCircuit, mCircuit.Source);
 
-            if ((mAlgoritm.shortestPathTo(mCircuit.Sink)).Count > 0)
+            if ((mAlgoritm.shortestPathTo(mCircuit.Sink)).Count > 1)
             {
                 MessageBox.Show("Hurrah!" + mAlgoritm.shortestPathTo(mCircuit.Sink).Count);
 
-                foreach (Node<Component> n in mCircuit.Nodes)
+                Component mLightBulb = null;
+
+                foreach (GraphNode<Component> mNode in mCircuit.Nodes)
+                {
+                    if (mNode.Value.Resistivity == "output")
+                    {
+                        mLightBulb = mNode.Value;
+                    }
+                }
+
+                if (mLightBulb != null)
                 {
 
+                    Component mLightBulbOn = new Component(mLightBulb.Resistivity, new ImagePNG("light_bulb_on.png"));
+                    mCircuit.AddNode(mLightBulbOn);
+
+                    foreach (Connection mConnection in mLightBulb.Connections)
+                    {
+                        if (mConnection.src == mLightBulb)
+                        {
+                            Component mMatchedComponent = null;
+                            foreach (Connection mCopyConnection in mConnection.dst.Connections)
+                            {
+                                if (mCopyConnection.src == mLightBulb)
+                                    mMatchedComponent = mConnection.dst;
+                            }
+                            //mConnection.src = mLightBulbOn;
+                            mCircuit.connectComponents(mLightBulbOn, mConnection.dst);
+                        }
+                        else if (mConnection.dst == mLightBulb)
+                        {
+                            Component mMatchedComponent = null;
+                            foreach (Connection mCopyConnection in mConnection.src.Connections)
+                            {
+                                if (mCopyConnection.dst == mLightBulb)
+                                    mMatchedComponent = mConnection.src;
+                            }
+                            //mConnection.dst = mLightBulbOn;
+                            mCircuit.connectComponents(mConnection.src, mLightBulbOn);
+                        }
+                    }
+
+
+                    mLightBulbOn.setPose(mLightBulb.getX(), mLightBulb.getY(), mLightBulb.getAngle());
+
+                    TransformGroup mTransformGroup = new TransformGroup();
+                    mTransformGroup.Children.Add(new RotateTransform(mLightBulb.getAngle()));
+                    mTransformGroup.Children.Add(new TranslateTransform(mLightBulb.getX(), mLightBulb.getY()));
+
+                    mLightBulbOn.LayoutTransform = mTransformGroup;
+                    
+                    mLightBulbOn.IsTranslateEnabled = true; mLightBulbOn.IsRotateEnabled = true;
+                    //mLightBulbOn.RenderTransformOrigin = new Point(mLightBulb.getX(), mLightBulb.getY());
+                    //mLightBulbOn.RenderTransform = mTransformGroup;
+                    mLightBulbOn.AnimateTranslate(mLightBulb.getX(), mLightBulb.getY(), 0.5, 0.5, new TimeSpan(1));
+                    mLightBulbOn.IsMoveToTopOnTouchEnabled = true;
+                    mLightBulbOn.Focus();
+
+                   
+
+                    mCircuit.removeComponent(mLightBulb);
+                    LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mLightBulbOn);
+                    LessonCreator.ActiveLesson.LabBench.Canvas.UpdateLayout();
+                    mLightBulbOn.UpdateLayout();
+                    mLightBulbOn.Focus();
+                    Grid.SetZIndex(mLightBulbOn, Grid.GetZIndex(mLightBulbOn) + 1);
                 }
+
+                
+                    
             }
             else
             {
