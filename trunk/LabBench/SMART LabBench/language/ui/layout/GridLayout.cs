@@ -24,7 +24,7 @@ namespace LabBench.language.ui.layout
         private static InteractiveBorder mOverlay;
         private static CreateObjectBehavior mCreateObjectBehavior;
         private static Boolean isCreateMode;
-        private static Icon mWireTool;
+        private static Icon mWireTool, mApplyPhysicsButton;
         private static LessonChooser lessonChooser;
 
         /// <summary>
@@ -56,15 +56,15 @@ namespace LabBench.language.ui.layout
             LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mTrashCan);
 
             // validate button
-            Icon mValidateButton = new Icon(new ImagePNG("ui/validate.png"));
+            mApplyPhysicsButton = new Icon(new ImagePNG("ui/validate.png"));
             TransformGroup m3TransformGroup = new TransformGroup();
             m3TransformGroup.Children.Add(new ScaleTransform(0.4, 0.4));
             m3TransformGroup.Children.Add(new TranslateTransform(780, -62.5));
-            mValidateButton.RenderTransform = m3TransformGroup;
-            mValidateButton.Attach(new ValidateCircuitBehavior());
-            mValidateButton.Attach(new TouchBounceBehavior());
+            mApplyPhysicsButton.RenderTransform = m3TransformGroup;
+            mApplyPhysicsButton.Attach(new ValidateCircuitBehavior());
+            mApplyPhysicsButton.Attach(new TouchBounceBehavior());
 
-            LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mValidateButton);
+            LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mApplyPhysicsButton);
 
             // save button
             Icon mSaveButton = new Icon(new ImagePNG("ui/save.png"));
@@ -132,6 +132,17 @@ namespace LabBench.language.ui.layout
             //mWireTool.Attach(new TouchBounceBehavior());
         }
 
+        private static void setApplyPhysicsButton(String mIcon)
+        {
+            mApplyPhysicsButton = new Icon(new ImagePNG("ui/" + mIcon));
+            TransformGroup mTransformGroup = new TransformGroup();
+            mTransformGroup.Children.Add(new ScaleTransform(0.4, 0.4));
+            mTransformGroup.Children.Add(new TranslateTransform(780, -62.25));
+            mApplyPhysicsButton.RenderTransform = mTransformGroup;
+            mApplyPhysicsButton.Attach(new ValidateCircuitBehavior());
+            mApplyPhysicsButton.Attach(new TouchBounceBehavior());
+        }
+
         /// <summary>
         /// create a new Wire between two points
         /// </summary>
@@ -182,6 +193,29 @@ namespace LabBench.language.ui.layout
                 Grid.SetZIndex(mOverlay, int.MaxValue / 2);
                 //Grid.SetZIndex(mWireTool, int.MaxValue);
                 isCreateMode = true;
+            }
+        }
+
+        public static void resetApplyPhysicsButton()
+        {
+            LessonCreator.ActiveLesson.LabBench.Canvas.Children.Remove(mApplyPhysicsButton);
+            setApplyPhysicsButton("validate.png");
+            LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mApplyPhysicsButton);
+        }
+
+        public static void toggleApplyPhysicsButton(bool mResult)
+        {
+            if (mResult)
+            {
+                LessonCreator.ActiveLesson.LabBench.Canvas.Children.Remove(mApplyPhysicsButton);
+                setApplyPhysicsButton("valid.png");
+                LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mApplyPhysicsButton);
+            }
+            else
+            {
+                LessonCreator.ActiveLesson.LabBench.Canvas.Children.Remove(mApplyPhysicsButton);
+                setApplyPhysicsButton("invalid.png");
+                LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mApplyPhysicsButton);
             }
         }
 
