@@ -73,9 +73,9 @@ namespace LabBench.demo
 
             if (mLastComponent != null)
             {
-                MessageBox.Show("Found an anchor.");
+                //MessageBox.Show("Found an anchor.");
                 mCircuit.RemoveUndirectedEdge(mLastComponent, mPowerSource, 0);
-                mCircuit.AddUndirectedEdge(mPowerSource, mPowerSource, 200);
+                mCircuit.AddUndirectedEdge(mLastComponent, mPowerSource, 200);
                 //MessageBox.Show("count : " + mCircuit.Get(mLastComponent).Costs[mCircuit.Get(mLastComponent).Neighbors.IndexOf(mCircuit.Get(mPowerSource))]);
                 //MessageBox.Show("count : " + mCircuit.Get(mPowerSource).Costs[mCircuit.Get(mPowerSource).Neighbors.IndexOf(mCircuit.Get(mLastComponent))]);
                 mCircuit.AddUndirectedEdge(mLastComponent, mCircuit.Sink, 0);
@@ -175,7 +175,12 @@ namespace LabBench.demo
             }
 
             mCircuit.RemoveUndirectedEdge(mCircuit.Sink, mPowerSource, 0);
-            if(mLastComponent != null) mCircuit.RemoveUndirectedEdge(mLastComponent, mCircuit.Sink, 0);
+            if (mLastComponent != null)
+            {
+                mCircuit.RemoveUndirectedEdge(mLastComponent, mCircuit.Sink, 0);
+                mCircuit.RemoveUndirectedEdge(mLastComponent, mPowerSource, 200);
+                mCircuit.AddUndirectedEdge(mLastComponent, mPowerSource, 0);
+            }
 
             return isValid;
         }

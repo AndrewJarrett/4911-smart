@@ -39,7 +39,7 @@ namespace LabBench.language.ui.control
         {
             if (e != null)
             {
-                LessonCreator.ActiveLesson.Engine.applyPhysics();
+                GridLayout.toggleApplyPhysicsButton(LessonCreator.ActiveLesson.Engine.applyPhysics());
             }
         }
 

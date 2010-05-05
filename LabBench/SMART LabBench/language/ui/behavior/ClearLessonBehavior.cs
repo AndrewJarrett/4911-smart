@@ -60,6 +60,7 @@ namespace LabBench.language.ui.control
         {
             if (e != null)
             {
+                GridLayout.resetApplyPhysicsButton();
                 LessonCreator.ActiveLesson.Circuit.deleteCircuit();
             }
         }
