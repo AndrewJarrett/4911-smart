@@ -57,8 +57,15 @@ namespace LabBench.language
                     //                + "bounds @ (" + (n.Value.getX() + n.Value.getSource().Source.Width) + ","
                     //                + (n.Value.getY() + n.Value.getSource().Source.Height) + ")");
 
+                    Size mSize = n.Value.RenderSize;
+                    Point mPoint = n.Value.RenderTransformOrigin;
+
+                    //MessageBox.Show("component @ (" + mPoint.X + "," + mPoint.Y + ")");
+                    //MessageBox.Show("render size : " + mSize.Width + "x" + mSize.Height);
+
                     int lbX = (int) n.Value.getX(), lbY = (int) n.Value.getY();
-                    int ubX = (int)(lbX + n.Value.getSource().Source.Width), ubY = (int)(lbY + n.Value.getSource().Source.Height);
+                    //int ubX = (int)(lbX + n.Value.getSource().Source.Width), ubY = (int)(lbY + n.Value.getSource().Source.Height);
+                    int ubX = (int)(lbX + mSize.Width), ubY = (int)(lbY + mSize.Height);
 
                     if (x > lbX && x < ubX)
                     {

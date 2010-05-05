@@ -34,8 +34,11 @@ namespace LabBench.demo
         /// <returns>true if the circuit is valid, else false</returns>
         public bool applyPhysics()
         {
-            if (mCircuit.Nodes.Count < 4)
+            if (mCircuit.Nodes.Count < 5)
+            {
+                switchState(false, mCircuit.Nodes);
                 return false;
+            }
 
             Component mPowerSource = null;
 
@@ -53,8 +56,11 @@ namespace LabBench.demo
             }
 
             // circuit doesn't have a power source
-            if(mPowerSource == null)
+            if (mPowerSource == null)
+            {
+                switchState(false, mCircuit.Nodes);
                 return false;
+            }
 
             Component mLastComponent = null;
 
@@ -96,7 +102,10 @@ namespace LabBench.demo
             foreach (GraphNode<Component> mNode in mShortestPath)
             {
                 if (mNode.Value.Resistivity == "insulator")
+                {
+                    switchState(false, mCircuit.Nodes);
                     return false;
+                }
             }
 
             bool isValid = false;
@@ -119,62 +128,11 @@ namespace LabBench.demo
 
                 if (mLightBulb != null)
                 {
-
-                    Component mLightBulbOn = new Component(mLightBulb.Resistivity, new ImagePNG("light_bulb_on.png"));
-                    mCircuit.AddNode(mLightBulbOn);
-
-                    foreach (Connection mConnection in mLightBulb.Connections)
-                    {
-                        if (mConnection.src == mLightBulb)
-                        {
-                            Component mMatchedComponent = null;
-                            foreach (Connection mCopyConnection in mConnection.dst.Connections)
-                            {
-                                if (mCopyConnection.src == mLightBulb)
-                                    mMatchedComponent = mConnection.dst;
-                            }
-                            mCircuit.connectComponents(mLightBulbOn, mConnection.dst);
-                        }
-                        else if (mConnection.dst == mLightBulb)
-                        {
-                            Component mMatchedComponent = null;
-                            foreach (Connection mCopyConnection in mConnection.src.Connections)
-                            {
-                                if (mCopyConnection.dst == mLightBulb)
-                                    mMatchedComponent = mConnection.src;
-                            }
-                            mCircuit.connectComponents(mConnection.src, mLightBulbOn);
-                        }
-                    }
-
-
-                    mLightBulbOn.setPose(mLightBulb.getX(), mLightBulb.getY(), mLightBulb.getAngle());
-
-                    TransformGroup mTransformGroup = new TransformGroup();
-                    mTransformGroup.Children.Add(new RotateTransform(mLightBulb.getAngle()));
-                    mTransformGroup.Children.Add(new TranslateTransform(mLightBulb.getX(), mLightBulb.getY()));
-
-                    mLightBulbOn.LayoutTransform = mTransformGroup;
-                    
-                    mLightBulbOn.IsTranslateEnabled = true; mLightBulbOn.IsRotateEnabled = true;
-                    //mLightBulbOn.RenderTransformOrigin = new Point(mLightBulb.getX(), mLightBulb.getY());
-                    //mLightBulbOn.RenderTransform = mTransformGroup;
-                    mLightBulbOn.AnimateTranslate(mLightBulb.getX(), mLightBulb.getY(), 0.5, 0.5, new TimeSpan(1));
-                    mLightBulbOn.IsMoveToTopOnTouchEnabled = true;
-                    mLightBulbOn.Focus();
-
-                   
-
-                    mCircuit.removeComponent(mLightBulb);
-                    LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mLightBulbOn);
-                    LessonCreator.ActiveLesson.LabBench.Canvas.UpdateLayout();
-                    mLightBulbOn.UpdateLayout();
-                    mLightBulbOn.Focus();
-                    Grid.SetZIndex(mLightBulbOn, Grid.GetZIndex(mLightBulbOn) + 1);
+                    switchOutput("light_bulb_on.png", mLightBulb);
                 }           
             }
 
-            mCircuit.RemoveUndirectedEdge(mCircuit.Sink, mPowerSource, 0);
+            mCircuit.RemoveUndirectedEdge(mCircuit.Source, mPowerSource, 0);
             if (mLastComponent != null)
             {
                 mCircuit.RemoveUndirectedEdge(mLastComponent, mCircuit.Sink, 0);
@@ -182,7 +140,91 @@ namespace LabBench.demo
                 mCircuit.AddUndirectedEdge(mLastComponent, mPowerSource, 0);
             }
 
+            if (!isValid) switchState(false, mCircuit.Nodes);
+
             return isValid;
         }
+
+        private void switchState(bool mState, NodeList<Component> mComponentList)
+        {
+            Component mLightBulb = null;
+
+            foreach (GraphNode<Component> mNode in mComponentList)
+            {
+                if (mNode.Value.Resistivity == "output")
+                {
+                    mLightBulb = mNode.Value;
+                    //MessageBox.Show("Found a light bulb in the circuit");
+                }
+            }
+
+            if (mLightBulb != null)
+            {
+                if (!mState)
+                {
+                    switchOutput("light_bulb_off.png", mLightBulb);
+                }
+                else
+                {
+                    switchOutput("light_bulb_on.png", mLightBulb);
+                }
+            }  
+        }
+
+        private void switchOutput(String mOutput, Component mLightBulb)
+        {
+            Component mLightBulbOn = new Component(mLightBulb.Resistivity, new ImagePNG(mOutput));
+            mCircuit.AddNode(mLightBulbOn);
+
+            foreach (Connection mConnection in mLightBulb.Connections)
+            {
+                if (mConnection.src == mLightBulb)
+                {
+                    Component mMatchedComponent = null;
+                    foreach (Connection mCopyConnection in mConnection.dst.Connections)
+                    {
+                        if (mCopyConnection.src == mLightBulb)
+                            mMatchedComponent = mConnection.dst;
+                    }
+                    mCircuit.connectComponents(mLightBulbOn, mConnection.dst);
+                }
+                else if (mConnection.dst == mLightBulb)
+                {
+                    Component mMatchedComponent = null;
+                    foreach (Connection mCopyConnection in mConnection.src.Connections)
+                    {
+                        if (mCopyConnection.dst == mLightBulb)
+                            mMatchedComponent = mConnection.src;
+                    }
+                    mCircuit.connectComponents(mConnection.src, mLightBulbOn);
+                }
+            }
+
+
+            mLightBulbOn.setPose(mLightBulb.getX(), mLightBulb.getY(), mLightBulb.getAngle());
+
+            TransformGroup mTransformGroup = new TransformGroup();
+            mTransformGroup.Children.Add(new RotateTransform(mLightBulb.getAngle()));
+            mTransformGroup.Children.Add(new TranslateTransform(mLightBulb.getX(), mLightBulb.getY()));
+
+            mLightBulbOn.LayoutTransform = mTransformGroup;
+
+            mLightBulbOn.IsTranslateEnabled = true; mLightBulbOn.IsRotateEnabled = true;
+            //mLightBulbOn.RenderTransformOrigin = new Point(mLightBulb.getX(), mLightBulb.getY());
+            //mLightBulbOn.RenderTransform = mTransformGroup;
+            mLightBulbOn.AnimateTranslate(mLightBulb.getX(), mLightBulb.getY(), 0.5, 0.5, new TimeSpan(1));
+            mLightBulbOn.IsMoveToTopOnTouchEnabled = true;
+            mLightBulbOn.Focus();
+
+
+
+            mCircuit.removeComponent(mLightBulb);
+            LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mLightBulbOn);
+            LessonCreator.ActiveLesson.LabBench.Canvas.UpdateLayout();
+            mLightBulbOn.UpdateLayout();
+            mLightBulbOn.Focus();
+            Grid.SetZIndex(mLightBulbOn, Grid.GetZIndex(mLightBulbOn) + 1);
+        }
     }
+
 }
