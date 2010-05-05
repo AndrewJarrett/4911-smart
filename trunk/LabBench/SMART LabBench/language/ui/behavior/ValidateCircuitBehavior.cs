@@ -23,7 +23,14 @@ namespace LabBench.language.ui.control
         private Canvas mCanvas;
 
         public ValidateCircuitBehavior() {
-            this.mCanvas = LessonCreator.ActiveLesson.LabBench.Canvas;
+            try
+            {
+                this.mCanvas = LessonCreator.ActiveLesson.LabBench.Canvas;
+            }
+            catch (Exception ex)
+            {
+                this.mCanvas = LessonPlayer.ActiveLesson.LabBench.Canvas;
+            }
         }
 
         protected override void OnAttached()
@@ -39,7 +46,14 @@ namespace LabBench.language.ui.control
         {
             if (e != null)
             {
-                GridLayout.toggleApplyPhysicsButton(LessonCreator.ActiveLesson.Engine.applyPhysics());
+                try
+                {
+                    GridLayout.toggleApplyPhysicsButton(LessonCreator.ActiveLesson.Engine.applyPhysics());
+                }
+                catch (Exception ex)
+                {
+                    PlayerGridLayout.toggleApplyPhysicsButton(LessonPlayer.ActiveLesson.Engine.applyPhysics());
+                }
             }
         }
 
