@@ -219,8 +219,16 @@ namespace LabBench.demo
 
 
             mCircuit.removeComponent(mLightBulb);
-            LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mLightBulbOn);
-            LessonCreator.ActiveLesson.LabBench.Canvas.UpdateLayout();
+            try
+            {
+                LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mLightBulbOn);
+                LessonCreator.ActiveLesson.LabBench.Canvas.UpdateLayout();
+            }
+            catch (Exception ex)
+            {
+                LessonPlayer.ActiveLesson.LabBench.Canvas.Children.Add(mLightBulbOn);
+                LessonPlayer.ActiveLesson.LabBench.Canvas.UpdateLayout();
+            }
             mLightBulbOn.UpdateLayout();
             mLightBulbOn.Focus();
             Grid.SetZIndex(mLightBulbOn, Grid.GetZIndex(mLightBulbOn) + 1);

@@ -26,6 +26,7 @@ namespace LabBench.language.ui.layout
         private static Boolean isCreateMode;
         private static Icon mWireTool;
         private static LessonChooser lessonChooser;
+        private static Icon mApplyPhysicsButton;
 
         /// <summary>
         /// default constructor
@@ -58,6 +59,17 @@ namespace LabBench.language.ui.layout
 
             LessonPlayer.ActiveLesson.LabBench.Canvas.Children.Add(mLoadButton);
 
+            // validate button
+            mApplyPhysicsButton = new Icon(new ImagePNG("ui/validate.png"));
+            TransformGroup m4TransformGroup = new TransformGroup();
+            m4TransformGroup.Children.Add(new ScaleTransform(0.4, 0.4));
+            m4TransformGroup.Children.Add(new TranslateTransform(780, -62.5));
+            mApplyPhysicsButton.RenderTransform = m4TransformGroup;
+            mApplyPhysicsButton.Attach(new ValidateCircuitBehavior());
+            mApplyPhysicsButton.Attach(new TouchBounceBehavior());
+
+            LessonPlayer.ActiveLesson.LabBench.Canvas.Children.Add(mApplyPhysicsButton);
+
             mOverlay = new InteractiveBorder();
             mOverlay.Width = 1400; mOverlay.Height = 1050;
             mOverlay.Background = Brushes.Transparent;
@@ -71,6 +83,40 @@ namespace LabBench.language.ui.layout
             setWireToolButton("wire.png");
 
             LessonPlayer.ActiveLesson.LabBench.Canvas.Children.Add(mWireTool);
+        }
+
+        public static void resetApplyPhysicsButton()
+        {
+            LessonPlayer.ActiveLesson.LabBench.Canvas.Children.Remove(mApplyPhysicsButton);
+            setApplyPhysicsButton("validate.png");
+            LessonPlayer.ActiveLesson.LabBench.Canvas.Children.Add(mApplyPhysicsButton);
+        }
+
+        private static void setApplyPhysicsButton(String mIcon)
+        {
+            mApplyPhysicsButton = new Icon(new ImagePNG("ui/" + mIcon));
+            TransformGroup mTransformGroup = new TransformGroup();
+            mTransformGroup.Children.Add(new ScaleTransform(0.4, 0.4));
+            mTransformGroup.Children.Add(new TranslateTransform(780, -62.25));
+            mApplyPhysicsButton.RenderTransform = mTransformGroup;
+            mApplyPhysicsButton.Attach(new ValidateCircuitBehavior());
+            mApplyPhysicsButton.Attach(new TouchBounceBehavior());
+        }
+
+        public static void toggleApplyPhysicsButton(bool mResult)
+        {
+            if (mResult)
+            {
+                LessonPlayer.ActiveLesson.LabBench.Canvas.Children.Remove(mApplyPhysicsButton);
+                setApplyPhysicsButton("valid.png");
+                LessonPlayer.ActiveLesson.LabBench.Canvas.Children.Add(mApplyPhysicsButton);
+            }
+            else
+            {
+                LessonPlayer.ActiveLesson.LabBench.Canvas.Children.Remove(mApplyPhysicsButton);
+                setApplyPhysicsButton("invalid.png");
+                LessonPlayer.ActiveLesson.LabBench.Canvas.Children.Add(mApplyPhysicsButton);
+            }
         }
 
         /// <summary>
