@@ -84,12 +84,12 @@ namespace LabBench
             {
                 Component newComp = new Component(new language.ImagePNG(item.iconName));
 
-                TransformGroup mTransformGroup = new TransformGroup();
-                mTransformGroup.Children.Add(new ScaleTransform(0.5, 0.5));
-                mTransformGroup.Children.Add(new RotateTransform(item.angle));
+                //TransformGroup mTransformGroup = new TransformGroup();
+                //mTransformGroup.Children.Add(new ScaleTransform(0.5, 0.5));
+                //mTransformGroup.Children.Add(new RotateTransform(item.angle));
 
-                newComp.LayoutTransform = mTransformGroup;
-                newComp.IsTranslateEnabled = true;
+               // newComp.LayoutTransform = mTransformGroup;
+                newComp.IsTranslateEnabled = true; newComp.IsRotateEnabled = true;
                 newComp.AnimateTranslate(item.x, item.y, 0.5, 0.5, new TimeSpan(0, 0, 2));
 
                 try
