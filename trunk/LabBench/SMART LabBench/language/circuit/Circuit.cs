@@ -24,7 +24,7 @@ namespace LabBench.language
         public Circuit() : base()
         {
             AddNode(source); AddNode(sink);
-            AddDirectedEdge(Get(source), Get(sink), int.MaxValue/2); // open
+            AddUndirectedEdge(Get(source), Get(sink), 100); // open
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace LabBench.language
                 removeComponent(Nodes.Last().Value);
             }
             AddNode(source); AddNode(sink);
-            AddDirectedEdge(Get(source), Get(sink), int.MaxValue/2);
+            AddUndirectedEdge(Get(source), Get(sink), 100);
         }
 
         /// <summary>
@@ -121,36 +121,39 @@ namespace LabBench.language
         /// <param name="dst">destination Component</param>
         public void connectComponents(Component src, Component dst) //, Point start, Point end)
         {
-            Point start = new Point((int)(src.getX() + (src.Width / 2)), (int)(src.getY() + (src.Height / 2)));
-            Point end = new Point((int)(dst.getX() + (dst.Width / 2)), (int)(dst.getY() + (dst.Height / 2)));
-
-            Line mLine = new Line();
-            mLine.X1 = start.X; mLine.Y1 = start.Y;
-            mLine.X2 = end.X; mLine.Y2 = end.Y;
-            mLine.StrokeThickness = 25;
-            mLine.StrokeEndLineCap = PenLineCap.Round;
-            mLine.Stroke = Brushes.PowderBlue;// new LinearGradientBrush(Colors.Red, Colors.Black, Math.Atan2(end.Y - start.Y, end.X - start.X));
-
-            DraggableBorder mDraggableBorder = new DraggableBorder();
-            mDraggableBorder.IsRotateEnabled = false;
-            mDraggableBorder.IsTranslateEnabled = false;
-            mDraggableBorder.IsMoveToTopOnTouchEnabled = false;
-            mDraggableBorder.Child = mLine;
-
-            try
+            if (src != dst)
             {
-                LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mDraggableBorder);
+                Point start = new Point((int)(src.getX() + (src.Width / 2)), (int)(src.getY() + (src.Height / 2)));
+                Point end = new Point((int)(dst.getX() + (dst.Width / 2)), (int)(dst.getY() + (dst.Height / 2)));
+
+                Line mLine = new Line();
+                mLine.X1 = start.X; mLine.Y1 = start.Y;
+                mLine.X2 = end.X; mLine.Y2 = end.Y;
+                mLine.StrokeThickness = 25;
+                mLine.StrokeEndLineCap = PenLineCap.Round;
+                mLine.Stroke = Brushes.PowderBlue;// new LinearGradientBrush(Colors.Red, Colors.Black, Math.Atan2(end.Y - start.Y, end.X - start.X));
+
+                DraggableBorder mDraggableBorder = new DraggableBorder();
+                mDraggableBorder.IsRotateEnabled = false;
+                mDraggableBorder.IsTranslateEnabled = false;
+                mDraggableBorder.IsMoveToTopOnTouchEnabled = false;
+                mDraggableBorder.Child = mLine;
+
+                try
+                {
+                    LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mDraggableBorder);
+                }
+                catch (Exception ex)
+                {
+                    LessonPlayer.ActiveLesson.LabBench.Canvas.Children.Add(mDraggableBorder);
+                }
+
+                Connection mConnection = new Connection(src, dst, mDraggableBorder);
+
+                src.addConnection(mConnection); dst.addConnection(mConnection);
+
+                AddUndirectedEdge(Get(src), Get(dst), 0);
             }
-            catch (Exception ex)
-            {
-                LessonPlayer.ActiveLesson.LabBench.Canvas.Children.Add(mDraggableBorder);
-            }
-
-            Connection mConnection = new Connection(src, dst, mDraggableBorder);
-
-            src.addConnection(mConnection); dst.addConnection(mConnection);
-
-            AddDirectedEdge(Get(src), Get(dst), 0);
         }
 
         /// <summary>

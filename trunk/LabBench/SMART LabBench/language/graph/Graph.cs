@@ -37,7 +37,7 @@ namespace LabBench.language.graph
         /// <param name="from">source</param>
         /// <param name="to">destination</param>
         /// <param name="cost">weight</param>
-        public void addDirectedEdge(T from, T to, int cost)
+        public void AddDirectedEdge(T from, T to, int cost)
         {
             AddDirectedEdge(Get(from), Get(to), cost);
         }
@@ -91,6 +91,17 @@ namespace LabBench.language.graph
         }
 
         /// <summary>
+        /// add an undirected edge to the Graph
+        /// </summary>
+        /// <param name="from">value of source</param>
+        /// <param name="to">value of destination</param>
+        /// <param name="cost">weight</param>
+        public void AddUndirectedEdge(T from, T to, int cost)
+        {
+            AddUndirectedEdge(Get(from), Get(to), cost);
+        }
+
+        /// <summary>
         /// remove an undirected edge from the Graph
         /// </summary>
         /// <param name="from">source</param>
@@ -106,6 +117,17 @@ namespace LabBench.language.graph
         }
 
         /// <summary>
+        /// remove an undirected edge from the Graph
+        /// </summary>
+        /// <param name="from">value of source</param>
+        /// <param name="to">value of destination</param>
+        /// <param name="cost">weight</param>
+        public void RemoveUndirectedEdge(T from, T to, int cost)
+        {
+            RemoveUndirectedEdge(Get(from), Get(to), cost);
+        }
+
+        /// <summary>
         /// remove a directed edge from the Graph
         /// </summary>
         /// <param name="from">source</param>
@@ -114,7 +136,19 @@ namespace LabBench.language.graph
         public void RemoveDirectedEdge(GraphNode<T> from, GraphNode<T> to, int cost)
         {
             from.Neighbors.Remove(to);
-            from.Costs.Add(cost);
+            from.Costs.Remove(cost);
+        }
+
+        /// <summary>
+        /// remove a directed edge from the Graph
+        /// </summary>
+        /// <param name="from">value of source</param>
+        /// <param name="to">value of destination</param>
+        /// <param name="cost">weight</param>
+        public void RemoveDirectedEdge(T from, T to, int cost)
+        {
+            Get(from).Neighbors.Remove(Get(to));
+            Get(from).Costs.Remove(cost);
         }
 
         /// <summary>

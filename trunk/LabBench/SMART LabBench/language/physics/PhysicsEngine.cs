@@ -37,34 +37,83 @@ namespace LabBench.demo
             if (mCircuit.Nodes.Count < 4)
                 return false;
 
+            Component mPowerSource = null;
+
             foreach (Node<Component> n in mCircuit.Nodes)
             {
                 if (n.Value != mCircuit.Sink && n.Value != mCircuit.Source)
                 {
                     if (n.Value.Resistivity == "input")
                     {
-                        mCircuit.addDirectedEdge(mCircuit.Source, n.Value, 0);
+                        mPowerSource = n.Value;
+                        mCircuit.AddUndirectedEdge(mCircuit.Source, mPowerSource, 0);
                         break;
                     }
                 }
             }
 
-            mCircuit.addDirectedEdge(mCircuit.Nodes.Last().Value, mCircuit.Sink, 0);
+            // circuit doesn't have a power source
+            if(mPowerSource == null)
+                return false;
 
+            Component mLastComponent = null;
+
+            for (int index = mCircuit.Nodes.Count - 1; index >= 0; index--)
+            {
+                Component mCurrentComponent = mCircuit.Nodes[index].Value;
+                if (mCurrentComponent.Resistivity == "conductor")
+                {
+                    if (mCircuit.Get(mCurrentComponent).Neighbors.Contains(mCircuit.Get(mPowerSource)))
+                    {
+                        mLastComponent = mCircuit.Nodes[index].Value;
+                        break;
+                    }
+                }
+            }
+
+            if (mLastComponent != null)
+            {
+                MessageBox.Show("Found an anchor.");
+                mCircuit.RemoveUndirectedEdge(mLastComponent, mPowerSource, 0);
+                mCircuit.AddUndirectedEdge(mPowerSource, mPowerSource, 200);
+                //MessageBox.Show("count : " + mCircuit.Get(mLastComponent).Costs[mCircuit.Get(mLastComponent).Neighbors.IndexOf(mCircuit.Get(mPowerSource))]);
+                //MessageBox.Show("count : " + mCircuit.Get(mPowerSource).Costs[mCircuit.Get(mPowerSource).Neighbors.IndexOf(mCircuit.Get(mLastComponent))]);
+                mCircuit.AddUndirectedEdge(mLastComponent, mCircuit.Sink, 0);
+
+            }
 
             Dijkstra<Component> mAlgoritm = new Dijkstra<Component>(mCircuit, mCircuit.Source);
+            Queue<GraphNode<Component>> mShortestPath = mAlgoritm.shortestPathTo(mCircuit.Sink);
 
-            if ((mAlgoritm.shortestPathTo(mCircuit.Sink)).Count > 1)
+            String message = "< ";
+            foreach (GraphNode<Component> mNode in mShortestPath.Reverse())
             {
-                //MessageBox.Show("Hurrah!" + mAlgoritm.shortestPathTo(mCircuit.Sink).Count);
+                message += mNode.Value.Resistivity + " ";
+            }
+            message += " >";
+            MessageBox.Show(message);
+
+            foreach (GraphNode<Component> mNode in mShortestPath)
+            {
+                if (mNode.Value.Resistivity == "insulator")
+                    return false;
+            }
+
+            bool isValid = false;
+
+            if (mShortestPath.Count > 1)
+            {
+                MessageBox.Show("Hurrah!" + mShortestPath.Count);
+                isValid = true;
 
                 Component mLightBulb = null;
 
-                foreach (GraphNode<Component> mNode in mCircuit.Nodes)
+                foreach (GraphNode<Component> mNode in mShortestPath)
                 {
                     if (mNode.Value.Resistivity == "output")
                     {
                         mLightBulb = mNode.Value;
+                        MessageBox.Show("Found a light bulb in the circuit");
                     }
                 }
 
@@ -84,7 +133,6 @@ namespace LabBench.demo
                                 if (mCopyConnection.src == mLightBulb)
                                     mMatchedComponent = mConnection.dst;
                             }
-                            //mConnection.src = mLightBulbOn;
                             mCircuit.connectComponents(mLightBulbOn, mConnection.dst);
                         }
                         else if (mConnection.dst == mLightBulb)
@@ -95,7 +143,6 @@ namespace LabBench.demo
                                 if (mCopyConnection.dst == mLightBulb)
                                     mMatchedComponent = mConnection.src;
                             }
-                            //mConnection.dst = mLightBulbOn;
                             mCircuit.connectComponents(mConnection.src, mLightBulbOn);
                         }
                     }
@@ -126,12 +173,11 @@ namespace LabBench.demo
                     Grid.SetZIndex(mLightBulbOn, Grid.GetZIndex(mLightBulbOn) + 1);
                 }           
             }
-            else
-            {
-                //MessageBox.Show("Booo!");
-            }
 
-            return true;
+            mCircuit.RemoveUndirectedEdge(mCircuit.Sink, mPowerSource, 0);
+            if(mLastComponent != null) mCircuit.RemoveUndirectedEdge(mLastComponent, mCircuit.Sink, 0);
+
+            return isValid;
         }
     }
 }

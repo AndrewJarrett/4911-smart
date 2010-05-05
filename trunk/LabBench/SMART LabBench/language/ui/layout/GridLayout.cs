@@ -62,6 +62,7 @@ namespace LabBench.language.ui.layout
             m3TransformGroup.Children.Add(new TranslateTransform(780, -62.5));
             mValidateButton.RenderTransform = m3TransformGroup;
             mValidateButton.Attach(new ValidateCircuitBehavior());
+            mValidateButton.Attach(new TouchBounceBehavior());
 
             LessonCreator.ActiveLesson.LabBench.Canvas.Children.Add(mValidateButton);
 
