@@ -168,5 +168,17 @@ namespace LabBench.language
             set{ mResistivity = value; }
             get{ return mResistivity; }
         }
+
+        public SerializableItem getSerialData()
+        {
+            SerializableItem ret = new SerializableItem();
+            ret.x = x;
+            ret.y = y;
+            ret.iconName = mImageName;
+            ret.angle = angle;
+            ret.name = mResistivity;
+
+            return ret;
+        }
     }
 }

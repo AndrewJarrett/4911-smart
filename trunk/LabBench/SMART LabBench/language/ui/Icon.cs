@@ -17,12 +17,12 @@ namespace LabBench.language
     /// </summary>
     public class Icon : DraggableImage
     {
-        private BitmapImage mBitmapImage;
-        private ImagePNG mImagePNG;
-        private String mImageName;
+        protected BitmapImage mBitmapImage;
+        protected ImagePNG mImagePNG;
+        protected String mImageName;
 
-        private double x, y, angle;
-        private double minScale, maxScale;
+        protected double x, y, angle;
+        protected double minScale, maxScale;
 
         /// <summary>
         /// class constructor
@@ -151,16 +151,16 @@ namespace LabBench.language
             return mImagePNG;
         }
 
-        public SerializableItem getSerialData()
-        {
-            SerializableItem ret = new SerializableItem();
-            ret.x = x;
-            ret.y = y;
-            ret.iconName = mImageName;
-            ret.angle = angle;
+        //public SerializableItem getSerialData()
+        //{
+        //    SerializableItem ret = new SerializableItem();
+        //    ret.x = x;
+        //    ret.y = y;
+        //    ret.iconName = mImageName;
+        //    ret.angle = angle;
 
-            return ret;
-        }
+        //    return ret;
+        //}
 
     }
 }

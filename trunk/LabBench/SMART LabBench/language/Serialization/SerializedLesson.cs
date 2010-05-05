@@ -42,7 +42,7 @@ namespace LabBench
                 String type = elem.GetType().ToString();
                 if (type.Contains("Component"))
                 {
-                    mObjects.Add(((language.Icon)elem).getSerialData());
+                    mObjects.Add(((language.Component)elem).getSerialData());
                 }
             }
         }

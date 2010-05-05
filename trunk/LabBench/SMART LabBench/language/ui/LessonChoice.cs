@@ -12,6 +12,7 @@ using LabBench.language.ui;
 using LabBench.language;
 using LabBench.demo;
 using LabBench.language.ui.control;
+using System.Windows.Forms;
 
 namespace LabBench
 {
@@ -82,8 +83,8 @@ namespace LabBench
 
             foreach (SerializableItem item in lesson.mObjects)
             {
-                Component newComp = new Component(new language.ImagePNG(item.iconName));
-
+                Component newComp = new Component(item.name, new language.ImagePNG(item.iconName));
+                MessageBox.Show("adding < " + item.name + " >");
                 //TransformGroup mTransformGroup = new TransformGroup();
                 //mTransformGroup.Children.Add(new ScaleTransform(0.5, 0.5));
                 //mTransformGroup.Children.Add(new RotateTransform(item.angle));
@@ -94,7 +95,9 @@ namespace LabBench
 
                 try
                 {
+                    
                     LessonCreator.ActiveLesson.Circuit.AddNode(newComp);
+                    //MessageBox.Show("Added to Lesson Creator");
                 }
                 catch (Exception ex)
                 {
@@ -102,6 +105,7 @@ namespace LabBench
                 }
                 
                 parent.Children.Add(newComp);
+                Grid.SetZIndex(newComp, Grid.GetZIndex(newComp) + 1);
             }
         }
 
